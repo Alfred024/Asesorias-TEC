@@ -6,6 +6,7 @@
 }
 :root{
 	--primary-blue: #1B396A;
+	--secondary-blue: #405372;
 	--light-gray: #f0efef;
 	--cool-gray: #807E82;
 }
@@ -15,6 +16,10 @@
   font-weight: 500;
   font-style: normal;
 }
+/* GENERIC CSS */
+textarea:focus, input:focus{
+    outline: none;
+}
 a{
 	cursor: pointer;
 }
@@ -22,6 +27,7 @@ a{
 .absolute{
 	position: absolute;
 }
+
 .box-shadow-light{
 	box-shadow: 0px 8px 4px 0px rgba(0,0,0,0.1);
 }
@@ -39,6 +45,9 @@ a{
 	background-color: var(--cool-gray);
 }
 
+.text-secondary-blue{
+	color: var(--secondary-blue);
+}
 
 .border-radius-20{
 	border-radius: 20px;
@@ -64,6 +73,9 @@ a{
 .font-size-15{
 	font-size: 15px;
 }
+.font-bold-600{
+	font-weight: 600;
+}
 
 .center-flex-xy{
 	justify-content: center;
@@ -81,11 +93,14 @@ a{
 .margin{
 	margin: 10px;
 }
+.margin-right-5{
+	margin-right: 5px;
+}
 .margin-top-10{
 	margin-top: 10px;
 }
 .margin-bottom-10{
-	margin-botton: 10px;
+	margin-bottom: 10px;
 }
 
 .padding-10{
@@ -98,12 +113,20 @@ a{
 .text-white{
 	color: white;
 }
-
+.width-40{
+	width: 40%;
+}
 .width-50{
 	width: 50%;
 }
+.width-60{
+	width: 60%;
+}
 .width-80{
 	width: 80%;
+}
+.width-fit{
+	width: fit-content;
 }
 
 .height-full{
@@ -111,11 +134,13 @@ a{
 }
 
 
+/* FORM STYLES */
 .Logo-Tecnm{
 	height: 100px;
 }
 .Form{
-	width: calc(65% - 20px);
+	padding: 25px 0px;
+	width: calc(70% - 20px);
 }
 .Img-Container{
 	background-image: url('https://i0.wp.com/celaya.tecnm.mx/wp-content/uploads/2024/02/FACHADA-LINCE-scaled.jpg?fit=2560%2C1920&ssl=1');
@@ -128,4 +153,37 @@ a{
 	background-color: black;
 	opacity: 0.3;
 }
+.Button-Form{
+	transition: 0.4s;
+}
+.Button-Form:hover{
+	background-color: var(--secondary-blue);
+}
+.Anchor-Form:hover{
+	font-weight: 600;
+	color: var(--primary-blue);
+}
 
+/* FORM MEDIA QUERIES STYLES */
+@media (max-width: 950px) {
+	.Form-Page-Section{
+		flex-direction: column;
+	}
+	.Form-Container{
+		width: 100%;
+	}
+	.Form-Container > form{
+		width: 500px;
+	}
+	.Img-Container{
+		width: 100%;
+		position: absolute;
+		z-index: -10;
+	} 
+}
+
+@media (max-width: 750px) {
+	.Form-Container > form{
+		width: 300px;
+	}
+}
