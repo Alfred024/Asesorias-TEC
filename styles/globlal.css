@@ -1,0 +1,131 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+}
+:root{
+	--primary-blue: #1B396A;
+	--light-gray: #f0efef;
+	--cool-gray: #807E82;
+}
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+a{
+	cursor: pointer;
+}
+
+.absolute{
+	position: absolute;
+}
+.box-shadow-light{
+	box-shadow: 0px 8px 4px 0px rgba(0,0,0,0.1);
+}
+.box-shadow-dark{
+	box-shadow: 0px 8px 13px -6px rgba(0,0,0,1.1);
+}
+
+.bg-primary-blue{
+	background-color: var(--primary-blue);
+}
+.bg-light-gray{
+	background-color: var(--light-gray);
+}
+.bg-cool-gray{
+	background-color: var(--cool-gray);
+}
+
+
+.border-radius-20{
+	border-radius: 20px;
+}
+.border-radius-30{
+	border-radius: 30px;
+}
+.border-none{
+	border: none;
+}
+
+.flex{
+	display: flex;
+}
+.flex-column{
+	display: flex;
+	flex-direction:column;
+}
+
+.font-size-10{
+	font-size: 10px;
+}
+.font-size-15{
+	font-size: 15px;
+}
+
+.center-flex-xy{
+	justify-content: center;
+	align-items: center;
+}
+
+
+.justify-center{
+	justify-content: center;
+}
+
+.margin-auto{
+	margin: auto;
+}
+.margin{
+	margin: 10px;
+}
+.margin-top-10{
+	margin-top: 10px;
+}
+.margin-bottom-10{
+	margin-botton: 10px;
+}
+
+.padding-10{
+	padding: 10px;
+}
+.padding-20{
+	padding: 20px;
+}
+
+.text-white{
+	color: white;
+}
+
+.width-50{
+	width: 50%;
+}
+.width-80{
+	width: 80%;
+}
+
+.height-full{
+	height: 100vh;
+}
+
+
+.Logo-Tecnm{
+	height: 100px;
+}
+.Form{
+	width: calc(65% - 20px);
+}
+.Img-Container{
+	background-image: url('https://i0.wp.com/celaya.tecnm.mx/wp-content/uploads/2024/02/FACHADA-LINCE-scaled.jpg?fit=2560%2C1920&ssl=1');
+	background-size: cover;
+	background-position: center;
+}
+.Shadow-Div{
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.3;
+}
+
