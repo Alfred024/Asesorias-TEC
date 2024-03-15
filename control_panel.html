@@ -43,18 +43,20 @@
             </ul>
         </aside>
 
-        <main class="bg-light-gray" style="width: 100%; height: 100vh;">
+        <main class="bg-light-gray overflow-hidden" style="width: 100%; height: 100vh;">
+            
             <section class="bg-primary-blue flex justify-between" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                 <h4 class="text-white">Panel de control</h4>
                 <img class="TecNM-Logo border-radius-full" src="./assets/LOGO-BLANCO-VERTICAL-TECNM.png" alt="Profile picture">
             </section>
 
-            <section class="Subject-Section padding-20">
+            <!-- SUBJECTS CARD SECTION -->
+            <section class="Subject-Section padding-20 relative">
                 <p>Materias registradas</p>
                 <br>
-                <div class="flex width-100">
+                <div class="Subject-Card-Container width-90">
                     
-                    <div class="Subject-Card bg-primary-blue border-radius-30 text-white overflow-hidden">
+                    <div class="Subject-Card margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
                         <div class="flex-column justify-between padding-10" style="height: 80%;">
                             <p>Materia: Simulación</p>
                             <p class="font-size-15 text-light">GRUPO: A</p>
@@ -63,9 +65,43 @@
                             <p class="text-align-end" style="padding-right: 20px;">Clave: GG1A</p>
                         </div>
                     </div> 
-                    
+
+                    <div class="Subject-Card margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
+                        <div class="flex-column justify-between padding-10" style="height: 80%;">
+                            <p>Materia: Simulación</p>
+                            <p class="font-size-15 text-light">GRUPO: A</p>
+                        </div>
+                        <div class="bg-secondary-blue" style="height: 20%;">
+                            <p class="text-align-end" style="padding-right: 20px;">Clave: GG1A</p>
+                        </div>
+                    </div> 
+
+                    <div class="Subject-Card margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
+                        <div class="flex-column justify-between padding-10" style="height: 80%;">
+                            <p>Materia: Simulación</p>
+                            <p class="font-size-15 text-light">GRUPO: A</p>
+                        </div>
+                        <div class="bg-secondary-blue" style="height: 20%;">
+                            <p class="text-align-end" style="padding-right: 20px;">Clave: GG1A</p>
+                        </div>
+                    </div> 
+
+                    <div class="Subject-Card margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
+                        <div class="flex-column justify-between padding-10" style="height: 80%;">
+                            <p>Materia: Simulación</p>
+                            <p class="font-size-15 text-light">GRUPO: A</p>
+                        </div>
+                        <div class="bg-secondary-blue" style="height: 20%;">
+                            <p class="text-align-end" style="padding-right: 20px;">Clave: GG1A</p>
+                        </div>
+                    </div> 
+
                 </div>
+                <button class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </section>
+
         </main>
     </div>
 

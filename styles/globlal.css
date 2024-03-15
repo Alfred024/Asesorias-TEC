@@ -30,6 +30,9 @@ ul{
 .absolute{
 	position: absolute;
 }
+.relative{
+	position: relative;
+}
 .overflow-hidden{
 	overflow: hidden;
 }
@@ -116,6 +119,9 @@ ul{
 .margin{
 	margin: 10px;
 }
+.margin-x-5{
+	margin: 0px 5px;
+}
 .margin-right-5{
 	margin-right: 5px;
 }
@@ -170,6 +176,9 @@ ul{
 }
 .width-80{
 	width: 80%;
+}
+.width-90{
+	width: 90%;
 }
 .width-100{
 	width: 100%;
@@ -260,6 +269,18 @@ ul{
 }
 
 .Subject-Card{
-	width: 250px;
-	height: 120px;
+	width: 200px;
+	height: 110px;
+}
+.Subject-Card-Container{
+	overflow: auto;
+	white-space: nowrap;
+}
+.Subject-Card{
+	display: inline-block;
+}
+
+.Add-Subject-Button{
+	top: calc(50% - 15px);
+	left: calc(90% + 15px);
 }
