@@ -196,7 +196,9 @@ ul{
 .height-full{
 	height: 100vh;
 }
-
+.z-index-10{
+	z-index: 10;
+}
 
 /* FORM STYLES */
 .Logo-Tecnm{
@@ -217,10 +219,10 @@ ul{
 	background-color: black;
 	opacity: 0.3;
 }
-.Button-Form{
+.Btn-Primary-Blue{
 	transition: 0.4s;
 }
-.Button-Form:hover{
+.Btn-Primary-Blue:hover{
 	background-color: var(--secondary-blue);
 }
 .Anchor-Form:hover{
@@ -343,4 +345,9 @@ ul{
 	height: 1px;
 	width: 90%;
 	background-color: var(--secondary-blue);
+}
+
+.Modal-Container{
+	background-color: black;
+	opacity: 0.7;
 }
