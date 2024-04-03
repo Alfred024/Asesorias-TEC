@@ -18,32 +18,44 @@
 	<section class="Form-Page-Section flex">
 
 		<div class="Form-Container flex center-flex-xy width-100 height-full">
-			<form class="Form box-shadow-dark flex-column justify-center bg-light-gray border-radius-30">
+			<form method="post" class="Form box-shadow-dark flex-column justify-center bg-light-gray border-radius-30">
 				<h4 class="width-fit font-weight-600 margin-auto" >Registro </h4>
 				<hr style="margin: 10px;">
 
 				<label class="flex-column width-80 margin-auto">
 					Nombre
 					<br>
-					<input class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+					<input name="nombres" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
+				</label><br>
+
+				<label class="flex-column width-80 margin-auto">
+					Apellido Paterno
+					<br>
+					<input name="apellido_paterno" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
+				</label><br>
+
+				<label class="flex-column width-80 margin-auto">
+					Apellido Materno
+					<br>
+					<input name="apellido_materno" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
 				</label><br>
 
 				<label class="flex-column width-80 margin-auto">
 					TECnM email
 					<br>
-					<input class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="juan.montes@itcelaya.edu.mx">
+					<input name="email" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="juan.montes@itcelaya.edu.mx">
 				</label><br>
 
 				<label class="flex-column width-80 margin-auto">
 					Contraseña
 					<br>
-					<input class="box-shadow-light border-radius-20 padding-10 border-none" type="password" placeholder="">
+					<input name="contrasena" class="box-shadow-light border-radius-20 padding-5 border-none" type="password" placeholder="">
 				</label><br>
 
 				<label class="flex-column width-80 margin-auto">
 					Confirmar contraseña
 					<br>
-					<input class="box-shadow-light border-radius-20 padding-10 border-none" type="password" placeholder="">
+					<input name="contrasena" class="box-shadow-light border-radius-20 padding-5 border-none" type="password" placeholder="">
 				</label><br>
 
 				<input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" type="submit" value="Registrar" style="width: 200px;">
@@ -60,5 +72,6 @@
 		</div>
 	</section>
 
+	<script src="./scripts/register.js"></script>
 </body>
 </html>
