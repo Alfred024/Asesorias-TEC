@@ -111,7 +111,7 @@
                     </div> 
 
                 </div>
-                <button class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
+                <button onclick="openModal()" class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </section>
@@ -192,5 +192,44 @@
         </main>
     </div>
 
+    <!-- MODAL CONTAINER -->
+    <!-- <div id="Modal-Container-Id" class="Modal-Container z-index-10 relative height-full width-100 flex center-flex-xy">
+        <form class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
+            <button class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
+        
+            <h4 class="width-fit font-weight-600 margin-auto" >Registro de maestro</h4>
+            <hr style="margin: 10px;">
+
+            <label class="flex-column width-100 margin-auto">
+                Nombre de la materia
+                <br>
+                <input class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+            </label><br>
+
+            <div class="flex justify-center">
+                <label class="flex-column width-40 margin-auto">
+                    Clave de la materia
+                    <br>
+                    <input class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                </label>
+    
+                <label class="flex-column width-40 margin-auto">
+                    Grupo
+                    <br>
+                    <input class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                </label>
+            </div>
+            <br>
+
+            <input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" type="submit" value="Registrar Materia" style="width: 200px;">
+        </form>
+    </div>
+
+    <script>
+        function openModal(){
+            var modal = document.getElementById('Modal-Container-Id');
+            modal.style.display = 'flex !important';
+        }
+    </script> -->
 </body>
 </html>

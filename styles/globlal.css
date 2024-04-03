@@ -121,5 +121,11 @@
 	background-color: var(--secondary-blue);
 }
 .Modal-Container{
-	opacity: 0.7;
+	/* display: none !important; */
+	position: absolute !important;
+	background-color: rgba(32,35,41,.8);
+	top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
