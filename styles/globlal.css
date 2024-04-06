@@ -93,6 +93,9 @@
 }
 
 /* ASSESORIES CSS */
+.Form-Date-Filter{
+	border: solid gray 1px;
+}
 .Assesories-Table th, .Assesories-Table tr{
 	font-size: 15px;
 	text-align: center;
@@ -100,6 +103,11 @@
 }
 .Assesories-Table td, .Assesories-Table th{
 	padding-block:5px;
+}
+.Assesories-Table tbody{
+	/* display: block; */
+	overflow-y: auto;
+	background-color: lightblue;
 }
 .table-row-div{
 	margin: auto;
@@ -133,7 +141,7 @@
 
 @media (max-width: 750px) {
 	.Nav-Bar-Toogle-Button{
-		display: block;
+		display: block !important;
 	}
 	.Aside-Bar, .Page-Title{
 		display: none;
@@ -151,3 +159,21 @@
 	}
 }
 
+.margin-y-auto{
+	margin-block: auto;
+}
+.bottom-0{
+	bottom: 0;
+}
+.top-0{
+	top: 0;
+}
+.left-0{
+	left: 0;
+}
+.right-0{
+	right: 0;
+}
+.padding-x-10{
+	padding: 0px 10px;
+}
