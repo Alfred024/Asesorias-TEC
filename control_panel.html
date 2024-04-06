@@ -18,19 +18,19 @@
 </head>
 <body>
     <div class="Control-Panel-Container flex">
-        <aside class="height-full" style="width: 250px;">
+        <aside id="Aside-Bar" class="Aside-Bar height-full" style="width: 250px;">
             <h3 class="padding-20">Registro de asesorías ITC</h3>
             <ul class="" style="margin-top: 30px;">
 
                 <!-- CORREGIR LOS ANCHORS POR LI´s -->
-                <a class="AsideBar-Anchor anchor-default flex align-center" href="" style="height: 60px;">
-                    <span class="List-Item-Span margin-right-10" style="height: 50px;"></span>
+                <a class="AsideBar-Anchor AsideBar-Anchor-Selected anchor-default flex align-center" href="" style="height: 60px;">
+                    <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-solid fa-house margin-right-10"></i>
                         Inicio
                     </li>
                 </a>
-               <a class="AsideBar-Anchor anchor-default flex align-center color-light-gray" href="">
+               <a class="AsideBar-Anchor anchor-default flex align-center" href="">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-regular fa-user margin-right-10"></i>
@@ -47,11 +47,15 @@
             </ul>
         </aside>
 
-        <main class="bg-light-gray overflow-hidden" style="width: 100%; height: 100vh;">
+        <main class="bg-light-gray overflow-auto" style="width: 100%; height: 100vh;">
             
             <section class="bg-primary-blue flex justify-between" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <h4 class="text-white">Panel de control</h4>
+                <h4 class="Page-Title text-white align-self-center margin-left-5">Panel de control maestro</h4>
                 <img class="Logo-Tecnm border-radius-full" src="./assets/LOGO-BLANCO-VERTICAL-TECNM.png" alt="Profile picture">
+
+                <button onclick="displayAsideNavBar()" class="Nav-Bar-Toogle-Button bg-bolor-unset border-none margin-right-10 cursor-pointer display-none">
+                    <i class="fa-solid fa-bars text-white"></i>
+                </button>
             </section>
 
             <!-- SUBJECTS CARD SECTION -->
@@ -116,9 +120,9 @@
                 </button>
             </section>
 
-            <section class="Assesories-Table-Section padding-20 height-full" style="padding-top: 0px;">
-                <h4 class="font-weight-400" style="margin-bottom: 10px;">Asesorías recientes</h4>
-                <table class="Assesories-Table border-radius-20 padding-10 width-100" style="background-color: white;">
+            <section class="Assesories-Table-Section padding-20" style="padding-top: 0px;">
+                <h4 class="font-weight-400" style="margin-bottom: 10px;">Asesorías agregadas recientemente</h4>
+                <table class="Assesories-Table overflow-x-auto border-radius-20 padding-10 width-100" style="background-color: white;">
                     <thead class="Table-Header">
                         <tr class="text-secondary-blue">
                             <th>Materia</th>
@@ -192,44 +196,33 @@
         </main>
     </div>
 
-    <!-- MODAL CONTAINER -->
-    <!-- <div id="Modal-Container-Id" class="Modal-Container z-index-10 relative height-full width-100 flex center-flex-xy">
-        <form class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
-            <button class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
-        
-            <h4 class="width-fit font-weight-600 margin-auto" >Registro de maestro</h4>
-            <hr style="margin: 10px;">
-
-            <label class="flex-column width-100 margin-auto">
-                Nombre de la materia
-                <br>
-                <input class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
-            </label><br>
-
-            <div class="flex justify-center">
-                <label class="flex-column width-40 margin-auto">
-                    Clave de la materia
-                    <br>
-                    <input class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
-                </label>
-    
-                <label class="flex-column width-40 margin-auto">
-                    Grupo
-                    <br>
-                    <input class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
-                </label>
-            </div>
-            <br>
-
-            <input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" type="submit" value="Registrar Materia" style="width: 200px;">
-        </form>
-    </div>
-
     <script>
+        // Manejar el display del asideBar
+        var asideBar = document.getElementById('Aside-Bar');
+        var mediaQuery = window.matchMedia('(min-width: 750px)');
+        var handleMediaQueryChange = function(mediaQuery) {
+            if (mediaQuery.matches) {
+                asideBar.style.display = 'block';
+            } else {
+                asideBar.style.display = 'none';
+            }
+        };
+        mediaQuery.addListener(handleMediaQueryChange);
+
         function openModal(){
             var modal = document.getElementById('Modal-Container-Id');
-            modal.style.display = 'flex !important';
+            // modal.style.display = 'flex !important';
+            modal.style.display = 'block !important';
         }
-    </script> -->
+
+        function displayAsideNavBar(){
+            var asideBar = document.getElementById('Aside-Bar');
+            if(asideBar.style.display === 'block'){
+                asideBar.style.display = 'none';
+            }else{
+                asideBar.style.display = 'block';
+            }
+        }
+    </script> 
 </body>
 </html>
