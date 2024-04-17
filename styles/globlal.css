@@ -96,18 +96,29 @@
 .Form-Date-Filter{
 	border: solid gray 1px;
 }
+.Assesories-Table{
+	border-collapse: collapse;
+}
+
 .Assesories-Table th, .Assesories-Table tr{
 	font-size: 15px;
 	text-align: center;
 	margin-bottom: 30px;
 }
 .Assesories-Table td, .Assesories-Table th{
+	max-width: 100%;
 	padding-block:5px;
+	border-bottom: solid lightblue 1px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
 }
-.Assesories-Table tbody{
-	/* display: block; */
-	overflow-y: auto;
-	background-color: lightblue;
+.Assesories-Table thead{
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: white;
+	position: sticky;
+    inset-block-start: 0;
 }
 .table-row-div{
 	margin: auto;
@@ -159,21 +170,3 @@
 	}
 }
 
-.margin-y-auto{
-	margin-block: auto;
-}
-.bottom-0{
-	bottom: 0;
-}
-.top-0{
-	top: 0;
-}
-.left-0{
-	left: 0;
-}
-.right-0{
-	right: 0;
-}
-.padding-x-10{
-	padding: 0px 10px;
-}
