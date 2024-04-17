@@ -168,5 +168,19 @@
 	.Form-Container > form{
 		width: 350px;
 	}
+
+	/* MEDIA QUERIES DE LOS COMPONENTES DEL assesories, en la parte de arriba */
+	.Assesories-Filters-Container{
+		flex-direction: column;
+	}
+	.Form-Date-Filter, .Teacher-Name-Filter{
+		width: 50%;
+	}
+	.Teacher-Name-Filter{
+		align-self: end;
+	}
 }
 
+.height-90{
+	height: 90%;
+}
