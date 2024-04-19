@@ -113,7 +113,7 @@
                     </button>
                 </section>
     
-                <section class="Assesories-Table-Section padding-20" style="padding-top: 0px;">
+                <section class="Assesories-Table-Section padding-20" style="padding-top: 0px; margin-top: 30px;">
                     <h4 class="font-weight-400" style="margin-bottom: 10px;">Asesorías agregadas recientemente</h4>
                     <table class="Assesories-Table overflow-x-auto border-radius-20 padding-10 width-100" style="background-color: white;">
                         <thead class="Table-Header">

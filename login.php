@@ -34,6 +34,14 @@
 					<input class="box-shadow-light border-radius-20 padding-10 border-none" type="password" placeholder="">
 				</label><br>
 
+				<div class="Captcha-Container padding-5 flex justify-between align-center width-60 border-radius-10 margin-auto">
+					<div class="flex">
+						<input class="margin-right-10" type="checkbox" name="" id="">
+						<p>No soy un robot</p>
+					</div>
+					<img src="./assets/recaptcha.png" alt="Recaptcha logo" style="width: 35px;">
+				</div><br>
+
 				<input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" type="submit" value="Entrar" style="width: 200px;">
 
 				<div class="flex center-flex-xy margin-top-10">

@@ -28,17 +28,19 @@
 					<input name="nombres" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
 				</label><br>
 
-				<label class="flex-column width-80 margin-auto">
-					Apellido Paterno
-					<br>
-					<input name="apellido_paterno" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
-				</label><br>
-
-				<label class="flex-column width-80 margin-auto">
-					Apellido Materno
-					<br>
-					<input name="apellido_materno" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
-				</label><br>
+				<div class="flex width-80 margin-auto">
+					<label class="flex-column margin-auto margin-right-10">
+						Apellido Paterno
+						<br>
+						<input name="apellido_paterno" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
+					</label>
+	
+					<label class="flex-column margin-auto">
+						Apellido Materno
+						<br>
+						<input name="apellido_materno" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
+					</label>
+				</div><br>
 
 				<label class="flex-column width-80 margin-auto">
 					TECnM email
@@ -57,6 +59,14 @@
 					<br>
 					<input name="contrasena" class="box-shadow-light border-radius-20 padding-5 border-none" type="password" placeholder="">
 				</label><br>
+
+				<div class="Captcha-Container padding-5 flex justify-between align-center width-60 border-radius-10 margin-auto">
+					<div class="flex">
+						<input class="margin-right-10" type="checkbox" name="" id="">
+						<p>No soy un robot</p>
+					</div>
+					<img src="./assets/recaptcha.png" alt="Recaptcha logo" style="width: 35px;">
+				</div><br>
 
 				<input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" type="submit" value="Registrar" style="width: 200px;">
 
