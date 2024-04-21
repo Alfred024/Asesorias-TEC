@@ -1,3 +1,8 @@
+<?php 
+  session_start();
+  session_destroy();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,35 +23,72 @@
 
 		<div class="Form-Container flex flex-column center-flex-xy width-100 height-full">
 			
-			<form class="Form box-shadow-dark flex-column justify-center bg-light-gray border-radius-30">
+			<form method="post" action="./classes/access.php" class="Form box-shadow-dark flex-column justify-center bg-light-gray border-radius-30">
 				<h4 class="width-fit font-weight-600 margin-auto" >Inicio de sesión</h4>
 				<hr style="margin: 10px;">
 
 				<label class="flex-column width-80 margin-auto">
 					Correo
 					<br>
-					<input class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="juan.montes@itcelaya.edu.mx">
+					<input name="email" class="box-shadow-light border-radius-20 padding-10 border-none" type="email" placeholder="juan.montes@itcelaya.edu.mx">
 				</label><br>
 
 				<label class="flex-column width-80 margin-auto">
 					Contraseña
 					<br>
-					<input class="box-shadow-light border-radius-20 padding-10 border-none" type="password" placeholder="">
+					<input name="password" class="box-shadow-light border-radius-20 padding-10 border-none" type="password" placeholder="">
 				</label><br>
 
 				<div class="Captcha-Container padding-5 flex justify-between align-center width-60 border-radius-10 margin-auto">
 					<div class="flex">
-						<input class="margin-right-10" type="checkbox" name="" id="">
+						<input name="captcha" class="margin-right-10" type="checkbox" id="">
 						<p>No soy un robot</p>
 					</div>
 					<img src="./assets/recaptcha.png" alt="Recaptcha logo" style="width: 35px;">
 				</div><br>
 
+				<input type="hidden" name="action" value="login">
 				<input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" type="submit" value="Entrar" style="width: 200px;">
 
+				<?php
+					if(isset($_GET['m'])){
+						$message = $_GET['m'];
+
+						switch ($message) {
+							case '1':
+								echo(
+									'<span 
+										class="text-secondary-blue margin-top-10"
+										style="font-size: 15px; font-weight:600; text-align: center;">
+										Favor de llenar todos los campos
+									</span>'
+								);
+							break;
+							case '2':
+								echo(
+									'<span 
+										class="text-secondary-blue margin-top-10"
+										style="font-size: 15px; font-weight:600; text-align: center;">
+										El usuario no está registrado
+									</span>'
+								);
+							break;
+							case '3':
+								echo(
+									'<span 
+										class="text-secondary-blue margin-top-10"
+										style="font-size: 15px; font-weight:600; text-align: center;">
+										Datos inválidos, pruebe a escribir los datos de nuevo
+									</span>'
+								);
+							break;
+						}
+					}
+				?> 
+				
 				<div class="flex center-flex-xy margin-top-10">
 					<span class="font-size-15 margin-right-5">¿Aún no tienes cuenta?</span>
-					<a class="Anchor-Form font-size-15 text-secondary-blue">Crea una aquí</a>
+					<a href="./register.php" class="Anchor-Form anchor-default font-size-15 text-secondary-blue">Crea una aquí</a>
 				</div>
 			</form>
 		</div>
