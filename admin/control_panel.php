@@ -1,10 +1,17 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE){
+        header('location: ../login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control panel</title>
-    <link rel="stylesheet" href="./styles/globlal.css">
+    <link rel="stylesheet" href="../styles/globlal.css">
     <link rel="stylesheet" href="https://alfred024.github.io/CSS-mio/styles.css">
     <!-- Font Awesome -->
     <script

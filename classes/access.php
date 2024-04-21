@@ -1,6 +1,6 @@
 <?php 
     include './database.php';
-    // session_start();
+    session_start();
 
     class Access extends Database{
         function action($action_case){
@@ -32,8 +32,19 @@
                         $_SESSION['session_email'] = $user->email;
                         $_SESSION['session_password'] = $user->contrasena;
                         $_SESSION['session_username'] = $user->nombres;
+                        //echo($user->id_rol);
+                        
                         // TODO: Arreglar B.D. y evaluar el tipo de usuario
-                        header('location: ../teacher/control_panel.php');
+                        // ES MAESTRO
+                        if($user->id_rol == 1){ 
+                            $_SESSION['admin'] = FALSE;
+                            header("location: ../teacher/control_panel.php");
+                        }
+                        // ES ADMIN
+                        else{ 
+                            $_SESSION['admin'] = TRUE;
+                            header("location: ../admin/control_panel.php");
+                        }
                     }else{
                         header("location: ../login.php?m=3"); // Datos inválidos, pruebe a escribir los datos de nuevo
                     }
@@ -66,7 +77,7 @@
                     $queryInsertUser = "insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena)
                     values (1, '{$email}', '{$names}', '{$last_name}', '{$second_last_name}', '{$password}');";
                     $this->query($queryInsertUser);
-                    
+
                     header('location: ../register.php?m=4');
                     
                     // Comprobar si se pudo mandar el correo

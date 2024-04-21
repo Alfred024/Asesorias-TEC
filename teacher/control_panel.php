@@ -1,10 +1,17 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['session_email'])){
+        header('location: ../login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control panel</title>
-    <link rel="stylesheet" href="./styles/globlal.css">
+    <link rel="stylesheet" href="../styles/globlal.css">
     <link rel="stylesheet" href="https://alfred024.github.io/CSS-mio/styles.css">
     <!-- Font Awesome -->
     <script
@@ -30,7 +37,7 @@
                         Inicio
                     </li>
                 </a>
-               <a class="AsideBar-Anchor anchor-default flex align-center" href="">
+               <a class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-solid fa-gear margin-right-10"></i>
