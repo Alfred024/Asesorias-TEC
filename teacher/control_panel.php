@@ -62,7 +62,8 @@
                 <section class="Subject-Section padding-20 relative">
                     <h4 class="font-weight-400">Materias registradas</h4>
                     <br>
-                    <div class="Subject-Card-Container overflow-auto width-90">
+
+                    <!-- <div class="Subjects-Card-Container overflow-auto width-90">
     
                         <div class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
                             <div class="flex-column justify-between padding-10" style="height: 80%;">
@@ -74,47 +75,12 @@
                             </div>
                         </div> 
     
-                        <div class="Subject-Card margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
-                            <div class="flex-column justify-between padding-10" style="height: 80%;">
-                                <p>Materia: Simulación</p>
-                                <p class="font-size-15 text-light">GRUPO: A</p>
-                            </div>
-                            <div class="bg-secondary-blue" style="height: 20%;">
-                                <p class="text-align-end" style="padding-right: 20px;">Clave: GG1A</p>
-                            </div>
-                        </div> 
-    
-                        <div class="Subject-Card margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
-                            <div class="flex-column justify-between padding-10" style="height: 80%;">
-                                <p>Materia: Simulación</p>
-                                <p class="font-size-15 text-light">GRUPO: A</p>
-                            </div>
-                            <div class="bg-secondary-blue" style="height: 20%;">
-                                <p class="text-align-end" style="padding-right: 20px;">Clave: GG1A</p>
-                            </div>
-                        </div> 
-    
-                        <div class="Subject-Card margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
-                            <div class="flex-column justify-between padding-10" style="height: 80%;">
-                                <p>Materia: Simulación</p>
-                                <p class="font-size-15 text-light">GRUPO: A</p>
-                            </div>
-                            <div class="bg-secondary-blue" style="height: 20%;">
-                                <p class="text-align-end" style="padding-right: 20px;">Clave: GG1A</p>
-                            </div>
-                        </div> 
-    
-                        <div class="Subject-Card margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
-                            <div class="flex-column justify-between padding-10" style="height: 80%;">
-                                <p>Materia: Simulación</p>
-                                <p class="font-size-15 text-light">GRUPO: A</p>
-                            </div>
-                            <div class="bg-secondary-blue" style="height: 20%;">
-                                <p class="text-align-end" style="padding-right: 20px;">Clave: GG1A</p>
-                            </div>
-                        </div> 
-    
-                    </div>
+                    </div> -->
+                    <?php 
+                        //Agregar if, si no encuentra materias: echo(<h1 class="padding-20 text-align-center color-primary-blue">Aún no tienes materias registradas, pulsa el botón "´´"</h1>)
+                        include '../classes/consultancies.php';
+                    ?>
+
                     <button onclick="openModal()" class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
                         <i class="fa-solid fa-plus"></i>
                     </button>
@@ -134,6 +100,7 @@
                         </thead>
     
                         <tbody>
+                            <!-- ESTO ES UNA ASESORÍA -->
                             <tr class="">
                                 <td>Simulación</td>
                                 <td>Jiménez Téllez José Alfredo</td>

@@ -29,6 +29,7 @@
                     $user = $this->getRecord($querySelectUser);
                     
                     if($this->registersNum == 1){
+                        $_SESSION['session_user_id'] = $user->id_usuario;
                         $_SESSION['session_email'] = $user->email;
                         $_SESSION['session_password'] = $user->contrasena;
                         $_SESSION['session_username'] = $user->nombres;

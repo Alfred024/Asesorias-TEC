@@ -1,0 +1,18 @@
+COSAS QQUE FALTAN:
+    * UI para que el maestro registre asesoría de X alumno
+    * Hacer la página de settings 
+    * Recovery de la contraseña con PHP MAILER
+
+PROBLEMAS DE BASE DE DATOS:
+    * Devolvemos el campo usuario (RFC/Nmr. Ctrl) a la tabña usuario??
+    * Cómo va a ver el maestro sus materias si no hay una asesoría registrada aún?
+        select
+            *
+        from materia ma
+        left join asesoria ase on ma.id_materia = ase.id_materia
+        where ase.id_usuario_imparte = 1 -- EL 1 se cambia por el usuario loggeado en ese momento
+        group by ma.id_materia;
+    * Porqué mi columna confirmada me la  meustra como un tinyint en vez de booleano
+
+PREGUNTAS PARA EL CLIENTE:
+    * Las materias cambian su clave cada semestre? 
