@@ -8,44 +8,37 @@
         function action($action_case) {
             switch ($action_case) {
                 case 'displayData':
-                    $user_id=$_SESSION['session_user_id'];
-                    $query_param = 'select 
-                        ma.id_materia,
-                        ma.nombre,
-                        ma.clave,
-                        ma.grupo
-                    from materia ma
-                    left join asesoria ase on ma.id_materia = ase.id_materia
-                    where ase.id_usuario_imparte = '.$user_id.'
-                    group by ma.id_materia;';
-
+                $query_param = 
+                    'select
+                        ma.nombre as materia,
+                        concat(us.nombres," ",us.apellido_paterno," ",us.apellido_materno) as alumno,
+                        ase.competencia,
+                        ase.descripcion,
+                        ase.fecha
+                    from asesoria ase
+                    left join materia ma on ase.id_materia = ma.id_materia
+                    left join usuario us on ase.id_usuario_toma = us.id_usuario
+                    where ma.clave = "FGHIJ";'; // De dónde saco la clave de la materia? Encierro mi elemento de materia en un form que contenga un post y luego las pido de la REQUEST? o hay una forma más bonita de hacerlo?
                     $this->displayData($query_param);
                 break;
             }
         }
 
-        // AGREGAR BOTÓN PARA BORRAR UNA MATERIA
-        // AGREGAR BOTÓN PARA EDITAR
         function displayData($query_param){
-            $consultanciesContainerStart = '<div class="Subjects-Card-Container overflow-auto width-90">';
             $this->getRecord($query_param);
+            $consultancies = '';
 
-            $subjectCards = '';
             foreach ($this->registrersBlock as $registerRow) {
-                $subjectCards.='
-                <div class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
-                    <div class="flex-column justify-between padding-10" style="height: 80%;">
-                        <p>Materia: '.$registerRow["nombre"].' </p>
-                        <p class="font-size-15 text-light">GRUPO: '.$registerRow["grupo"].'</p>
-                    </div>
-                    <div class="bg-secondary-blue" style="height: 20%;">
-                        <p class="text-align-end" style="padding-right: 20px;">Clave: '.$registerRow["clave"].'</p>
-                    </div>
-                </div>';
+                $consultancies.='
+                <tr>
+                    <td>'.$registerRow["materia"].'</td>
+                    <td>'.$registerRow["alumno"].'</td>
+                    <td>'.$registerRow["competencia"].'</td>
+                    <td>'.$registerRow["descripcion"].'</td>
+                    <td>'.$registerRow["fecha"].'</td>
+                </tr>';
             }
-
-            $consultanciesContainerEnd = '</div>';
-            echo($consultanciesContainerStart.$subjectCards.$consultanciesContainerEnd);
+            echo($consultancies);
         }
         
     }

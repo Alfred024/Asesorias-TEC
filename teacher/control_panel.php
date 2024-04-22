@@ -78,7 +78,7 @@
                     </div> -->
                     <?php 
                         //Agregar if, si no encuentra materias: echo(<h1 class="padding-20 text-align-center color-primary-blue">Aún no tienes materias registradas, pulsa el botón "´´"</h1>)
-                        include '../classes/consultancies.php';
+                        include '../classes/signatures.php';
                     ?>
 
                     <button onclick="openModal()" class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">

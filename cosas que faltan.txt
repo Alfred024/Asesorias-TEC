@@ -5,6 +5,7 @@ COSAS QQUE FALTAN:
 
 PROBLEMAS DE BASE DE DATOS:
     * Devolvemos el campo usuario (RFC/Nmr. Ctrl) a la tabña usuario??
+    * Si sólo un maestro da asesorías de esa materia,  
     * Cómo va a ver el maestro sus materias si no hay una asesoría registrada aún?
         select
             *
