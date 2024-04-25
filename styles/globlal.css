@@ -85,7 +85,6 @@
 	color: var(--primary-blue);
 	border: 1px var(--primary-blue) solid;
 	top: calc(50% - 15px);
-	/* left: calc(90% + 15px); */
 	right: 20px;
 	transition: 0.3s;
 }
@@ -117,27 +116,26 @@
     white-space: nowrap;
 }
 .Assesories-Table thead{
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+	/* border-top-left-radius: 10px;
+	border-top-right-radius: 10px; */
 	background-color: white;
 	position: sticky;
     inset-block-start: 0;
 }
-.table-row-div{
+/* .table-row-div{
 	margin: auto;
 	height: 1px;
 	width: 90%;
 	background-color: var(--secondary-blue);
-}
-.Modal-Container{
-	/* display: none !important; */
+} */
+/* .Modal-Container{
 	position: absolute !important;
 	background-color: rgba(32,35,41,.8);
 	top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-}
+} */
 
 /* FORM MEDIA QUERIES STYLES */
 @media (max-width: 950px) {

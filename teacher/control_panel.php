@@ -81,14 +81,17 @@
                         include '../classes/signatures.php';
                     ?>
 
-                    <button onclick="openModal()" class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
+                    <!-- <form action="post">
+                        <button type="submit" class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <input type="hidden" name="action" value="formNew">
+                    </form> -->
                 </section>
     
                 <section class="Assesories-Table-Section padding-20" style="padding-top: 0px; margin-top: 30px;">
                     <h4 class="font-weight-400" style="margin-bottom: 10px;">Asesorías agregadas recientemente</h4>
-                    <table class="Assesories-Table overflow-x-auto border-radius-20 padding-10 width-100" style="background-color: white;">
+                    <table class="Assesories-Table overflow-x-auto padding-10 width-100" style="background-color: white;">
                         <thead class="Table-Header">
                             <tr class="text-secondary-blue">
                                 <th>Materia</th>
@@ -101,15 +104,15 @@
     
                         <tbody>
                             <!-- ESTO ES UNA ASESORÍA -->
-                            <tr class="">
+                            <!-- <tr class="">
                                 <td>Simulación</td>
                                 <td>Jiménez Téllez José Alfredo</td>
                                 <td>1</td>
                                 <td>Monte Carlo</td>
                                 <td>Fri Mar 15 2024</td>
-                            </tr>
+                            </tr> -->
                             <!-- <div class="table-row-div"></div> -->
-                            <tr>
+                            <!-- <tr>
                                 <td>Simulación</td>
                                 <td>Jiménez Téllez José Alfredo</td>
                                 <td>1</td>
@@ -155,7 +158,13 @@
                                 <td>1</td>
                                 <td>Monte Carlo</td>
                                 <td>Fri Mar 15 2024</td>
-                            </tr>
+                            </tr> -->
+
+                            <?php 
+                                //Agregar if, si no encuentra materias: echo(<h1 class="padding-20 text-align-center color-primary-blue">Aún no tienes materias registradas, pulsa el botón "´´"</h1>)
+                                include '../classes/signatures.php';
+                            ?>
+
                         </tbody>
                     </table>
                 </section>
@@ -163,7 +172,7 @@
 
 
             <footer class="bg-primary-blue text-white padding-5" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                <p class="text-align-center">Hecho con ♥ por <a target="_blank" class="anchor-default" href="https://www.linkedin.com/in/alfredo-jim%C3%A9nez-01151623a/">Alfredo</a> </p>
+                <p class="text-align-center">Hecho con ♥ por <a target="_blank" class="anchor-default text-white" href="https://www.linkedin.com/in/alfredo-jim%C3%A9nez-01151623a/">Alfredo</a> </p>
             </footer>
         </div>
         

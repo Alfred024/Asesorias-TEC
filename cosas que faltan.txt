@@ -16,4 +16,5 @@ PROBLEMAS DE BASE DE DATOS:
     * Porqué mi columna confirmada me la  meustra como un tinyint en vez de booleano
 
 PREGUNTAS PARA EL CLIENTE:
+    * Tienen alguna hoja de excel con los alumnos de cada clase? para ver si se pueden exportar los datos a la base de datos
     * Las materias cambian su clave cada semestre? 

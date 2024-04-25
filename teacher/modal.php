@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modal DEMO</title>
-    <link rel="stylesheet" href="./styles/globlal.css">
+    <link rel="stylesheet" href="../styles/globlal.css">
     <link rel="stylesheet" type="text/css" href="https://alfred024.github.io/CSS-mio/styles.css">
 </head>
 <body>
+
+    <!-- <style>
+        .Modal-Container{
+            /* display: none !important; */
+            position: absolute !important;
+            background-color: rgba(32,35,41,.8);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    </style> -->
+
     <!-- MODAL CONTAINER -->
-    <div id="Modal-Container-Id" class="Modal-Container z-index-10 relative height-full width-100 flex center-flex-xy">
+    <div id="Modal-Container-Id" 
+        class="Modal-Container absolute z-index-10 relative height-full width-100 flex center-flex-xy" 
+        style="background-color: rgba(32,35,41,.8); top:0; bottom:0; left:0; right:0;">
         <form class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
             <button class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
         

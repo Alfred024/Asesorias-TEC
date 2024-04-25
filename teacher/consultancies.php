@@ -39,7 +39,7 @@
             
             <!-- <div class="margin-auto" style="width: 100%; height: 70%;  overflow: scroll;"> -->
             <div class="margin-auto width-100" style="height: 70%;  overflow-y: scroll;">
-                <table class="Assesories-Table overflow-x-auto border-radius-20 padding-10 width-100" style="background-color: white;">
+                <table class="Assesories-Table overflow-x-auto padding-10 width-100" style="background-color: white;">
                     <thead class="Table-Header">
                         <tr class="text-secondary-blue">
                             <th>Materia</th>
