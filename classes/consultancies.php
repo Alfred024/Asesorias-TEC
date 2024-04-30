@@ -26,8 +26,30 @@
 
         function displayData($query_param){
             $this->getRecord($query_param);
-            $consultancies = '';
 
+            if($this->registersNum == 0){
+                echo('
+                <div class="flex-column justify-center margin-bottom-10 color-primary-blue">
+                    <h5 class="padding-20 text-align-center font-size-15">Aún no tienes asesorías registradas</h5>
+                    <i class="fa-solid fa-box-archive fa-xl margin-auto"></i>
+                </div>');
+            }
+
+            $tableStart='
+            <table class="Assesories-Table overflow-x-auto padding-10 width-100" style="background-color: white;">
+                <thead class="Table-Header">
+                    <tr class="text-secondary-blue">
+                        <th>Materia</th>
+                        <th>Grupo</th>
+                        <th>Alumno</th>
+                        <th>Competencia</th>
+                        <th>Tema</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>';
+            
+            $consultancies = '';
             foreach ($this->registrersBlock as $registerRow) {
                 $consultancies.='
                 <tr>
@@ -38,7 +60,11 @@
                     <td>'.$registerRow["fecha"].'</td>
                 </tr>';
             }
-            echo($consultancies);
+            $tableEnd='
+                </tbody>
+            </table>';
+
+            echo($tableStart.$consultancies.$tableEnd);
         }
         
     }

@@ -10,7 +10,7 @@
 
         function __construct(){
             $this-> password='123';  
-            $this-> user='admin';
+            $this-> user='admin_asesorias';
             $this-> database='asesorias';
             $this-> server='127.0.0.1';
         }

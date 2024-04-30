@@ -52,15 +52,15 @@
                 break;
                 case 'displayData':
                     $user_id=$_SESSION['session_user_id'];
-                    $query_param = 'select 
+                    $query_param = 'select
                         ma.id_materia,
                         ma.nombre,
-                        ma.clave,
-                        ma.grupo
+                        gr.grupo,
+                        gr.clave
                     from materia ma
-                    left join asesoria ase on ma.id_materia = ase.id_materia
-                    where ase.id_usuario_imparte = '.$user_id.'
-                    group by ma.id_materia;';
+                    left join grupo gr on ma.id_materia = gr.id_materia
+                    left join usuario us on gr.id_usuario = us.id_usuario
+                    where us.id_usuario = '.$user_id.';';
 
                     $this->displayData($query_param);
                 break;
@@ -72,6 +72,10 @@
         function displayData($query_param){
             $consultanciesContainerStart = '<div class="Subjects-Card-Container overflow-auto width-90">';
             $this->getRecord($query_param);
+
+            if($this->registersNum == 0){
+                echo('<h5 class="color-primary-blue text-align-center font-size-15 padding-20 ">Aún no tienes materias registradas, pulsa el botón de + para agregar una nueva materia</h5>');
+            }
 
             $subjectCards = '';
             foreach ($this->registrersBlock as $registerRow) {

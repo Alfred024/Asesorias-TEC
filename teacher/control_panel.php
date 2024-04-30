@@ -63,21 +63,7 @@
                     <h4 class="font-weight-400">Materias registradas</h4>
                     <br>
 
-                    <!-- <div class="Subjects-Card-Container overflow-auto width-90">
-    
-                        <div class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
-                            <div class="flex-column justify-between padding-10" style="height: 80%;">
-                                <p>Materia: Simulación</p>
-                                <p class="font-size-15 text-light">GRUPO: A</p>
-                            </div>
-                            <div class="bg-secondary-blue" style="height: 20%;">
-                                <p class="text-align-end" style="padding-right: 20px;">Clave: GG1A</p>
-                            </div>
-                        </div> 
-    
-                    </div> -->
                     <?php 
-                        //Agregar if, si no encuentra materias: echo(<h1 class="padding-20 text-align-center color-primary-blue">Aún no tienes materias registradas, pulsa el botón "´´"</h1>)
                         include '../classes/signatures.php';
                     ?>
 
@@ -90,11 +76,12 @@
                 </section>
     
                 <section class="Assesories-Table-Section padding-20" style="padding-top: 0px; margin-top: 30px;">
-                    <h4 class="font-weight-400" style="margin-bottom: 10px;">Asesorías agregadas recientemente</h4>
-                    <table class="Assesories-Table overflow-x-auto padding-10 width-100" style="background-color: white;">
+
+                    <!-- <table class="Assesories-Table overflow-x-auto padding-10 width-100" style="background-color: white;">
                         <thead class="Table-Header">
                             <tr class="text-secondary-blue">
                                 <th>Materia</th>
+                                <th>Grupo</th>
                                 <th>Alumno</th>
                                 <th>Competencia</th>
                                 <th>Tema</th>
@@ -103,70 +90,45 @@
                         </thead>
     
                         <tbody>
-                            <!-- ESTO ES UNA ASESORÍA -->
-                            <!-- <tr class="">
-                                <td>Simulación</td>
-                                <td>Jiménez Téllez José Alfredo</td>
-                                <td>1</td>
-                                <td>Monte Carlo</td>
-                                <td>Fri Mar 15 2024</td>
-                            </tr> -->
-                            <!-- <div class="table-row-div"></div> -->
-                            <!-- <tr>
-                                <td>Simulación</td>
-                                <td>Jiménez Téllez José Alfredo</td>
-                                <td>1</td>
-                                <td>Monte Carlo</td>
-                                <td>Fri Mar 15 2024</td>
-                            </tr>
-    
                             <tr>
                                 <td>Simulación</td>
                                 <td>Jiménez Téllez José Alfredo</td>
                                 <td>1</td>
                                 <td>Monte Carlo</td>
                                 <td>Fri Mar 15 2024</td>
-                            </tr>
-    
+                            </tr>       
                             <tr>
                                 <td>Simulación</td>
                                 <td>Jiménez Téllez José Alfredo</td>
                                 <td>1</td>
                                 <td>Monte Carlo</td>
                                 <td>Fri Mar 15 2024</td>
-                            </tr>
-    
+                            </tr>       
                             <tr>
                                 <td>Simulación</td>
                                 <td>Jiménez Téllez José Alfredo</td>
                                 <td>1</td>
                                 <td>Monte Carlo</td>
                                 <td>Fri Mar 15 2024</td>
-                            </tr>
-    
+                            </tr>       
                             <tr>
                                 <td>Simulación</td>
                                 <td>Jiménez Téllez José Alfredo</td>
                                 <td>1</td>
                                 <td>Monte Carlo</td>
                                 <td>Fri Mar 15 2024</td>
-                            </tr>
-    
+                            </tr>       
                             <tr>
                                 <td>Simulación</td>
                                 <td>Jiménez Téllez José Alfredo</td>
                                 <td>1</td>
                                 <td>Monte Carlo</td>
                                 <td>Fri Mar 15 2024</td>
-                            </tr> -->
-
-                            <?php 
-                                //Agregar if, si no encuentra materias: echo(<h1 class="padding-20 text-align-center color-primary-blue">Aún no tienes materias registradas, pulsa el botón "´´"</h1>)
-                                include '../classes/signatures.php';
-                            ?>
-
+                            </tr>                           
                         </tbody>
-                    </table>
+                    </table> -->
+
+                    
                 </section>
             </main>
 
