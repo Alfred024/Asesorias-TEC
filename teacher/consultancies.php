@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['session_email'])){
+        header('location: ../login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,29 +47,9 @@
             <!-- <div class="margin-auto" style="width: 100%; height: 70%;  overflow: scroll;"> -->
             <div class="margin-auto width-100" style="height: 70%;  overflow-y: scroll;">
                 <table class="Assesories-Table overflow-x-auto padding-10 width-100" style="background-color: white;">
-                    <thead class="Table-Header">
-                        <tr class="text-secondary-blue">
-                            <th>Materia</th>
-                            <th>Alumno</th>
-                            <th>Competencia</th>
-                            <th>Tema</th>
-                            <th>Fecha</th>
-                        </tr>
-                    </thead>
-        
-                    <!-- <tbody style="height: 500px !important;"> -->
-                    <tbody>
-                        <!-- <tr>
-                            <td>Simulación</td>
-                            <td>Jiménez Téllez José Alfredo</td>
-                            <td>1</td>
-                            <td>Monte Carlo</td>
-                            <td>Fri Mar 15 2024</td>
-                        </tr> -->
-                        <?php 
-                            include "../classes/consultancies.php";
-                        ?>
-                    </tbody>
+                    <?php 
+                        include "../classes/consultancies.php";
+                    ?>
 
                 </table>
             </div>

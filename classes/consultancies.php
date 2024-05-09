@@ -2,7 +2,7 @@
     // session_start();
     include "../classes/database.php";
 
-    // Sería bueno hacer que en una misma clase se manden llamar las materias, asesorías, etc...
+    // PREGUNTAR AL PROFE: Sería bueno hacer que en una misma clase se manden llamar las materias, asesorías, etc...??
     class Consultancies extends Database{
 
         function action($action_case) {
@@ -24,16 +24,8 @@
                     limit 8;'; 
                     $this->displayData($query_param);
                 break;
-                
                 case 'displayData_signature':
-                    // TODO: Ver anera de hacerlo sin realizar 2 veces el query
                     $user_id=$_SESSION['session_user_id'];
-                    $query_param = 'select
-                        gr.clave
-                    from usuario usu
-                    left join grupo gr on usu.id_usuario = gr.id_usuario
-                    -- left join materia ma on gr.id_materia = ma.id_materia
-                    where usu.id_usuario = '.$user_id.';';
 
                     $query_param = 
                     'SELECT
@@ -98,6 +90,19 @@
     if(isset($_REQUEST['action'])){
         echo $consultanciesObject->action($_REQUEST['action']);
     }else{
-        echo $consultanciesObject->action('displayData_recent');
+        $current_page = $_SERVER['SCRIPT_NAME'];
+        // echo $current_page;
+
+        switch ($current_page) {
+            case '/asesorias-app/teacher/control_panel.php':
+                echo $consultanciesObject->action('displayData_recent');
+                break;
+            case '/asesorias-app/teacher/consultancies.php':
+                echo $consultanciesObject->action('displayData_signature');
+                break;
+            default:
+                # code...
+                break;
+        }
     }
 ?>
