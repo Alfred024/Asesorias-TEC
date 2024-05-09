@@ -57,10 +57,10 @@
                         ma.nombre,
                         gr.grupo,
                         gr.clave
-                    from materia ma
-                    left join grupo gr on ma.id_materia = gr.id_materia
-                    left join usuario us on gr.id_usuario = us.id_usuario
-                    where us.id_usuario = '.$user_id.';';
+                    from usuario usu
+                    left join grupo gr on usu.id_usuario = gr.id_usuario
+                    left join materia ma on gr.id_materia = ma.id_materia
+                    where usu.id_usuario = '.$user_id.';';
 
                     $this->displayData($query_param);
                 break;
@@ -70,7 +70,7 @@
         // AGREGAR BOTÓN PARA BORRAR UNA MATERIA
         // AGREGAR BOTÓN PARA EDITAR
         function displayData($query_param){
-            $consultanciesContainerStart = '<div class="Subjects-Card-Container overflow-auto width-90">';
+            $consultanciesContainerStart = '<div class="Subjects-Card-Container flex overflow-auto width-90">';
             $this->getRecord($query_param);
 
             if($this->registersNum == 0){
@@ -80,16 +80,19 @@
             $subjectCards = '';
             foreach ($this->registrersBlock as $registerRow) {
                 $subjectCards.='
-                <!-- TODO: Agregar la acción para que haga un select de las asesorias de esa materia -->
-                <a href="../teacher/consultancies.php" class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
-                    <div class="flex-column justify-between padding-10" style="height: 80%;">
-                        <p>Materia: '.$registerRow["nombre"].' </p>
-                        <p class="font-size-15 text-light">GRUPO: '.$registerRow["grupo"].'</p>
-                    </div>
-                    <div class="bg-secondary-blue" style="height: 20%;">
-                        <p class="text-align-end" style="padding-right: 20px;">Clave: '.$registerRow["clave"].'</p>
-                    </div>
-                </a>';
+                <form method="post" action="./consultancies.php"> 
+                <!-- <form method="post"> -->
+                    <a href="../teacher/consultancies.php" class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
+                        <div class="flex-column justify-between padding-10" style="height: 80%;">
+                            <p>Materia: '.$registerRow["nombre"].' </p>
+                            <p class="font-size-15 text-light">GRUPO: '.$registerRow["grupo"].'</p>
+                        </div>
+                        <div class="bg-secondary-blue" style="height: 20%;">
+                            <p class="text-align-end" style="padding-right: 20px;">Clave: '.$registerRow["clave"].'</p>
+                        </div>
+                    </a>
+                    <input type="hidden" name="clave" value="'.$registerRow['clave'].'">
+                </form>';
             }
 
             $consultanciesContainerEnd = '</div>

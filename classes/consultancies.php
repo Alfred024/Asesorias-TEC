@@ -24,20 +24,25 @@
                     limit 8;'; 
                     $this->displayData($query_param);
                 break;
+
                 case 'displayData_signature':
                     $user_id=$_SESSION['session_user_id'];
 
-                    $query_param = 
-                    'SELECT
-                        concat(usu.nombres,"", usu.apellido_paterno,"", usu.apellido_materno,"") as alumno,
-                        ase.competencia,
-                        ase.tema,
-                        ase.descripcion,
-                        ase.fecha
-                    FROM asesoria AS ase
-                    JOIN usuario AS usu ON ase.id_usuario_toma = '.$user_id.'
-                    WHERE ase.clave = "SI01A";'; // De dónde saco la clave de la materia? Encierro mi elemento de materia en un form que contenga un post y luego las pido de la REQUEST? o hay una forma más bonita de hacerlo?
-                        $this->displayData($query_param);
+                    // CÓMO OBTENGO LA "clave"??
+                    $signature_key=$_POST['clave'];
+                    echo($signature_key);
+                    // $query_param = 
+                    // 'SELECT
+                    //     concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
+                    //     ase.competencia,
+                    //     ase.tema,
+                    //     ase.descripcion,
+                    //     ase.fecha
+                    // FROM asesoria AS ase
+                    // JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
+                    // WHERE ase.clave = "CA01A"';
+                    // // De dónde saco la clave de la materia? Encierro mi elemento de materia en un form que contenga un post y luego las pido de la REQUEST? o hay una forma más bonita de hacerlo?
+                    //     $this->displayData($query_param);
                 break;
             }
         }

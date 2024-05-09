@@ -64,7 +64,7 @@
                     <br>
 
                     <?php 
-                        // include '../classes/signatures.php';
+                        include '../classes/signatures.php';
                     ?>
 
                     <!-- <form action="post">
@@ -127,7 +127,7 @@
                         </tbody>
                     </table> -->
                     <?php 
-                        include '../classes/consultancies.php';
+                        // include '../classes/consultancies.php';
                     ?>
                 </section>
             </main>

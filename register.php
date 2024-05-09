@@ -131,6 +131,7 @@
 					<a href="./login.php" class="Anchor-Form anchor-default font-size-15 text-secondary-blue">Acceder</a>
 				</div>
 			</form>
+			
 		</div>
 
 		<div class="Img-Container bg-cover bg-center width-100 height-full">
