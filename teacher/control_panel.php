@@ -64,7 +64,7 @@
                     <br>
 
                     <?php 
-                        include '../classes/signatures.php';
+                        // include '../classes/signatures.php';
                     ?>
 
                     <!-- <form action="post">
@@ -76,7 +76,6 @@
                 </section>
     
                 <section class="Assesories-Table-Section padding-20" style="padding-top: 0px; margin-top: 30px;">
-
                     <!-- <table class="Assesories-Table overflow-x-auto padding-10 width-100" style="background-color: white;">
                         <thead class="Table-Header">
                             <tr class="text-secondary-blue">
@@ -127,8 +126,9 @@
                             </tr>                           
                         </tbody>
                     </table> -->
-
-                    
+                    <?php 
+                        include '../classes/consultancies.php';
+                    ?>
                 </section>
             </main>
 
