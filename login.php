@@ -83,6 +83,15 @@
 									</span>'
 								);
 							break;
+							case '9':
+								echo(
+									'<span 
+										class="text-secondary-blue margin-top-10"
+										style="font-size: 15px; font-weight:600; text-align: center;">
+										Por favor inicie sesión antes de acceder a esa página
+									</span>'
+								);
+							break;
 						}
 					}
 				?> 

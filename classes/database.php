@@ -16,7 +16,11 @@
         }
         
         function open(){
-            $this-> connection = mysqli_connect($this->server,$this->user,$this->password,$this->database);
+            try {
+                $this-> connection = mysqli_connect($this->server,$this->user,$this->password,$this->database);
+            } catch (Exception $e) {
+                echo('Error connectiong to database');
+            }
         }
 
         function close(){
@@ -25,12 +29,15 @@
 
         function query($query_param){
             $this->open();
-            $this->registrersBlock=mysqli_query($this->connection,$query_param);
-            if(strpos('select', strtolower($query_param)) === true){
-                $this->registersNum=mysqli_num_rows($this->registrersBlock); // Creo que está sentencia no funciona
-            };
-            $this->close();
-
+            try {
+                $this->registrersBlock=mysqli_query($this->connection,$query_param);
+                if(strpos('select', strtolower($query_param)) === true){
+                    $this->registersNum=mysqli_num_rows($this->registrersBlock); // Creo que está sentencia no funciona
+                };
+                $this->close();
+            } catch (Exception $e) {
+                echo('Error doing the query');
+            }
         }
 
         function getRecord($query_param){

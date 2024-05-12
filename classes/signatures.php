@@ -15,13 +15,12 @@
             switch ($action_case) {
                 case 'formNew':
                     // TODO: Cambiar por un POPUP que se muestre en toda la pantalla
-                    // TODO: Preguntar al profe si puedo poner el HTML en otra parte
                     return 
                     '<div id="Modal-Container-Id" 
                         class="Modal-Container absolute z-index-10 relative height-full width-100 flex center-flex-xy" 
                         style="background-color: rgba(32,35,41,.8); top:0; bottom:0; left:0; right:0;">
                         <form method="post" class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
-                            <button class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
+                            <button onclick="return closeModal();" class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
                         
                             <h4 class="width-fit font-weight-600 margin-auto" >Registro de maestro</h4>
                             <hr style="margin: 10px;">
@@ -36,13 +35,13 @@
                                 <label class="flex-column width-40 margin-auto">
                                     Clave de la materia
                                     <br>
-                                    <input name="key" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                    <input name="key" pattern="[A-Z]{3}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
                                 </label>
                     
                                 <label class="flex-column width-40 margin-auto">
                                     Grupo
                                     <br>
-                                    <input name="group" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                    <input name="group" pattern="[A-Z]{1}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
                                 </label>
                             </div>
                             <br>
@@ -79,7 +78,8 @@
                     from usuario usu
                     left join grupo gr on usu.id_usuario = gr.id_usuario
                     left join materia ma on gr.id_materia = ma.id_materia
-                    where usu.id_usuario = '.$user_id.';';
+                    where usu.id_usuario = '.$user_id.'
+                    order by 1 asc;';
 
                     $this->displayData($query_param);
                 break;
