@@ -1,9 +1,14 @@
 <?php
     // session_start();
-    include "../classes/database.php";
+    // include "../classes/database.php";
 
-    // PREGUNTAR AL PROFE: Sería bueno hacer que en una misma clase se manden llamar las materias, asesorías, etc...??
-    class Consultancies extends Database{
+    class Consultancies{
+
+        private $databaseConsultancies;
+
+        public function __construct(Database $databaseConsultancies) {
+            $this->databaseConsultancies = $databaseConsultancies;
+        }
 
         function action($action_case) {
             switch ($action_case) {
@@ -48,9 +53,9 @@
         }
 
         function displayData($query_param){
-            $this->getRecord($query_param);
+            $this->databaseConsultancies->getRecord($query_param);
 
-            if($this->registersNum == 0){
+            if($this->databaseConsultancies->registersNum == 0){
                 echo('
                 <div class="flex-column justify-center margin-bottom-10 color-primary-blue">
                     <h5 class="padding-20 text-align-center font-size-15">Aún no tienes asesorías registradas de esta materia</h5>
@@ -72,7 +77,7 @@
                 <tbody>';
             
             $consultancies = '';
-            foreach ($this->registrersBlock as $registerRow) {
+            foreach ($this->databaseConsultancies->registrersBlock as $registerRow) {
                 $consultancies.='
                 <tr>
                     <td>'.$registerRow["alumno"].'</td>
@@ -91,7 +96,8 @@
         
     }
 
-    $consultanciesObject = new Consultancies();
+    $databaseConsultancies = new Database();
+    $consultanciesObject = new Consultancies($databaseConsultancies);
     if(isset($_REQUEST['action'])){
         echo $consultanciesObject->action($_REQUEST['action']);
     }else{

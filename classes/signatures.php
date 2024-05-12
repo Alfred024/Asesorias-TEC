@@ -1,9 +1,15 @@
 <?php
     // session_start();
-    include "../classes/database.php";
+    // include "../classes/database.php";
 
     // Sería bueno hacer que en una misma clase se manden llamar las materias, asesorías, etc...
-    class Signatures extends Database{
+    class Signatures{
+
+        private $database;
+
+        public function __construct(Database $database) {
+            $this->database = $database;
+        }
 
         function action($action_case) {
             switch ($action_case) {
@@ -54,12 +60,12 @@
                     $key = $_REQUEST['key'];
 
                     $insert_signature_query = "insert into materia (nombre) values ('".$signature."');";
-                    $this->query($insert_signature_query);
+                    $this->database->query($insert_signature_query);
 
                     $id_signature_inserted = $this->getId_signature($user_id, $signature);
                     // Query para seleccionar el id de la materia llamada 'Cálculo integral' creada por el usuario loggeado
                     $insert_signature_group_query = "insert into grupo (grupo, clave, id_usuario, id_materia) values ('".$group."', '".$key."', '".$user_id."', '".$id_signature_inserted."');";
-                    $this->query($insert_signature_group_query);
+                    $this->database->query($insert_signature_group_query);
                     // // TODO: Notificación de creada correctamente
                     $this->action("displayData");
                 break;
@@ -84,14 +90,14 @@
         // AGREGAR BOTÓN PARA EDITAR
         function displayData($query_param){
             $consultanciesContainerStart = '<div class="Subjects-Card-Container flex overflow-auto width-90">';
-            $this->getRecord($query_param);
+            $this->database->getRecord($query_param);
 
-            if($this->registersNum == 0){
+            if($this->database->registersNum == 0){
                 echo('<h5 class="color-primary-blue text-align-center font-size-15 padding-20 ">Aún no tienes materias registradas, pulsa el botón de + para agregar una nueva materia</h5>');
             }
 
             $subjectCards = '';
-            foreach ($this->registrersBlock as $registerRow) {
+            foreach ($this->database->registrersBlock as $registerRow) {
                 $subjectCards.='
                 <form method="post" action="./consultancies.php"> 
                 <!-- <form method="post"> -->
@@ -128,12 +134,13 @@
             order by 1 desc
             limit 1;";
 
-            $data = $this->getRecord($query_get_signature_id);
+            $data = $this->database->getRecord($query_get_signature_id);
             return $data->id_materia;
         }
     }
 
-    $signaturesObject = new Signatures();
+    $database = new Database();
+    $signaturesObject = new Signatures($database);
     if(isset($_REQUEST['action'])){
         echo $signaturesObject->action($_REQUEST['action']);
     }else{

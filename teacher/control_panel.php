@@ -3,6 +3,8 @@
     if(!isset($_SESSION['session_email'])){
         header('location: ../login.php');
     }
+
+    include "../classes/database.php";
 ?>
 
 <!DOCTYPE html>
@@ -127,7 +129,7 @@
                         </tbody>
                     </table> -->
                     <?php 
-                        // include '../classes/consultancies.php';
+                        include '../classes/consultancies.php';
                     ?>
                 </section>
             </main>
