@@ -8,12 +8,13 @@
         function action($action_case) {
             switch ($action_case) {
                 case 'formNew':
-                    // TODO: Preguntar al profe si esto lo puedo poner en otra parte
+                    // TODO: Cambiar por un POPUP que se muestre en toda la pantalla
+                    // TODO: Preguntar al profe si puedo poner el HTML en otra parte
                     return 
                     '<div id="Modal-Container-Id" 
                         class="Modal-Container absolute z-index-10 relative height-full width-100 flex center-flex-xy" 
                         style="background-color: rgba(32,35,41,.8); top:0; bottom:0; left:0; right:0;">
-                        <form class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
+                        <form method="post" class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
                             <button class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
                         
                             <h4 class="width-fit font-weight-600 margin-auto" >Registro de maestro</h4>
@@ -46,8 +47,20 @@
                     </div>';
                 break;
                 case 'insert':
-                    // VALIDAR QUE LOS DATOS SEAN INSERTS
-                    $this->query("insert into materia (clave, nombre, grupo) values ('".$_REQUEST['key']."', '".$_REQUEST['signature']."', '".$_REQUEST['group']."')");
+                    // Paso 1 : Crear la materia
+                    $user_id=$_SESSION['session_user_id'];
+                    $signature = $_REQUEST['signature'];
+                    $group = $_REQUEST['group'];
+                    $key = $_REQUEST['key'];
+
+                    $insert_signature_query = "insert into materia (nombre) values ('".$signature."');";
+                    $this->query($insert_signature_query);
+
+                    $id_signature_inserted = $this->getId_signature($user_id, $signature);
+                    // Query para seleccionar el id de la materia llamada 'Cálculo integral' creada por el usuario loggeado
+                    $insert_signature_group_query = "insert into grupo (grupo, clave, id_usuario, id_materia) values ('".$group."', '".$key."', '".$user_id."', '".$id_signature_inserted."');";
+                    $this->query($insert_signature_group_query);
+                    // // TODO: Notificación de creada correctamente
                     $this->action("displayData");
                 break;
                 case 'displayData':
@@ -95,6 +108,7 @@
                 </form>';
             }
 
+            //Botón para agregar una materia
             $consultanciesContainerEnd = '</div>
             <form method="post">
                 <button type="submit" class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
@@ -106,6 +120,17 @@
             echo($consultanciesContainerStart.$subjectCards.$consultanciesContainerEnd);
         }
         
+        function getId_signature($id_user, $signature_name) : int{
+            $query_get_signature_id = "
+            select ma.id_materia
+                from materia ma
+            where ma.nombre = '".$signature_name."'
+            order by 1 desc
+            limit 1;";
+
+            $data = $this->getRecord($query_get_signature_id);
+            return $data->id_materia;
+        }
     }
 
     $signaturesObject = new Signatures();
