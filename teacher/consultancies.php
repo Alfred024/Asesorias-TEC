@@ -21,6 +21,17 @@ include '../classes/database.php';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <!-- JQuery confirm -->
+    <script src="../controllers/jquery-confirm.js"></script>
+    <link rel="stylesheet" href="../styles/jquery-confirm.css">
+
+    <!-- Utils JS -->
+    <script src="../js/utils/consultancies.js"></script>
+    <!-- Custom JS -->
+    <script src="../controllers/pop-up-messages.js"></script>
 </head>
 
 <body>
@@ -66,9 +77,8 @@ include '../classes/database.php';
             </button>
         </div>
 
-        <div class="Modal-Container flex align-center justify-center absolute z-index-10 height-100 width-100">
-
-            <form method="post" class="height-fit padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="">
+        <!-- <div id="Modal-Container-Id" class="Modal-Container flex align-center justify-center absolute z-index-10 height-100 width-100">
+            <form method="post" action="../classes/signatures.php" class="height-fit padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative">
                 <button onclick="return closeModal();" class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
 
                 <h4 class="width-fit font-weight-600 margin-auto">Registro de una nueva asesoría para la materia X</h4>
@@ -81,7 +91,6 @@ include '../classes/database.php';
                 </textarea><br>
 
                 <select class="text-white padding-5 border-radius-10 bg-primary-blue" name="alumnos">
-                    <!-- TODO insertar un for que muestr todos los usuarios registrados??? -->
                     <?php
                         for ($i=0; $i < 20; $i++) { 
                             echo('<option value="alumno">nombre de un alumno registrado</option>');
@@ -109,7 +118,7 @@ include '../classes/database.php';
                 <input type="hidden" name="action" value="insert">
                 <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Materia" style="width: 200px;">
             </form>
-        </div>
+        </div> -->
     </main>
 </body>
 

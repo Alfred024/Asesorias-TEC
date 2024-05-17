@@ -62,10 +62,9 @@
                     $this->database->query($insert_signature_query);
 
                     $id_signature_inserted = $this->getId_signature($user_id, $signature);
-                    // Query para seleccionar el id de la materia llamada 'Cálculo integral' creada por el usuario loggeado
                     $insert_signature_group_query = "insert into grupo (grupo, clave, id_usuario, id_materia) values ('".$group."', '".$key."', '".$user_id."', '".$id_signature_inserted."');";
                     $this->database->query($insert_signature_group_query);
-                    // // TODO: Notificación de creada correctamente
+                    // TODO: Notificación de creada correctamente
                     $this->action("displayData");
                 break;
                 case 'displayData':
@@ -99,9 +98,8 @@
             $subjectCards = '';
             foreach ($this->database->registrersBlock as $registerRow) {
                 $subjectCards.='
-                <form method="post" action="./consultancies.php"> 
-                <!-- <form method="post"> -->
-                    <a href="../teacher/consultancies.php" class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
+                    <div>
+                    <a onclick="return consultancies(\'select_signatures_consultancies\','.$registerRow['clave'].')" href="../teacher/consultancies.php" class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
                         <div class="flex-column justify-between padding-10" style="height: 80%;">
                             <p>Materia: '.$registerRow["nombre"].' </p>
                             <p class="font-size-15 text-light">GRUPO: '.$registerRow["grupo"].'</p>
@@ -110,8 +108,8 @@
                             <p class="text-align-end" style="padding-right: 20px;">Clave: '.$registerRow["clave"].'</p>
                         </div>
                     </a>
-                    <input type="hidden" name="clave" value="'.$registerRow['clave'].'">
-                </form>';
+                    </div>
+                ';
             }
 
             //Botón para agregar una materia

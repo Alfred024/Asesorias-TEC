@@ -12,6 +12,21 @@
 
         function action($action_case) {
             switch ($action_case) {
+                case 'insert':
+                    $tema = $_POST['tema'];
+                    $description = $_POST['descripcion'];
+                    $competencia = $_POST['competencias'];
+                    $user_id=$_SESSION['session_user_id'];
+                    $user_id_toma= $this->getUserIdByCtrlNum('21030001'); // TODO: Obtener el campo usuario de 
+                    $signature_key=$_POST['clave'];
+                    $signature_period=$_POST['periodo'];
+
+                    $insert_signature_query = '
+                    insert into asesoria
+                    ("tema", competencia, descripcion, hora, fecha, id_usuario_imparte, id_usuario_toma, clave, id_periodo)
+                    values ("'.$tema.'", "'.$competencia.'", "'.$description.'", curtime(), curdate(), "'.$user_id.'", "'.$user_id_toma.'", "'.$signature_key.'", "'.$signature_period.'");
+                    ';
+                break;
                 case 'displayData_recent':
                     $user_id=$_SESSION['session_user_id'];
 
@@ -32,22 +47,19 @@
 
                 case 'displayData_signature':
                     $user_id=$_SESSION['session_user_id'];
-
-                    // CÓMO OBTENGO LA "clave"??
-                    $signature_key=$_POST['clave'];
-                    echo($signature_key);
-                    // $query_param = 
-                    // 'SELECT
-                    //     concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
-                    //     ase.competencia,
-                    //     ase.tema,
-                    //     ase.descripcion,
-                    //     ase.fecha
-                    // FROM asesoria AS ase
-                    // JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
-                    // WHERE ase.clave = "CA01A"';
-                    // // De dónde saco la clave de la materia? Encierro mi elemento de materia en un form que contenga un post y luego las pido de la REQUEST? o hay una forma más bonita de hacerlo?
-                    //     $this->displayData($query_param);
+                    $signature_key=$_REQUEST['clave'];
+                    // echo($signature_key);
+                    $query_param = 
+                    'SELECT
+                        concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
+                        ase.competencia,
+                        ase.tema,
+                        ase.descripcion,
+                        ase.fecha
+                    FROM asesoria AS ase
+                    JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
+                    WHERE ase.clave = "'.$signature_key.'" ';
+                    $this->displayData($query_param);
                 break;
             }
         }
@@ -92,6 +104,11 @@
             </table>';
 
             echo($tableStart.$consultancies.$tableEnd);
+        }
+
+        function getUserIdByCtrlNum($user_ctrl_num) : int {
+
+            return 0;
         }
         
     }

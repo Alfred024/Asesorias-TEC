@@ -1,5 +1,4 @@
 COSAS QQUE FALTAN:
-    * UI para que el maestro registre asesoría de X alumno
     * Hacer la página de settings 
     * Recovery de la contraseña con PHP MAILER
 

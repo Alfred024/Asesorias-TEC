@@ -24,6 +24,17 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <!-- JQuery confirm -->
+    <script src="../js/utils/jquery-confirm.js"></script>
+    <link rel="stylesheet" href="../styles/jquery-confirm.css">
+
+    <!-- Controllers JS -->
+    <script src="../js/controllers/consultancies.js"></script>
+    <!-- Custom JS -->
+    <!-- <script src="../js/utils/pop-up-messages.js"></script> -->
 </head>
 <body>
     <div class="Control-Panel-Container flex">
@@ -46,6 +57,13 @@
                         Configuración
                     </li>
                </a>
+               <a onclick="return alert('LOGOUTTT')" href="../login.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
+                    <span class="List-Item-Span margin-right-10"></span>
+                    <li class="margin-block-10">
+                        <i class="fa-solid fa-right-from-bracket margin-right-10"></i>
+                        Cerrar sesión
+                    </li>
+               </a>
             </ul>
         </aside>
 
@@ -61,77 +79,22 @@
                 </section>
     
                 <!-- SUBJECTS CARD SECTION -->
-                <section class="Subject-Section padding-20 relative">
-                    <h4 class="font-weight-400">Materias registradas</h4>
-                    <br>
+                <div id="workArea">
+                    <section class="Subject-Section padding-20 relative">
+                        <h4 class="font-weight-400">Materias registradas</h4>
+                        <br>
 
-                    <?php 
-                        include '../classes/signatures.php';
-                    ?>
-
-                    <!-- <form action="post">
-                        <button type="submit" class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <input type="hidden" name="action" value="formNew">
-                    </form> -->
-                </section>
-    
-                <section class="Assesories-Table-Section padding-20" style="padding-top: 0px; margin-top: 30px;">
-                    <!-- <table class="Assesories-Table overflow-x-auto padding-10 width-100" style="background-color: white;">
-                        <thead class="Table-Header">
-                            <tr class="text-secondary-blue">
-                                <th>Materia</th>
-                                <th>Grupo</th>
-                                <th>Alumno</th>
-                                <th>Competencia</th>
-                                <th>Tema</th>
-                                <th>Fecha</th>
-                            </tr>
-                        </thead>
-    
-                        <tbody>
-                            <tr>
-                                <td>Simulación</td>
-                                <td>Jiménez Téllez José Alfredo</td>
-                                <td>1</td>
-                                <td>Monte Carlo</td>
-                                <td>Fri Mar 15 2024</td>
-                            </tr>       
-                            <tr>
-                                <td>Simulación</td>
-                                <td>Jiménez Téllez José Alfredo</td>
-                                <td>1</td>
-                                <td>Monte Carlo</td>
-                                <td>Fri Mar 15 2024</td>
-                            </tr>       
-                            <tr>
-                                <td>Simulación</td>
-                                <td>Jiménez Téllez José Alfredo</td>
-                                <td>1</td>
-                                <td>Monte Carlo</td>
-                                <td>Fri Mar 15 2024</td>
-                            </tr>       
-                            <tr>
-                                <td>Simulación</td>
-                                <td>Jiménez Téllez José Alfredo</td>
-                                <td>1</td>
-                                <td>Monte Carlo</td>
-                                <td>Fri Mar 15 2024</td>
-                            </tr>       
-                            <tr>
-                                <td>Simulación</td>
-                                <td>Jiménez Téllez José Alfredo</td>
-                                <td>1</td>
-                                <td>Monte Carlo</td>
-                                <td>Fri Mar 15 2024</td>
-                            </tr>                           
-                        </tbody>
-                    </table> -->
-                    <?php 
-                        include '../classes/consultancies.php';
-                    ?>
-                </section>
+                        <?php 
+                            include '../classes/signatures.php';
+                        ?>
+                    </section>
+        
+                    <section class="Assesories-Table-Section padding-20" style="padding-top: 0px; margin-top: 30px;">
+                        <?php 
+                            include '../classes/consultancies.php';
+                        ?>
+                    </section>
+                </div>
             </main>
 
 
