@@ -5,53 +5,52 @@
     // Sería bueno hacer que en una misma clase se manden llamar las materias, asesorías, etc...
     class Signatures{
 
-        private $database;
+        private $databaseSignatures;
 
-        public function __construct(Database $database) {
-            $this->database = $database;
+        public function __construct(Database $databaseSignatures) {
+            $this->databaseSignatures = $databaseSignatures;
         }
 
         function action($action_case) {
             switch ($action_case) {
+                case 'formEdit':
+                //     $signature_info = $this->getRecord("select * from signature where id_usuario = " . $_REQUEST['id_user_to_update']);
                 case 'formNew':
-                    // TODO: Cambiar por un POPUP que se muestre en toda la pantalla
                     return 
-                    '<div id="Modal-Container-Id" 
-                        class="Modal-Container absolute z-index-10 relative height-full width-100 flex center-flex-xy" 
-                        style="background-color: rgba(32,35,41,.8); top:0; bottom:0; left:0; right:0;">
-                        <form method="post" class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
-                            <button onclick="return closeModal();" class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
-                        
-                            <h4 class="width-fit font-weight-600 margin-auto" >Registro de maestro</h4>
-                            <hr style="margin: 10px;">
-                
-                            <label class="flex-column width-100 margin-auto">
-                                Nombre de la materia
-                                <br>
-                                <input name="signature" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
-                            </label><br>
-                
-                            <div class="flex justify-center">
-                                <label class="flex-column width-40 margin-auto">
-                                    Clave de la materia
-                                    <br>
-                                    <input name="key" pattern="[A-Z]{3}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
-                                </label>
+                        '<div class="width-100 height-100 flex center-flex-xy">
+                            <form onsubmit="return signatures(\'insert_signature\')" method="post" class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
+                                <button onclick="return closeModal();" class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
+                            
+                                <h4 class="width-fit font-weight-600 margin-auto" >Registro de maestro</h4>
+                                <hr style="margin: 10px;">
                     
-                                <label class="flex-column width-40 margin-auto">
-                                    Grupo
+                                <label class="flex-column width-100 margin-auto">
+                                    Nombre de la materia
                                     <br>
-                                    <input name="group" pattern="[A-Z]{1}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
-                                </label>
-                            </div>
-                            <br>
+                                    <input name="signature" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                </label><br>
+                    
+                                <div class="flex justify-center">
+                                    <label class="flex-column width-40 margin-auto">
+                                        Clave de la materia
+                                        <br>
+                                        <input name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                    </label>
+                        
+                                    <label class="flex-column width-40 margin-auto">
+                                        Grupo
+                                        <br>
+                                        <input name="group" pattern="[A-Z]{1}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                    </label>
+                                </div>
+                                <br>
 
-                            <input type="hidden" name="action" value="insert">
-                            <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Materia" style="width: 200px;">
-                        </form>
-                    </div>';
+                                <input type="hidden" name="action" value="insert">
+                                <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Materia" style="width: 200px;">
+                            </form>
+                        </div>';
                 break;
-                case 'insert':
+                case 'insert_signature':
                     // Paso 1 : Crear la materia
                     $user_id=$_SESSION['session_user_id'];
                     $signature = $_REQUEST['signature'];
@@ -59,11 +58,11 @@
                     $key = $_REQUEST['key'];
 
                     $insert_signature_query = "insert into materia (nombre) values ('".$signature."');";
-                    $this->database->query($insert_signature_query);
+                    $this->databaseSignatures->query($insert_signature_query);
 
                     $id_signature_inserted = $this->getId_signature($user_id, $signature);
                     $insert_signature_group_query = "insert into grupo (grupo, clave, id_usuario, id_materia) values ('".$group."', '".$key."', '".$user_id."', '".$id_signature_inserted."');";
-                    $this->database->query($insert_signature_group_query);
+                    $this->databaseSignatures->query($insert_signature_group_query);
                     // TODO: Notificación de creada correctamente
                     $this->action("displayData");
                 break;
@@ -89,14 +88,14 @@
         // AGREGAR BOTÓN PARA EDITAR
         function displayData($query_param){
             $consultanciesContainerStart = '<div class="Subjects-Card-Container flex overflow-auto width-90">';
-            $this->database->getRecord($query_param);
+            $this->databaseSignatures->getRecord($query_param);
 
-            if($this->database->registersNum == 0){
+            if($this->databaseSignatures->registersNum == 0){
                 echo('<h5 class="color-primary-blue text-align-center font-size-15 padding-20 ">Aún no tienes materias registradas, pulsa el botón de + para agregar una nueva materia</h5>');
             }
 
             $subjectCards = '';
-            foreach ($this->database->registrersBlock as $registerRow) {
+            foreach ($this->databaseSignatures->registrersBlock as $registerRow) {
                 $subjectCards.='
                     <div>
                     <a onclick="return consultancies(\'select_signatures_consultancies\','.$registerRow['clave'].')" href="../teacher/consultancies.php" class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
@@ -114,12 +113,11 @@
 
             //Botón para agregar una materia
             $consultanciesContainerEnd = '</div>
-            <form method="post">
-                <button type="submit" class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
+                <button 
+                    onclick="return signatures(\'formNew\')" 
+                    class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
                     <i class="fa-solid fa-plus"></i>
-                </button>
-                <input type="hidden" name="action" value="formNew">
-            </form>';
+                </button>';
 
             echo($consultanciesContainerStart.$subjectCards.$consultanciesContainerEnd);
         }
@@ -132,13 +130,13 @@
             order by 1 desc
             limit 1;";
 
-            $data = $this->database->getRecord($query_get_signature_id);
+            $data = $this->databaseSignatures->getRecord($query_get_signature_id);
             return $data->id_materia;
         }
     }
 
-    $database = new Database();
-    $signaturesObject = new Signatures($database);
+    $databaseSignatures = new Database();
+    $signaturesObject = new Signatures($databaseSignatures);
     if(isset($_REQUEST['action'])){
         echo $signaturesObject->action($_REQUEST['action']);
     }else{

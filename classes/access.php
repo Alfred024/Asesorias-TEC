@@ -39,12 +39,12 @@
                         // ES MAESTRO
                         if($user->id_rol == 1){ 
                             $_SESSION['admin'] = FALSE;
-                            header("location: ../teacher/control_panel.php");
+                            header("location: ../teacher/home.php");
                         }
                         // ES ADMIN
                         else{ 
                             $_SESSION['admin'] = TRUE;
-                            header("location: ../admin/control_panel.php");
+                            header("location: ../admin/home.php");
                         }
                     }else{
                         header("location: ../login.php?m=3"); // Datos inválidos, pruebe a escribir los datos de nuevo

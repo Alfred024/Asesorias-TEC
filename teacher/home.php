@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="../styles/jquery-confirm.css">
 
     <!-- Controllers JS -->
+    <script src="../js/controllers/signatures.js"></script>
     <script src="../js/controllers/consultancies.js"></script>
     <!-- Custom JS -->
     <!-- <script src="../js/utils/pop-up-messages.js"></script> -->
@@ -91,7 +92,7 @@
         
                     <section class="Assesories-Table-Section padding-20" style="padding-top: 0px; margin-top: 30px;">
                         <?php 
-                            include '../classes/consultancies.php';
+                            # include '../classes/consultancies.php';
                         ?>
                     </section>
                 </div>
@@ -104,34 +105,5 @@
         </div>
         
     </div>
-
-    <script>
-        // Manejar el display del asideBar
-        var asideBar = document.getElementById('Aside-Bar');
-        var mediaQuery = window.matchMedia('(min-width: 750px)');
-        var handleMediaQueryChange = function(mediaQuery) {
-            if (mediaQuery.matches) {
-                asideBar.style.display = 'block';
-            } else {
-                asideBar.style.display = 'none';
-            }
-        };
-        mediaQuery.addListener(handleMediaQueryChange);
-
-        function openModal(){
-            var modal = document.getElementById('Modal-Container-Id');
-            // modal.style.display = 'flex !important';
-            modal.style.display = 'block !important';
-        }
-
-        function displayAsideNavBar(){
-            var asideBar = document.getElementById('Aside-Bar');
-            if(asideBar.style.display === 'block'){
-                asideBar.style.display = 'none';
-            }else{
-                asideBar.style.display = 'block';
-            }
-        }
-    </script> 
 </body>
 </html>

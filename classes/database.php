@@ -64,5 +64,5 @@
         }
     }
 
-    $database = new Database();
+    // $database = new Database();
 ?>

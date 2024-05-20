@@ -1,5 +1,21 @@
 COSAS QQUE FALTAN:
-    * Hacer la página de settings 
+
+    Materias: 
+        * Desplegar Form con jQuery
+        * Vista de materias vacias
+
+    Signatures: 
+        * Desplegar Form con jQuery
+        * Vista de asesorias vacias
+
+    Settings:
+        MAESTRO
+        * Actualizar foto de perfil 
+        * Seleccionar fotos de perfil por default de sisteams
+        * Cambiar contraseña
+        * Cambiar alerta de colores del sistema
+    
+    Login y Register:
     * Recovery de la contraseña con PHP MAILER
 
 PROBLEMAS DE BASE DE DATOS:

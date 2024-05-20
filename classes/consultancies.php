@@ -12,7 +12,7 @@
 
         function action($action_case) {
             switch ($action_case) {
-                case 'insert':
+                case 'insert_consultancie':
                     $tema = $_POST['tema'];
                     $description = $_POST['descripcion'];
                     $competencia = $_POST['competencias'];
@@ -68,11 +68,12 @@
             $this->databaseConsultancies->getRecord($query_param);
 
             if($this->databaseConsultancies->registersNum == 0){
-                echo('
-                <div class="flex-column justify-center margin-bottom-10 color-primary-blue">
-                    <h5 class="padding-20 text-align-center font-size-15">Aún no tienes asesorías registradas de esta materia</h5>
-                    <i class="fa-solid fa-box-archive fa-xl margin-auto"></i>
-                </div>');
+                // echo('
+                // <div class="flex-column justify-center margin-bottom-10 color-primary-blue">
+                //     <h5 class="padding-20 text-align-center font-size-15">Aún no tienes asesorías registradas de esta materia</h5>
+                //     <i class="fa-solid fa-box-archive fa-xl margin-auto"></i>
+                // </div>');
+                echo('<p>NO HAY ASESORÍAS REGISTRADAS</p>');
             }
 
             $tableStart='
