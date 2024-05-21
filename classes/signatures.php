@@ -1,13 +1,14 @@
 <?php
     // session_start();
-    // include "../classes/database.php";
+    // include "../classes/class_database.php";
 
     // Sería bueno hacer que en una misma clase se manden llamar las materias, asesorías, etc...
+    //class Signatures extends Class_Database{
     class Signatures{
 
         private $databaseSignatures;
 
-        public function __construct(Database $databaseSignatures) {
+        public function __construct(Class_Database $databaseSignatures) {
             $this->databaseSignatures = $databaseSignatures;
         }
 
@@ -114,7 +115,7 @@
             //Botón para agregar una materia
             $consultanciesContainerEnd = '</div>
                 <button 
-                    onclick="return signatures(\'formNew\')" 
+                    onclick="return signatures(\'formNew\');" 
                     class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
                     <i class="fa-solid fa-plus"></i>
                 </button>';
@@ -135,8 +136,9 @@
         }
     }
 
-    $databaseSignatures = new Database();
+    $databaseSignatures = new Class_Database();
     $signaturesObject = new Signatures($databaseSignatures);
+    // $signaturesObject = new Signatures();
     if(isset($_REQUEST['action'])){
         echo $signaturesObject->action($_REQUEST['action']);
     }else{

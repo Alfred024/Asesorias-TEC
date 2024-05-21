@@ -6,7 +6,7 @@
 
         private $databaseConsultancies;
 
-        public function __construct(Database $databaseConsultancies) {
+        public function __construct(Class_Database $databaseConsultancies) {
             $this->databaseConsultancies = $databaseConsultancies;
         }
 
@@ -114,7 +114,7 @@
         
     }
 
-    $databaseConsultancies = new Database();
+    $databaseConsultancies = new Class_Database();
     $consultanciesObject = new Consultancies($databaseConsultancies);
     if(isset($_REQUEST['action'])){
         echo $consultanciesObject->action($_REQUEST['action']);
@@ -123,10 +123,10 @@
         // echo $current_page;
 
         switch ($current_page) {
-            case '/asesorias-app/teacher/control_panel.php':
+            case '/asesorias/teacher/home.php':
                 echo $consultanciesObject->action('displayData_recent');
                 break;
-            case '/asesorias-app/teacher/consultancies.php':
+            case '/asesorias/teacher/consultancies.php':
                 echo $consultanciesObject->action('displayData_signature');
                 break;
             default:

@@ -4,7 +4,7 @@
         header('location: ../login.php?m=9');
     }
 
-    include "../classes/database.php";
+    include "../classes/class_database.php";
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +92,7 @@
         
                     <section class="Assesories-Table-Section padding-20" style="padding-top: 0px; margin-top: 30px;">
                         <?php 
-                            # include '../classes/consultancies.php';
+                            include '../classes/consultancies.php';
                         ?>
                     </section>
                 </div>

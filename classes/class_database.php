@@ -1,5 +1,5 @@
 <?php
-    class Database{
+    class Class_Database{
         var $connection;
         var $server;
         var $user;
@@ -64,5 +64,5 @@
         }
     }
 
-    // $database = new Database();
+    $database = new Class_Database();
 ?>
