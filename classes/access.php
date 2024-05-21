@@ -1,8 +1,8 @@
 <?php 
-    include './database.php';
+    include './class_database.php';
     session_start();
 
-    class Access extends Database{
+    class Access extends Class_Database{
         function action($action_case){
             switch ($action_case) {
                 case 'login':

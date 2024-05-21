@@ -1,16 +1,16 @@
 <?php
     // session_start();
-    // include "../classes/class_database.php";
+    include "../classes/class_database.php";
 
     // Sería bueno hacer que en una misma clase se manden llamar las materias, asesorías, etc...
-    //class Signatures extends Class_Database{
-    class Signatures{
+    class Signatures extends Class_Database{
+    // class Signatures{
 
-        private $databaseSignatures;
+        // private $databaseSignatures;
 
-        public function __construct(Class_Database $databaseSignatures) {
-            $this->databaseSignatures = $databaseSignatures;
-        }
+        // public function __construct(Class_Database $databaseSignatures) {
+        //     $this->databaseSignatures = $databaseSignatures;
+        // }
 
         function action($action_case) {
             switch ($action_case) {
@@ -51,7 +51,7 @@
                             </form>
                         </div>';
                 break;
-                case 'insert_signature':
+                case 'insert':
                     // Paso 1 : Crear la materia
                     $user_id=$_SESSION['session_user_id'];
                     $signature = $_REQUEST['signature'];
@@ -59,11 +59,11 @@
                     $key = $_REQUEST['key'];
 
                     $insert_signature_query = "insert into materia (nombre) values ('".$signature."');";
-                    $this->databaseSignatures->query($insert_signature_query);
+                    $this->query($insert_signature_query);
 
                     $id_signature_inserted = $this->getId_signature($user_id, $signature);
                     $insert_signature_group_query = "insert into grupo (grupo, clave, id_usuario, id_materia) values ('".$group."', '".$key."', '".$user_id."', '".$id_signature_inserted."');";
-                    $this->databaseSignatures->query($insert_signature_group_query);
+                    $this->query($insert_signature_group_query);
                     // TODO: Notificación de creada correctamente
                     $this->action("displayData");
                 break;
@@ -89,14 +89,14 @@
         // AGREGAR BOTÓN PARA EDITAR
         function displayData($query_param){
             $consultanciesContainerStart = '<div class="Subjects-Card-Container flex overflow-auto width-90">';
-            $this->databaseSignatures->getRecord($query_param);
+            $this->getRecord($query_param);
 
-            if($this->databaseSignatures->registersNum == 0){
+            if($this->registersNum == 0){
                 echo('<h5 class="color-primary-blue text-align-center font-size-15 padding-20 ">Aún no tienes materias registradas, pulsa el botón de + para agregar una nueva materia</h5>');
             }
 
             $subjectCards = '';
-            foreach ($this->databaseSignatures->registrersBlock as $registerRow) {
+            foreach ($this->registrersBlock as $registerRow) {
                 $subjectCards.='
                     <div>
                     <a onclick="return consultancies(\'select_signatures_consultancies\','.$registerRow['clave'].')" href="../teacher/consultancies.php" class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
@@ -131,14 +131,14 @@
             order by 1 desc
             limit 1;";
 
-            $data = $this->databaseSignatures->getRecord($query_get_signature_id);
+            $data = $this->getRecord($query_get_signature_id);
             return $data->id_materia;
         }
     }
 
-    $databaseSignatures = new Class_Database();
-    $signaturesObject = new Signatures($databaseSignatures);
-    // $signaturesObject = new Signatures();
+    // $databaseSignatures = new Class_Database();
+    // $signaturesObject = new Signatures($databaseSignatures);
+    $signaturesObject = new Signatures();
     if(isset($_REQUEST['action'])){
         echo $signaturesObject->action($_REQUEST['action']);
     }else{
