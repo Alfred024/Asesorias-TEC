@@ -58,7 +58,7 @@
                         Configuración
                     </li>
                </a>
-               <a onclick="return alert('LOGOUTTT')" href="../login.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
+               <a href="../login.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-solid fa-right-from-bracket margin-right-10"></i>
