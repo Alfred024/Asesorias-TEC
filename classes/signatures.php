@@ -40,12 +40,12 @@
                                 </div>
                                 <br>
 
-                                <input type="hidden" name="action" value="insert">
+                                <input type="hidden" name="action" value="insert_signature">
                                 <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Materia" style="width: 200px;">
                             </form>
                         </div>';
                 break;
-                case 'insert':
+                case 'insert_signature':
                     // Paso 1 : Crear la materia
                     $user_id=$_SESSION['session_user_id'];
                     $signature = $_REQUEST['signature'];
@@ -90,6 +90,7 @@
             }
             $subjectCards = '';
             foreach ($this->registrersBlock as $registerRow) {
+                // Cómo podemos hacer para aplicar la misma lógica de enviar un valor con input submit + hidden para que obtega la clave y usar el href
                 $subjectCards.='
                     <div>
                     <a 

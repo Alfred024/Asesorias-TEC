@@ -1,5 +1,18 @@
 function consultancies(action, id) {
     switch (action) {
+        case 'formNew':
+            console.log('PETICIÓN PARA INSERTAR UNA NUEVA ASESORÍA Y la clave de la materia es '+id);
+            $.ajax({
+                url: `http://localhost/asesorias/classes/consultancies.php?clave=${id}`,
+                type: "post",
+                data: {action: "formNew"},
+                success: function(htmlResponse){
+                    console.log('Petición para form de registro de una nueva asesoría succes');
+                    workArea.innerHTML = htmlResponse;
+                },
+                error: function(err){ console.log(JSON.stringify(err)); },
+            });
+            break;
         case 'select_signatures_consultancies':
             $.ajax({
                 url: `http://localhost/asesorias/classes/consultancies.php?clave=${id}`,
@@ -24,7 +37,7 @@ function consultancies(action, id) {
                             </div>
 
                             <button
-                                onclick="return consultancies(\'insert_signature\')" 
+                                onclick="return consultancies(\'formNew\', '${id}')" 
                                 class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
                                 Registrar nueva asesoría
                                 <i class="fa-solid fa-address-card margin-left-5"></i>
@@ -47,7 +60,27 @@ function consultancies(action, id) {
                 error: function(err){ console.log(JSON.stringify(err)); },
             });
             break;
+        case 'insert_consultancie':
+            // data = $('#form_user').serialize();
+            // alert('WTFFFF 2 S+i se encontroó l aopción: '+action+' con la clave: '+id);
+            // console.log('LA CALValksajE DE LA MATERIA ES: '+id);
+            console.log(id);
+            $.ajax({
+                url: `http://localhost/asesorias/classes/consultancies.php?clave='${id}'`,
+                type: "post",
+                data: { action: porque_esto_funciona },
+                success: function(htmlResponse){
+                    console.log('Petición para insert de asesoría EXITISO');
+                    workArea.innerHTML = htmlResponse;
+                },
+                error: function(err){ 
+                    console.log('Petición para insert de asesoría salió mal');
+                    console.log(JSON.stringify(err));
+                },
+            });
+            return false; 
         default:
+            alert('NO se encontró la opción');
             break;
     }
 }

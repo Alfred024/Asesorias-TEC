@@ -30,6 +30,13 @@ PREGUNTAS PARA EL CLIENTE:
 
 
 
-
 DUDAS:
+
+Revisar el endpoint del ajax generado en los controllers
+Porqué el botón de agregar nueva asesoría no me responde en un perfol de Chorome??
+Porqué mis cambios en el controlador JS no se reflejan al modificar el archivo??? 
+Porqué no guarda el dato de la petición en el REQUEST??? (pasando clave a insert_consultancie)
+
 Cómo pasar el parámetro clave (clase consultancies) haciendo un href en el anchor signatures
+Controller consultancies: Cómo hago para inyectar un HTML en el workarea de mi select_consultancies_signature
+Porqué el workArea vuelve a su primer estado cuando se dispara una petición nueva al contrller???
