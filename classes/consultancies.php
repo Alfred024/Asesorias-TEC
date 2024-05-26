@@ -1,14 +1,8 @@
 <?php
     // session_start();
-    // include "../classes/database.php";
+    if (!class_exists("Class_Database")) include "../classes/class_database.php";
 
-    class Consultancies{
-
-        private $databaseConsultancies;
-
-        public function __construct(Class_Database $databaseConsultancies) {
-            $this->databaseConsultancies = $databaseConsultancies;
-        }
+    class Consultancies extends Class_Database{
 
         function action($action_case) {
             switch ($action_case) {
@@ -46,7 +40,7 @@
                 break;
 
                 case 'displayData_signature':
-                    $user_id=$_SESSION['session_user_id'];
+                    // $user_id=$_SESSION['session_user_id'];
                     $signature_key=$_REQUEST['clave'];
                     // echo($signature_key);
                     $query_param = 
@@ -65,9 +59,9 @@
         }
 
         function displayData($query_param){
-            $this->databaseConsultancies->getRecord($query_param);
+            $this->getRecord($query_param);
 
-            if($this->databaseConsultancies->registersNum == 0){
+            if($this->registersNum == 0){
                 // echo('
                 // <div class="flex-column justify-center margin-bottom-10 color-primary-blue">
                 //     <h5 class="padding-20 text-align-center font-size-15">Aún no tienes asesorías registradas de esta materia</h5>
@@ -90,7 +84,7 @@
                 <tbody>';
             
             $consultancies = '';
-            foreach ($this->databaseConsultancies->registrersBlock as $registerRow) {
+            foreach ($this->registrersBlock as $registerRow) {
                 $consultancies.='
                 <tr>
                     <td>'.$registerRow["alumno"].'</td>
@@ -114,8 +108,9 @@
         
     }
 
-    $databaseConsultancies = new Class_Database();
-    $consultanciesObject = new Consultancies($databaseConsultancies);
+    // $databaseConsultancies = new Class_Database();
+    // $consultanciesObject = new Consultancies($databaseConsultancies);
+    $consultanciesObject = new Consultancies();
     if(isset($_REQUEST['action'])){
         echo $consultanciesObject->action($_REQUEST['action']);
     }else{

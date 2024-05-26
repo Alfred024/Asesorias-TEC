@@ -50,7 +50,7 @@
 				</label><br>
 
 				<label class="flex-column width-80 margin-auto">
-					Contraseña
+					Contraseña (Mandar contraseña al correo)
 					<br>
 					<input name="password" class="box-shadow-light border-radius-20 padding-5 border-none" type="password" placeholder="">
 				</label><br>

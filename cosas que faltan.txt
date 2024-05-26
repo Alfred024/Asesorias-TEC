@@ -1,19 +1,20 @@
 COSAS QQUE FALTAN:
 
+    Registr:
+        Validación JS de los correos --> nmrCtrl (alumno) y nombre.apellido@gmail.com (maestro)
+
     Materias: 
-        * Desplegar Form con jQuery
         * Vista de materias vacias
 
     Signatures: 
-        * Desplegar Form con jQuery
         * Vista de asesorias vacias
 
     Settings:
         MAESTRO
         * Actualizar foto de perfil 
         * Seleccionar fotos de perfil por default de sisteams
-        * Cambiar contraseña
-        * Cambiar alerta de colores del sistema
+        * Cambiar contraseña --> Confirmar que la constraseña sea válida
+        * Encriptar contraseñas 
     
     Login y Register:
     * Recovery de la contraseña con PHP MAILER
@@ -26,3 +27,9 @@ PROBLEMAS DE BASE DE DATOS:
 PREGUNTAS PARA EL CLIENTE:
     * Tienen alguna hoja de excel con los alumnos de cada clase? para ver si se pueden exportar los datos a la base de datos
     * Las materias cambian su clave cada semestre?  
+
+
+
+
+DUDAS:
+Cómo pasar el parámetro clave (clase consultancies) haciendo un href en el anchor signatures

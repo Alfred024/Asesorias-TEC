@@ -1,28 +1,21 @@
 <?php
     // session_start();
-    include "../classes/class_database.php";
+    if (!class_exists("Class_Database")) include "../classes/class_database.php";
 
     // Sería bueno hacer que en una misma clase se manden llamar las materias, asesorías, etc...
     class Signatures extends Class_Database{
-    // class Signatures{
-
-        // private $databaseSignatures;
-
-        // public function __construct(Class_Database $databaseSignatures) {
-        //     $this->databaseSignatures = $databaseSignatures;
-        // }
 
         function action($action_case) {
             switch ($action_case) {
-                case 'formEdit':
-                //     $signature_info = $this->getRecord("select * from signature where id_usuario = " . $_REQUEST['id_user_to_update']);
+                // case 'formEdit':
+                //     $signature_info = $this->getRecord("select * from materia where clave = " . $_REQUEST['clave_to_update']);
                 case 'formNew':
                     return 
-                        '<div class="width-100 height-100 flex center-flex-xy">
+                        '<div class="width-100 flex center-flex-xy" style="height: 90vh;">
                             <form onsubmit="return signatures(\'insert_signature\')" method="post" class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
                                 <button onclick="return closeModal();" class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
                             
-                                <h4 class="width-fit font-weight-600 margin-auto" >Registro de maestro</h4>
+                                <h4 class="width-fit font-weight-600 margin-auto" >Registro de nueva materia</h4>
                                 <hr style="margin: 10px;">
                     
                                 <label class="flex-column width-100 margin-auto">
@@ -35,7 +28,8 @@
                                     <label class="flex-column width-40 margin-auto">
                                         Clave de la materia
                                         <br>
-                                        <input name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                        <input 
+                                            name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="" style="width: 200px;">
                                     </label>
                         
                                     <label class="flex-column width-40 margin-auto">
@@ -94,12 +88,13 @@
             if($this->registersNum == 0){
                 echo('<h5 class="color-primary-blue text-align-center font-size-15 padding-20 ">Aún no tienes materias registradas, pulsa el botón de + para agregar una nueva materia</h5>');
             }
-
             $subjectCards = '';
             foreach ($this->registrersBlock as $registerRow) {
                 $subjectCards.='
                     <div>
-                    <a onclick="return consultancies(\'select_signatures_consultancies\','.$registerRow['clave'].')" href="../teacher/consultancies.php" class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
+                    <a 
+                        onclick="return consultancies(\'select_signatures_consultancies\',\''.$registerRow['clave'].'\')" 
+                        class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
                         <div class="flex-column justify-between padding-10" style="height: 80%;">
                             <p>Materia: '.$registerRow["nombre"].' </p>
                             <p class="font-size-15 text-light">GRUPO: '.$registerRow["grupo"].'</p>
@@ -136,8 +131,6 @@
         }
     }
 
-    // $databaseSignatures = new Class_Database();
-    // $signaturesObject = new Signatures($databaseSignatures);
     $signaturesObject = new Signatures();
     if(isset($_REQUEST['action'])){
         echo $signaturesObject->action($_REQUEST['action']);

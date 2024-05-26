@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['session_email'])) {
     header('location: ../login.php');
 }
-include '../classes/database.php';
+include '../classes/class_database.php';
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +55,7 @@ include '../classes/database.php';
                     </div>
                 </div>
 
-                <button class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
+                <button onclick="return consultancies('')" class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
                     Registrar nueva asesoría
                     <i class="fa-solid fa-address-card margin-left-5"></i>
                 </button>
@@ -65,7 +65,7 @@ include '../classes/database.php';
             <div class="margin-auto width-100" style="height: 70%;  overflow-y: scroll;">
                 <table class="Assesories-Table overflow-x-auto padding-10 width-100" style="background-color: white;">
                     <?php
-                    include "../classes/consultancies.php";
+                        include "../classes/consultancies.php";
                     ?>
 
                 </table>
@@ -76,49 +76,6 @@ include '../classes/database.php';
                 <i class="fa-solid fa-download margin-left-5"></i>
             </button>
         </div>
-
-        <!-- <div id="Modal-Container-Id" class="Modal-Container flex align-center justify-center absolute z-index-10 height-100 width-100">
-            <form method="post" action="../classes/signatures.php" class="height-fit padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative">
-                <button onclick="return closeModal();" class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
-
-                <h4 class="width-fit font-weight-600 margin-auto">Registro de una nueva asesoría para la materia X</h4>
-                <hr style="margin: 10px;">
-
-                <input name="tema" class="width-100 margin-auto box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="Tema de la asesoría"><br>
-
-                <textarea placeholder="Escriba detalles acerca de la asesoría." class="padding-5 box-shadow-light border-none border-radius-10" style="resize: none; height:120px;" name="descripcion" id="">
-                    
-                </textarea><br>
-
-                <select class="text-white padding-5 border-radius-10 bg-primary-blue" name="alumnos">
-                    <?php
-                        for ($i=0; $i < 20; $i++) { 
-                            echo('<option value="alumno">nombre de un alumno registrado</option>');
-                        }
-                    ?>
-                </select><br>
-
-                <div class="flex justify-between">
-                    <select class="text-white padding-5 border-radius-10 bg-primary-blue" name="competencias" style="width: 30%;">
-                        <option value="competencia_1">1</option>
-                        <option value="competencia_2">2</option>
-                        <option value="competencia_3">3</option>
-                        <option value="competencia_4">4</option>
-                        <option value="competencia_5">5</option>
-                        <option value="competencia_6">6</option>
-                    </select>
-
-                    <select class="text-white padding-5 border-radius-10 bg-primary-blue" name="periodo" id="" style="width: 60%;">
-                        <option value="enero_junio">Enero - Junio</option>
-                        <option value="agosto_diciembre">Agosto - Diciembre</option>
-                    </select>
-                </div>
-                <br>
-
-                <input type="hidden" name="action" value="insert">
-                <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Materia" style="width: 200px;">
-            </form>
-        </div> -->
     </main>
 </body>
 

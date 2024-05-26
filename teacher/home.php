@@ -72,7 +72,7 @@
             <main class="overflow-auto">
                 <section class="bg-primary-blue flex justify-between" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                     <h4 class="Page-Title text-white align-self-center margin-left-5">Panel de control maestro</h4>
-                    <img class="Logo-Tecnm border-radius-full" src="./assets/LOGO-BLANCO-VERTICAL-TECNM.png" alt="Profile picture">
+                    <img class="Logo-Tecnm border-radius-full" src="../assets/LOGO-BLANCO-VERTICAL-TECNM.png" alt="Profile picture">
     
                     <button onclick="displayAsideNavBar()" class="Nav-Bar-Toogle-Button bg-bolor-unset border-none margin-right-10 cursor-pointer display-none">
                         <i class="fa-solid fa-bars text-white"></i>
@@ -92,7 +92,7 @@
         
                     <section class="Assesories-Table-Section padding-20" style="padding-top: 0px; margin-top: 30px;">
                         <?php 
-                            // include '../classes/consultancies.php';
+                            include '../classes/consultancies.php';
                         ?>
                     </section>
                 </div>
@@ -102,6 +102,7 @@
             <footer class="bg-primary-blue text-white padding-5" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                 <p class="text-align-center">Hecho con ♥ por <a target="_blank" class="anchor-default text-white" href="https://www.linkedin.com/in/alfredo-jim%C3%A9nez-01151623a/">Alfredo</a> </p>
             </footer>
+            
         </div>
         
     </div>

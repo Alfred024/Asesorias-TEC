@@ -13,6 +13,16 @@ function signatures(action, id) {
                 error: function(err){ console.log(JSON.stringify(err)); },
             });
             break;
+        // case 'formEdit':
+        //     $.dialog({
+        //         title: 'Edición de la materia',
+        //         columnClass: 'col-7',
+        //         content: `url: http://localhost/asesorias/classes/signatures.php?action=${action}&clave_to_update=${id}`, 
+        //         onContentReady: function () {
+        //             ventFrame = this;
+        //         },
+        //     });
+        //     break;
         case 'insert_signature':
             // dónde es que la clase de php recibe la acción que hará
             // data = $('#form_user').serialize();
