@@ -32,8 +32,8 @@
     <link rel="stylesheet" href="../styles/jquery-confirm.css">
 
     <!-- Controllers JS -->
-    <script src="../js/controllers/signatures.js"></script>
-    <script src="../js/controllers/consultancies.js"></script>
+    <script src="../js/controllers/signatures.js?v=3"></script>
+    <script src="../js/controllers/consultancies.js?v=7"></script>
     <!-- Custom JS -->
     <!-- <script src="../js/utils/pop-up-messages.js"></script> -->
 </head>

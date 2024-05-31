@@ -1,9 +1,9 @@
 function consultancies(action, id) {
     switch (action) {
         case 'formNew':
-            console.log('PETICIÓN PARA INSERTAR UNA NUEVA ASESORÍA Y la clave de la materia es '+id);
             $.ajax({
                 url: `http://localhost/asesorias/classes/consultancies.php?clave=${id}`,
+                // url: `../../classes/consultancies.php?clave=${id}`,
                 type: "post",
                 data: {action: "formNew"},
                 success: function(htmlResponse){
@@ -49,12 +49,15 @@ function consultancies(action, id) {
                     </div>
                     `;
                     workArea.innerHTML += htmlResponse;
+                    
                     workArea.innerHTML += `
                     </div>
-                        <button class="Btn-Primary-Blue absolute right-0 bg-primary-blue text-white border-radius-10 padding-10 border-none" style="bottom: 40px;">
-                            Descargar report
+                        <a 
+                        class="Btn-Primary-Blue absolute right-0 bg-primary-blue text-white border-radius-10 padding-10 border-none" style="bottom: 40px;"
+                        target="_blank"  href="http://localhost/asesorias/classes/pdfs.php?id=${id}" >
+                            Generar reporte de asesorías
                             <i class="fa-solid fa-download margin-left-5"></i>
-                        </button>
+                        </a>
                     </div>`;
                 },
                 error: function(err){ console.log(JSON.stringify(err)); },
@@ -62,13 +65,11 @@ function consultancies(action, id) {
             break;
         case 'insert_consultancie':
             // data = $('#form_user').serialize();
-            // alert('WTFFFF 2 S+i se encontroó l aopción: '+action+' con la clave: '+id);
-            // console.log('LA CALValksajE DE LA MATERIA ES: '+id);
-            console.log(id);
+            // console.log(`CLAVE: ${id}`);
             $.ajax({
-                url: `http://localhost/asesorias/classes/consultancies.php?clave='${id}'`,
+                url: `http://localhost/asesorias/classes/consultancies.php`,
                 type: "post",
-                data: { action: porque_esto_funciona },
+                data: { action: porque_esto_funciona, clave: porque_esto_funciona2 },
                 success: function(htmlResponse){
                     console.log('Petición para insert de asesoría EXITISO');
                     workArea.innerHTML = htmlResponse;

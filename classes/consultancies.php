@@ -1,8 +1,16 @@
 <?php
     // session_start();
+    if (!class_exists("PDFS")) include "../classes/pdfs.php";
     if (!class_exists("Class_Database")) include "../classes/class_database.php";
 
     class Consultancies extends Class_Database{
+
+        // private $pdf;
+    
+        // public function __construct()
+        // {
+        //     $this->pdf = new PDFS;
+        // }
 
         function action($action_case) {
             switch ($action_case) {
@@ -14,7 +22,7 @@
                     return 
                         '<div class="width-100 flex center-flex-xy" style="height: 90vh;">
                         <form 
-                            onsubmit="return consultancies(\'insert_consultancie\', \''.$clave.'\')" method="post"
+                            onsubmit="return consultancies(\'insert_consultancie\')" method="post"
                             class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
                             <button class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
                 
@@ -49,17 +57,18 @@
                             </div>
                             <br>
                 
-                            <textarea style="height: 100px;" class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" name="descripcion" placeholder="Descripción de la asesoría"></textarea>
+                            <textarea style="height: 100px; resize: none;" class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" name="descripcion" placeholder="Descripción de la asesoría"></textarea>
                             <br>
                 
                             <label class="flex-column width-100 margin-auto">
-                                Alumno que toma la asesoría
+                                Alumno toma la asesoría
                                 <br>
                                 <select class="box-shadow-light border-radius-20 padding-5 border-none" name="alumno">
                                     '.$students.'
                                 </select>
                             </label><br>
 
+                            <input type="hidden" name="clave" value="'.$clave.'"></input>
                             <input type="hidden" name="action" value="insert_consultancie"></input>
                             <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Asesoría" style="width: 200px;">
                         </form>
@@ -71,10 +80,8 @@
                     $description = $_REQUEST['descripcion'];
                     $competencia = $_REQUEST['competencia'];
                     $user_id=$_SESSION['session_user_id'];
-                    //$user_id_toma= $this->getUserIdByCtrlNum('21030001'); 
-                    $user_id_toma=3;
-                    // $signature_key=$_POST['clave'];
-                    $signature_key='CM01';
+                    $user_id_toma=$_REQUEST['alumno'];
+                    $signature_key=$_REQUEST['clave'];
                     $signature_period=$_REQUEST['id_periodo'];
 
                     $insert_consultancie_query = '
@@ -82,10 +89,11 @@
                     (tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave, id_periodo)
                     values ("'.$tema.'", "'.$competencia.'", "'.$description.'", "'.$user_id.'", "'.$user_id_toma.'", "'.$signature_key.'", "'.$signature_period.'");
                     ';
+
                     $this->query($insert_consultancie_query);
                     // TODO: Notificación de creada correctamente
-                    echo('<h1>Asesoría registrada bienn</h1>');
-                    // $this->action("displayData_signature");
+                    // echo('<h1>Asesoría registrada bienn</h1>');
+                    $this->action("displayData_signature");
                 break;
                 case 'displayData_signature':
                     // $user_id=$_SESSION['session_user_id'];
