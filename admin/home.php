@@ -72,8 +72,48 @@
                         <input class="border-none" type="text" placeholder="Buscar maestro">
                     </div>
 
+                    <?php 
+                       include '../classes/class_teachers.php'; 
+                    ?>
                     <!-- ESTO ES SÓLO DE UN MAESTRO -->
-                    <div class="Teacher-Assesories-Resume width-100 margin-bottom-10">
+                    <!-- <div class="Teacher-Assesories-Resume width-100 margin-bottom-10">
+
+                        <div class="bg-white flex justify-between align-center padding-10 border-radius-10">
+                            <div class="flex align-center">
+                                <img class="margin-right-10" src="https://www.svgrepo.com/show/295402/user-profile.svg" alt="User profile picture" style="width: 35px;">
+                                <p>José Alfredo Jiménez García</p>
+                            </div>
+        
+                            <button onclick="toggleAssesoriesMenu()" class="bg-bolor-unset border-none">
+                                <i id="assesoriesMenuButton-Down" class="fa-solid fa-chevron-down color-primary-blue"></i>
+                                <i id="assesoriesMenuButton-Up" class="fa-solid fa-chevron-up color-primary-blue" style="display: none;"></i>
+                            </button>
+                        </div>
+
+                        <div id="Assesories-By-Signature-List" class="bg-white border-radius-10 margin-y-5 padding-10" style="display: block;">
+                            <div class="width-80 margin-auto margin-bottom-10 flex justify-between padding-10 bg-primary-blue text-white border-radius-10">
+                                <p>Reporte de asesorías de Simulación</p>
+                                <button class="bg-bolor-unset border-none">
+                                    <i class="fa-solid fa-chevron-right" style="color: white;"></i>
+                                </button>
+                            </div>
+
+                            <div class="width-80 margin-auto margin-bottom-10 flex justify-between padding-10 bg-primary-blue text-white border-radius-10">
+                                <p>Reporte de asesorías de Simulación</p>
+                                <button class="bg-bolor-unset border-none">
+                                    <i class="fa-solid fa-chevron-right" style="color: white;"></i>
+                                </button>
+                            </div>
+
+                            <div class="width-80 margin-auto margin-bottom-10 flex justify-between padding-10 bg-primary-blue text-white border-radius-10">
+                                <p>Reporte de asesorías de Simulación</p>
+                                <button class="bg-bolor-unset border-none">
+                                    <i class="fa-solid fa-chevron-right" style="color: white;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="Teacher-Assesories-Resume width-100 margin-bottom-10">
 
                         <div class="bg-white flex justify-between align-center padding-10 border-radius-10">
                             <div class="flex align-center">
@@ -110,8 +150,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="Teacher-Assesories-Resume width-100 margin-bottom-10">
 
                         <div class="bg-white flex justify-between align-center padding-10 border-radius-10">
@@ -148,44 +186,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
-                    <div class="Teacher-Assesories-Resume width-100 margin-bottom-10">
-
-                        <div class="bg-white flex justify-between align-center padding-10 border-radius-10">
-                            <div class="flex align-center">
-                                <img class="margin-right-10" src="https://www.svgrepo.com/show/295402/user-profile.svg" alt="User profile picture" style="width: 35px;">
-                                <p>José Alfredo Jiménez García</p>
-                            </div>
-        
-                            <button onclick="toggleAssesoriesMenu()" class="bg-bolor-unset border-none">
-                                <i id="assesoriesMenuButton-Down" class="fa-solid fa-chevron-down color-primary-blue"></i>
-                                <i id="assesoriesMenuButton-Up" class="fa-solid fa-chevron-up color-primary-blue" style="display: none;"></i>
-                            </button>
-                        </div>
-
-                        <div id="Assesories-By-Signature-List" class="bg-white border-radius-10 margin-y-5 padding-10" style="display: block;">
-                            <div class="width-80 margin-auto margin-bottom-10 flex justify-between padding-10 bg-primary-blue text-white border-radius-10">
-                                <p>Reporte de asesorías de Simulación</p>
-                                <button class="bg-bolor-unset border-none">
-                                    <i class="fa-solid fa-chevron-right" style="color: white;"></i>
-                                </button>
-                            </div>
-
-                            <div class="width-80 margin-auto margin-bottom-10 flex justify-between padding-10 bg-primary-blue text-white border-radius-10">
-                                <p>Reporte de asesorías de Simulación</p>
-                                <button class="bg-bolor-unset border-none">
-                                    <i class="fa-solid fa-chevron-right" style="color: white;"></i>
-                                </button>
-                            </div>
-
-                            <div class="width-80 margin-auto margin-bottom-10 flex justify-between padding-10 bg-primary-blue text-white border-radius-10">
-                                <p>Reporte de asesorías de Simulación</p>
-                                <button class="bg-bolor-unset border-none">
-                                    <i class="fa-solid fa-chevron-right" style="color: white;"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    </div> -->
 
                 </div>            
             </main>
