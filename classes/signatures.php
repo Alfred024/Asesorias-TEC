@@ -1,6 +1,7 @@
 <?php
     // session_start();
-    if (!class_exists("Class_Database")) include "../classes/class_database.php";
+    // include './consultancies.php'; # INCLUDE PARA 
+    if (!class_exists("Class_Database")) include "../classes/class_database.php"; 
 
     // Sería bueno hacer que en una misma clase se manden llamar las materias, asesorías, etc...
     class Signatures extends Class_Database{

@@ -48,19 +48,27 @@
             return mysqli_fetch_object($this->registrersBlock);
         }
 
+        // function getFields(&$campos){
+        //     //$info = "";
+        //     $campos=array();
+        //     //for($campoN=0; $campoN<mysqli_num_fields($this->registersNum); $campoN++){
+        //     for($campoN=0; $campoN<2; $campoN++){
+        //         $campo=mysqli_fetch_field_direct($this->registrersBlock ,$campoN);
+        //         $tabla=$campo->table;
+        //         array_push($campos,$campo->name);
+        //         //$info.=$campo->name;
+        //     }
+        //     // echo('INFO');
+        //     // echo($info);
+        //     return $campos;
+        // }
         function getFields(&$campos){
-            //$info = "";
-            $campos=array();
-            //for($campoN=0; $campoN<mysqli_num_fields($this->registersNum); $campoN++){
-            for($campoN=0; $campoN<2; $campoN++){
+            $num_campos = mysqli_num_fields($this->registrersBlock);
+            for($campoN=0; $campoN<$num_campos; $campoN++){
                 $campo=mysqli_fetch_field_direct($this->registrersBlock ,$campoN);
                 $tabla=$campo->table;
                 array_push($campos,$campo->name);
-                //$info.=$campo->name;
             }
-            // echo('INFO');
-            // echo($info);
-            return $campos;
         }
     }
 

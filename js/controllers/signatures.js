@@ -3,7 +3,8 @@ function signatures(action, id) {
         case 'formNew':
             console.log('PETICIÓN PARA INSERTAR UNA NUEVA MATERIA');
             $.ajax({
-                url: "http://localhost/asesorias/classes/signatures.php",
+                // url: "http://localhost/asesorias/classes/signatures.php",
+                url: "../../classes/signatures.php",
                 type: "post",
                 data: {action: "formNew"},
                 success: function(htmlResponse){

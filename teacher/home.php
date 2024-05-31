@@ -33,7 +33,7 @@
 
     <!-- Controllers JS -->
     <script src="../js/controllers/signatures.js?v=3"></script>
-    <script src="../js/controllers/consultancies.js?v=7"></script>
+    <script src="../js/controllers/consultancies.js?v=8"></script>
     <!-- Custom JS -->
     <!-- <script src="../js/utils/pop-up-messages.js"></script> -->
 </head>
@@ -108,3 +108,4 @@
     </div>
 </body>
 </html>
+
