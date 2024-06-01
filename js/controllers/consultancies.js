@@ -1,4 +1,5 @@
 function consultancies(action, id) {
+
     switch (action) {
         case 'formNew':
             $.ajax({
@@ -44,6 +45,20 @@ function consultancies(action, id) {
                 },
             });
             return false; 
+        case 'searchStudent':
+            student = consultanciesInput.value;
+            $.ajax({
+                url: `http://localhost/asesorias/classes/consultancies.php?clave=${id}&studentSearched=${student}`,
+                // url: `../../classes/consultancies.php?clave=${id}`,
+                type: "post",
+                data: {action: "searchStudent"},
+                success: function(htmlResponse){
+                    console.log(`HTML response: ${htmlResponse}`);
+                    Assesories_Table.innerHTML = htmlResponse;
+                },
+                error: function(err){ console.log(JSON.stringify(err)); },
+            });
+        break;
         default:
             alert('NO se encontró la opción');
             break;

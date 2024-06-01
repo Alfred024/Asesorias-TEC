@@ -33,7 +33,7 @@
 
     <!-- Controllers JS -->
     <script src="../js/controllers/signatures.js?v=3"></script>
-    <script src="../js/controllers/consultancies.js?v=11"></script>
+    <script src="../js/controllers/consultancies.js?v=12"></script>
     <!-- Custom JS -->
     <!-- <script src="../js/utils/pop-up-messages.js"></script> -->
 </head>
@@ -67,7 +67,7 @@
                </a>
             </ul>
         </aside>
-
+    
         <div class="bg-light-gray flex-column justify-between width-100 height-full overflow-auto">
             <main class="overflow-auto">
                 <section class="bg-primary-blue flex justify-between" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">

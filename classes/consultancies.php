@@ -24,7 +24,9 @@
                         <form 
                             onsubmit="return consultancies(\'insert_consultancie\')" method="post"
                             class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
-                            <button class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
+                            <button 
+                                onclick="return alert("Cerrar modal");"
+                                class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
                 
                             <h4 class="width-fit font-weight-600 margin-auto">Registro de asesoría</h4>
                             <hr style="margin: 10px;">
@@ -67,9 +69,10 @@
                                     '.$students.'
                                 </select>
                             </label><br>
+                            
+                            <input type="hidden" name="action" value="insert_consultancie">
+                            <input type="hidden" name="clave" value="'.$clave.'">
 
-                            <input type="hidden" name="clave" value="'.$clave.'"></input>
-                            <input type="hidden" name="action" value="insert_consultancie"></input>
                             <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Asesoría" style="width: 200px;">
                         </form>
                         </div>';
@@ -95,8 +98,28 @@
                     // echo('<h1>Asesoría registrada bienn</h1>');
                     $this->action("displayData_signature");
                 break;
+                case 'searchStudent':
+                    if(isset($_REQUEST['studentSearched'])){
+                        $studentSearched = $_REQUEST['studentSearched'];
+                    }
+                    $signature_key=$_REQUEST['clave'];
+
+                    $query_param = 
+                    'SELECT
+                        concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
+                        ase.competencia,
+                        ase.tema,
+                        ase.descripcion,
+                        ase.fecha
+                    FROM asesoria AS ase
+                    JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
+                    WHERE ase.clave = "'.$signature_key.'" 
+                    AND CONCAT(usu.nombres, " ", usu.apellido_paterno, " ", usu.apellido_materno, " ") 
+                    LIKE CONCAT("%'.$studentSearched.'%");';
+                    $this->displayData($query_param);
+                    break;
                 case 'displayData_signature':
-                    // $user_id=$_SESSION['session_user_id'];
+
                     $signature_key=$_REQUEST['clave'];
                     $query_param = 
                     'SELECT
@@ -116,7 +139,10 @@
                             <div class="Filters-Items-Container flex align-center margin-bottom-10">
                                 <div class="Teacher-Name-Filter height-fit align-center overflow-hidden flex box-shadow-light border-radius-10 padding-5 bg-white">
                                     <i class="fa-solid fa-magnifying-glass margin-right-5 color-primary-blue"></i>
-                                    <input class="border-none" type="text" placeholder="Buscar asesoría por nombre">
+                                    <input 
+                                        onkeypress="return consultancies(\'searchStudent\', \''.$signature_key.'\')" 
+                                        class="border-none" type="text" 
+                                        id="consultanciesInput" placeholder="Buscar espía por nombre...">
                                 </div>
 
                                 <div class="Form-Date-Filter height-fit flex align-center bg-white border-radius-10 overflow-hidden" style="margin-left: 10px;">
@@ -126,7 +152,7 @@
                             </div>
 
                             <button
-                                onclick="return consultancies(\'formNew\', '.$signature_key.')" 
+                                onclick="return consultancies(\'formNew\', \''.$signature_key.'\')" 
                                 class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
                                 Registrar nueva asesoría
                                 <i class="fa-solid fa-address-card margin-left-5"></i>
@@ -135,6 +161,8 @@
 
                         <div class="margin-auto width-100" style="height: 70%;  overflow-y: scroll;">
                     </div>');
+
+
                     $this->displayData($query_param);
                     echo('</div>
                     <a 
@@ -177,7 +205,7 @@
                 echo('<p>NO HAY ASESORÍAS REGISTRADAS</p>');
             }
             $tableStart='
-            <table class="Assesories-Table overflow-x-auto padding-10 width-90 margin-auto" style="background-color: white;">
+            <table id="Assesories_Table" class="Assesories-Table overflow-x-auto padding-10 width-90 margin-auto" style="background-color: white;">
                 <thead class="Table-Header">
                     <tr class="text-secondary-blue">
                         <th>Alumno</th>

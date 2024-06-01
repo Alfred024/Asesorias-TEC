@@ -13,8 +13,12 @@
                 case 'formNew':
                     return 
                         '<div class="width-100 flex center-flex-xy" style="height: 90vh;">
-                            <form onsubmit="return signatures(\'insert_signature\')" method="post" class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
-                                <button onclick="return closeModal();" class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
+                            <form 
+                            onsubmit="return signatures(\'insert_signature\')" method="post" class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
+                                <button 
+                                    onclick="return alert("Cerrar modal");"
+                                    href="../teacher/home.php" 
+                                    class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
                             
                                 <h4 class="width-fit font-weight-600 margin-auto" >Registro de nueva materia</h4>
                                 <hr style="margin: 10px;">
@@ -25,15 +29,15 @@
                                     <input name="signature" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
                                 </label><br>
                     
-                                <div class="flex justify-center">
-                                    <label class="flex-column width-40 margin-auto">
+                                <div class="flex justify-between">
+                                    <label class="flex-column width-60">
                                         Clave de la materia
                                         <br>
                                         <input 
-                                            name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="" style="width: 200px;">
+                                            name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
                                     </label>
                         
-                                    <label class="flex-column width-40 margin-auto">
+                                    <label class="flex-column width-20">
                                         Grupo
                                         <br>
                                         <input name="group" pattern="[A-Z]{1}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
@@ -42,6 +46,7 @@
                                 <br>
 
                                 <input type="hidden" name="action" value="insert_signature">
+                                
                                 <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Materia" style="width: 200px;">
                             </form>
                         </div>';
@@ -61,6 +66,7 @@
                     $this->query($insert_signature_group_query);
                     // TODO: Notificación de creada correctamente
                     $this->action("displayData");
+                    // Aquí también debe mostrar los datos de las consultancies 
                 break;
                 case 'displayData':
                     $user_id=$_SESSION['session_user_id'];
