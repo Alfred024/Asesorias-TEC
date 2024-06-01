@@ -26,7 +26,7 @@
             }
 
             $signatures = '';
-            $teachersHtml = '';
+            $teachersHtml = '<div style="padding: 20px;">';
             foreach ($this->registrersBlock as $registerRow) {
                 $id_maestro = intval($registerRow["id_maestro"]);
                 $signatures = $this->displayTeacherSignature($id_maestro);
@@ -40,7 +40,7 @@
                             <p>'.$registerRow["maestro"].'</p>
                         </div>
             
-                        <button onclick="return console.log("Botón para hacer el toogle de la vista");" class="bg-bolor-unset border-none">
+                        <button style="cursor: pointer;" onclick="return console.log("Botón para hacer el toogle de la vista")" class="bg-bolor-unset border-none">
                             <i id="assesoriesMenuButton-Down" class="fa-solid fa-chevron-down color-primary-blue"></i>
                             <i id="assesoriesMenuButton-Up" class="fa-solid fa-chevron-up color-primary-blue" style="display: none;"></i>
                         </button>
@@ -51,7 +51,7 @@
                 </div>';
             }
             
-            echo($teachersHtml);
+            echo($teachersHtml.'</div>');
         }
 
         function displayTeacherSignature($id_teacher){
@@ -69,9 +69,10 @@
                 $signatures='<div id="Assesories-By-Signature-List" class="bg-white border-radius-10 margin-y-5 padding-10" style="display: block;">';
                 foreach ($this->registrersBlock as $registerRow) {
                     $signatures.='
-                    <div class="width-80 margin-auto margin-bottom-10 flex justify-between padding-10 bg-primary-blue text-white border-radius-10">
+                    <div
+                    onclick="return consultancies(\'select_signatures_consultancies\',\''.$registerRow['clave'].'\')" class="width-80 margin-auto margin-bottom-10 flex justify-between padding-10 bg-primary-blue text-white border-radius-10">
                         <p>Reporte de asesorías de '.$registerRow['materia'].'</p>
-                        <button onclick="return consultancies(\'select_signatures_consultancies\', '.$registerRow['clave'].');" class="bg-bolor-unset border-none">
+                        <button onclick="return consultancies(\'select_signatures_consultancies\', \''.$registerRow['clave'].'\');" class="bg-bolor-unset border-none">
                             <i class="fa-solid fa-chevron-right" style="color: white;"></i>
                         </button>
                     </div>

@@ -98,7 +98,6 @@
                 case 'displayData_signature':
                     // $user_id=$_SESSION['session_user_id'];
                     $signature_key=$_REQUEST['clave'];
-                    // echo($signature_key);
                     $query_param = 
                     'SELECT
                         concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
@@ -110,41 +109,41 @@
                     JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
                     WHERE ase.clave = "'.$signature_key.'" ';
                     
-                    // echo('
-                    // <div class="flex-column height-90 padding-20 relative" style="padding-top: 10px;">
-                    //     <div class="Assesories-Interacitve-Container flex justify-between margin-bottom-10">
-                    //         <div class="Filters-Items-Container flex align-center margin-bottom-10">
-                    //             <div class="Teacher-Name-Filter height-fit align-center overflow-hidden flex box-shadow-light border-radius-10 padding-5 bg-white">
-                    //                 <i class="fa-solid fa-magnifying-glass margin-right-5 color-primary-blue"></i>
-                    //                 <input class="border-none" type="text" placeholder="Buscar asesoría por nombre">
-                    //             </div>
+                    // SI es un ADMIN, entonces el botón de agregar asesorías no se muestra
+                    echo('
+                    <div class="flex-column height-90 padding-20 relative" style="padding-top: 10px;">
+                        <div class="Assesories-Interacitve-Container flex justify-between margin-bottom-10">
+                            <div class="Filters-Items-Container flex align-center margin-bottom-10">
+                                <div class="Teacher-Name-Filter height-fit align-center overflow-hidden flex box-shadow-light border-radius-10 padding-5 bg-white">
+                                    <i class="fa-solid fa-magnifying-glass margin-right-5 color-primary-blue"></i>
+                                    <input class="border-none" type="text" placeholder="Buscar asesoría por nombre">
+                                </div>
 
-                    //             <div class="Form-Date-Filter height-fit flex align-center bg-white border-radius-10 overflow-hidden" style="margin-left: 10px;">
-                    //                 <label class="font-size-10" for="input-date"><strong>Filtrar asesoría por fecha</strong></label>
-                    //                 <input class="padding-5 height-100 bg-light-gray border-none" type="date" id="input-date" name="input-date-start" value="2024-05-19">
-                    //             </div>
-                    //         </div>
+                                <div class="Form-Date-Filter height-fit flex align-center bg-white border-radius-10 overflow-hidden" style="margin-left: 10px;">
+                                    <label class="font-size-10" for="input-date"><strong>Filtrar asesoría por fecha</strong></label>
+                                    <input class="padding-5 height-100 bg-light-gray border-none" type="date" id="input-date" name="input-date-start" value="2024-05-19">
+                                </div>
+                            </div>
 
-                    //         <button
-                    //             onclick="return consultancies(\'formNew\', '.$signature_key.')" 
-                    //             class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
-                    //             Registrar nueva asesoría
-                    //             <i class="fa-solid fa-address-card margin-left-5"></i>
-                    //         </button>
-                    //     </div>
+                            <button
+                                onclick="return consultancies(\'formNew\', '.$signature_key.')" 
+                                class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
+                                Registrar nueva asesoría
+                                <i class="fa-solid fa-address-card margin-left-5"></i>
+                            </button>
+                        </div>
 
-                    //     <!-- <div class="margin-auto" style="width: 100%; height: 70%;  overflow: scroll;"> -->
-                    //     <div class="margin-auto width-100" style="height: 70%;  overflow-y: scroll;">
-                    // </div>');
+                        <div class="margin-auto width-100" style="height: 70%;  overflow-y: scroll;">
+                    </div>');
                     $this->displayData($query_param);
-                    // echo('</div>
-                    // <a 
-                    //     class="Btn-Primary-Blue absolute right-0 bg-primary-blue text-white border-radius-10 padding-10 border-none" style="bottom: 40px;"
-                    //     target="_blank"  href="http://localhost/asesorias/classes/pdfs.php?id='.$signature_key.'" >
-                    //         Generar reporte de asesorías
-                    //         <i class="fa-solid fa-download margin-left-5"></i>
-                    //     </a>
-                    // </div>');
+                    echo('</div>
+                    <a 
+                        class="Btn-Primary-Blue absolute right-0 bg-primary-blue text-white border-radius-10 padding-10 border-none" style="bottom: 40px;"
+                        target="_blank"  href="http://localhost/asesorias/classes/pdfs.php?id='.$signature_key.'" >
+                            Generar reporte de asesorías
+                            <i class="fa-solid fa-download margin-left-5"></i>
+                        </a>
+                    </div>');
                 break;
                 case 'displayData_recent':
                     $user_id=$_SESSION['session_user_id'];
@@ -177,7 +176,6 @@
                 // </div>');
                 echo('<p>NO HAY ASESORÍAS REGISTRADAS</p>');
             }
-
             $tableStart='
             <table class="Assesories-Table overflow-x-auto padding-10 width-90 margin-auto" style="background-color: white;">
                 <thead class="Table-Header">

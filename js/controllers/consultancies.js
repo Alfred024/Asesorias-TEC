@@ -14,15 +14,15 @@ function consultancies(action, id) {
             });
             break;
         case 'select_signatures_consultancies':
-            console.log('MUESTRA LAS ASESOS´RIAS DE LA MATERIA 3: '+id);
+            console.log('MUESTRA LAS ASESOS´RIAS DE LA MATERIA 5: '+id);
             $.ajax({
-                // url: `http://localhost/asesorias/classes/consultancies.php?clave=${id}`,
-                url: `../../classes/consultancies.php?clave=${id}`,
+                url: `http://localhost/asesorias/classes/consultancies.php?clave=${id}`,
+                // url: `../../classes/consultancies.php?clave=${id}`,
                 type: "post",
                 data: {action: "displayData_signature"},
                 success: function(htmlResponse){
-                    console.log('Petición para mostrar las asesorías de una materia.');
-                    workArea.innerHTML += htmlResponse;
+                    console.log(`HTML response: ${htmlResponse}`);
+                    workArea.innerHTML = htmlResponse;
                 },
                 error: function(err){ console.log(JSON.stringify(err)); },
             });
