@@ -31,6 +31,7 @@
 
     <!-- Controllers JS -->
     <script src="../js/controllers/consultancies.js?v=11"></script>
+    <script src="../js/controllers/users.js?v=2"></script>
 </head>
 <body>
     <div class="Control-Panel-Container flex">
@@ -77,9 +78,11 @@
 
                 <!-- <div id="workArea" class="flex-column center-flex-xy padding-20"> -->
                 <div id="workArea">
-                    <div style="width: 200px;" class="flex box-shadow-light border-radius-10 padding-10 bg-white margin-bottom-10 place-self-end">
+                    <div style="width: 200px; margin-left: 20px;" class="flex margin-y-5 box-shadow-light border-radius-10 padding-10 bg-white place-self-end">
                         <i class="fa-solid fa-magnifying-glass margin-right-5 color-primary-blue"></i>
-                        <input class="border-none" type="text" placeholder="Buscar maestro">
+                        <input 
+                            onkeypress="return users('searchTeacher')" 
+                            id="searchTeacherInput" class="border-none" type="text" placeholder="Buscar maestro">
                     </div>
 
                     <?php 

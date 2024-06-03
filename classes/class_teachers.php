@@ -15,6 +15,19 @@
                     from usuario us where id_rol = 1;"; // ID ROL DE UN MAESTRO
                     $this->displayData($query_param);
                 break;
+                case 'searchTeacher':
+                    if(isset($_REQUEST['teacherSearched'])){
+                        $teacherSearched = $_REQUEST['teacherSearched'];
+                    }
+
+                    $query_param = 'select
+                        concat(us.nombres, " ",us.apellido_paterno, " ",us.apellido_materno) as maestro,
+                        us.id_usuario as id_maestro
+                    from usuario us where id_rol = 1 and
+                    CONCAT(us.nombres, " ", us.apellido_paterno, " ", us.apellido_materno, " ") LIKE CONCAT("%'.$teacherSearched.'%");';
+
+                    $this->displayData($query_param);
+                break;
             }
         }
 
@@ -26,7 +39,7 @@
             }
 
             $signatures = '';
-            $teachersHtml = '<div style="padding: 20px;">';
+            $teachersHtml = '<div id="Teachers_Containers" style="padding: 20px;">';
             foreach ($this->registrersBlock as $registerRow) {
                 $id_maestro = intval($registerRow["id_maestro"]);
                 $signatures = $this->displayTeacherSignature($id_maestro);

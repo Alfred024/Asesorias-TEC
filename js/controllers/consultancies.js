@@ -45,7 +45,7 @@ function consultancies(action, id) {
                 },
             });
             return false; 
-        case 'searchStudent':
+        case 'searchStudent': // searchStudentSignature
             student = consultanciesInput.value;
             $.ajax({
                 url: `http://localhost/asesorias/classes/consultancies.php?clave=${id}&studentSearched=${student}`,
