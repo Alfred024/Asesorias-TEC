@@ -51,12 +51,6 @@
                             </form>
                         </div>';
                 break;
-                case 'delete':
-                    // echo($_REQUEST['signature_Id']);
-                    $delete_query = 'delete from materia where id_materia = '.$_REQUEST['signature_Id'].'';    
-                    $this->query($delete_query);
-                    // MOSTRAR LA DATA ACTUALIZADA
-                break;
                 case 'insert_signature':
                     // Paso 1 : Crear la materia
                     $user_id=$_SESSION['session_user_id'];
@@ -73,6 +67,12 @@
                     // TODO: Notificación de creada correctamente
                     $this->action("displayData");
                     // Aquí también debe mostrar los datos de las consultancies 
+                break;
+                case 'delete':
+                    // echo($_REQUEST['signature_Id']);
+                    $delete_query = 'delete from materia where id_materia = '.$_REQUEST['signature_Id'].'';    
+                    $this->query($delete_query);
+                    $this->action('displayData');
                 break;
                 case 'displayData':
                     $user_id=$_SESSION['session_user_id'];

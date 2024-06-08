@@ -76,7 +76,7 @@
 .Subject-Card{
 	width: 200px;
 	height: 110px;
-	display: inline-block;
+	/* display: inline-block; */
 }
 .Subjects-Card-Container{
 	white-space: nowrap;
@@ -177,9 +177,9 @@
 	/* .Filters-Items-Container{
 		justify-content: end;
 	} */
-	.Form-Date-Filter, .Teacher-Name-Filter{
+	/* .Form-Date-Filter, .Teacher-Name-Filter{
 		width: 50%;
-	}
+	} */
 	.Teacher-Name-Filter{
 		align-self: end;
 	}

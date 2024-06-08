@@ -65,6 +65,7 @@ function signatures(action, id) {
                                             }
                                         }
                                     });
+                                    return true;
                                 },
                                 'error': function () {
                                     console.log('NO SE PUDO BORRAR LA MATERIA');

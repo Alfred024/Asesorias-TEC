@@ -37,7 +37,7 @@ function consultancies(action, id) {
                 data: { action: porque_esto_funciona, clave: porque_esto_funciona2 },
                 success: function(htmlResponse){
                     console.log('Petición para insert de asesoría EXITISO');
-                    workArea.innerHTML = htmlResponse;
+                    workArea.innerHTML = 'htmlResponse';
                 },
                 error: function(err){ 
                     console.log('Petición para insert de asesoría salió mal');
