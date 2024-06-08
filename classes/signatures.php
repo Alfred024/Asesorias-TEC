@@ -51,6 +51,12 @@
                             </form>
                         </div>';
                 break;
+                case 'delete':
+                    // echo($_REQUEST['signature_Id']);
+                    $delete_query = 'delete from materia where id_materia = '.$_REQUEST['signature_Id'].'';    
+                    $this->query($delete_query);
+                    // MOSTRAR LA DATA ACTUALIZADA
+                break;
                 case 'insert_signature':
                     // Paso 1 : Crear la materia
                     $user_id=$_SESSION['session_user_id'];
@@ -75,10 +81,10 @@
                         ma.nombre,
                         gr.grupo,
                         gr.clave
-                    from usuario usu
-                    left join grupo gr on usu.id_usuario = gr.id_usuario
-                    left join materia ma on gr.id_materia = ma.id_materia
-                    where usu.id_usuario = '.$user_id.'
+                    from materia ma
+                    left join grupo gr on ma.id_materia = gr.id_materia
+                    left join usuario us on gr.id_usuario = us.id_usuario
+                    where us.id_usuario = '.$user_id.'
                     order by 1 asc;';
 
                     $this->displayData($query_param);
@@ -100,17 +106,24 @@
                 // Cómo podemos hacer para aplicar la misma lógica de enviar un valor con input submit + hidden para que obtega la clave y usar el href
                 $subjectCards.='
                     <div>
-                    <a 
+                    <div 
                         onclick="return consultancies(\'select_signatures_consultancies\',\''.$registerRow['clave'].'\')" 
                         class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
-                        <div class="flex-column justify-between padding-10" style="height: 80%;">
+                        <div class="flex justify-end" style="height: 10%;">
+                            <button 
+                                onclick="event.stopPropagation(); return signatures(\'delete\', \''.$registerRow['id_materia'].'\');"
+                                class="margin-right-10 text-white bg-bolor-unset border-none">
+                                <i class="fa-regular fa-circle-xmark fa-lg""></i>
+                            </button>
+                        </div>
+                        <div class="flex-column justify-between padding-10" style="height: 70%;">
                             <p>Materia: '.$registerRow["nombre"].' </p>
                             <p class="font-size-15 text-light">GRUPO: '.$registerRow["grupo"].'</p>
                         </div>
                         <div class="bg-secondary-blue" style="height: 20%;">
                             <p class="text-align-end" style="padding-right: 20px;">Clave: '.$registerRow["clave"].'</p>
                         </div>
-                    </a>
+                    </div>
                     </div>
                 ';
             }

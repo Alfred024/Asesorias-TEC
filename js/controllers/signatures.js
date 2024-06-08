@@ -40,6 +40,44 @@ function signatures(action, id) {
                 },
             });
             return false; 
+        case 'delete':
+            $.confirm({
+                'title': '',
+                'type': 'red',
+                'content': `¿Seguro que deseas borrar la materia ${id}? Se borrarán también las asesorías registradas de la materia`,
+                'buttons':{
+                    'confirm':{
+                        'text': 'Borrar',
+                        'action': function(){
+                            $.ajax({
+                                'url': 'http://localhost/asesorias/classes/signatures.php',
+                                'type': 'post',
+                                'data': {'action': action, signature_Id: id},
+                                'success': function() {
+                                    $.confirm({
+                                        title: '¡Éxito!',
+                                        content: 'Materia borrada exitosamente',
+                                        type: 'green',
+                                        buttons: {
+                                            ok: {
+                                                text: 'OK',
+                                                btnClass: 'btn-green',
+                                            }
+                                        }
+                                    });
+                                },
+                                'error': function () {
+                                    console.log('NO SE PUDO BORRAR LA MATERIA');
+                                }
+                            });
+                        }
+                    },
+                    'delete':{
+                        'text': 'Cancelar',
+                    }
+                }
+            });
+            break;
         default:
             break;
     }

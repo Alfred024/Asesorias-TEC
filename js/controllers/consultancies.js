@@ -49,7 +49,7 @@ function consultancies(action, id) {
             student = consultanciesInput.value;
             $.ajax({
                 url: `http://localhost/asesorias/classes/consultancies.php?clave=${id}&studentSearched=${student}`,
-                // url: `../../classes/consultancies.php?clave=${id}`,
+                //url: `../../classes/consultancies.php?clave=${id}`,
                 type: "post",
                 data: {action: "searchStudent"},
                 success: function(htmlResponse){

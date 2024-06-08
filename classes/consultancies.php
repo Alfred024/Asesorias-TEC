@@ -197,12 +197,13 @@
             $this->getRecord($query_param);
 
             if($this->registersNum == 0){
-                // echo('
-                // <div class="flex-column justify-center margin-bottom-10 color-primary-blue">
-                //     <h5 class="padding-20 text-align-center font-size-15">Aún no tienes asesorías registradas de esta materia</h5>
-                //     <i class="fa-solid fa-box-archive fa-xl margin-auto"></i>
-                // </div>');
-                echo('<p>NO HAY ASESORÍAS REGISTRADAS</p>');
+                echo('
+                <div class="flex-column center-flex-xy margin-top-10">
+                    <h5 class="padding-20 text-align-center font-size-15 color-primary-blue">Aún no tienes asesorías registradas, haz click en la card de la materia y accede al panel para registrar una nueva asesoría.</h5>
+                    <i class="fa-solid fa-box-archive fa-xl margin-auto color-primary-blue"></i>
+                </div>');
+                // echo('<p>NO HAY ASESORÍAS REGISTRADAS</p>');
+                return;
             }
             $tableStart='
             <table id="Assesories_Table" class="Assesories-Table overflow-x-auto padding-10 width-90 margin-auto" style="background-color: white;">

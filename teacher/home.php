@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="../styles/jquery-confirm.css">
 
     <!-- Controllers JS -->
-    <script src="../js/controllers/signatures.js?v=3"></script>
+    <script src="../js/controllers/signatures.js?v=4"></script>
     <script src="../js/controllers/consultancies.js?v=12"></script>
     <!-- Custom JS -->
     <!-- <script src="../js/utils/pop-up-messages.js"></script> -->
@@ -90,7 +90,8 @@
                         ?>
                     </section>
         
-                    <section class="Assesories-Table-Section padding-20" style="padding-top: 0px; margin-top: 30px;">
+                    <section class="Assesories-Table-Section padding-20">
+                        <h4 class="font-weight-400 margin-bottom-10">Asesorías recientes</h4>
                         <?php 
                             include '../classes/consultancies.php';
                         ?>
