@@ -39,7 +39,7 @@
 </head>
 <body>
     <div class="Control-Panel-Container flex">
-        <aside id="Aside-Bar" class="Aside-Bar height-full" style="width: 250px;">
+        <aside id="Aside_Bar" class="Aside-Bar height-full" style="width: 250px;">
             <h3 class="padding-20">Registro de asesorías ITC</h3>
             <ul class="" style="margin-top: 30px;">
 
@@ -107,6 +107,26 @@
         </div>
         
     </div>
+
+    <script>
+        var mediaQuery = window.matchMedia('(min-width: 750px)');
+        var handleMediaQueryChange = function(mediaQuery) {
+            if (mediaQuery.matches) {
+                Aside_Bar.style.display = 'block';
+            } else {
+                Aside_Bar.style.display = 'none';
+            }
+        };
+        mediaQuery.addListener(handleMediaQueryChange);
+
+        function displayAsideNavBar(){
+            if(Aside_Bar.style.display === 'block'){
+                Aside_Bar.style.display = 'none';
+            }else{
+                Aside_Bar.style.display = 'block';
+            }
+        }
+    </script> 
 </body>
 </html>
 

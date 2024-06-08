@@ -40,12 +40,14 @@
 
             $signatures = '';
             $teachersHtml = '<div id="Teachers_Containers" style="padding: 20px;">';
+
+            $id_list = 1;
             foreach ($this->registrersBlock as $registerRow) {
                 $id_maestro = intval($registerRow["id_maestro"]);
-                $signatures = $this->displayTeacherSignature($id_maestro);
+                $signatures = $this->displayTeacherSignature($id_maestro, $id_list);
 
                 $teachersHtml.='
-                <div class="Teacher-Assesories-Resume width-100 margin-bottom-10">
+                <div id="Teacher_Asseroires_Resume" class="Teacher-Assesories-Resume width-100 margin-bottom-10">
     
                     <div class="bg-white flex justify-between align-center padding-10 border-radius-10">
                         <div class="flex align-center">
@@ -53,9 +55,9 @@
                             <p>'.$registerRow["maestro"].'</p>
                         </div>
             
-                        <button style="cursor: pointer;" onclick="return console.log("Botón para hacer el toogle de la vista")" class="bg-bolor-unset border-none">
-                            <i id="assesoriesMenuButton-Down" class="fa-solid fa-chevron-down color-primary-blue"></i>
-                            <i id="assesoriesMenuButton-Up" class="fa-solid fa-chevron-up color-primary-blue" style="display: none;"></i>
+                        <button style="cursor: pointer;" onclick="return toggleAssesoriesMenu(\''.$id_list.'\')" class="bg-bolor-unset border-none">
+                            <i id="assesoriesMenuButton_Down_'.$id_list.'" class="fa-solid fa-chevron-down color-primary-blue"></i>
+                            <i id="assesoriesMenuButton_Up_'.$id_list++.'" class="fa-solid fa-chevron-up color-primary-blue" style="display: none;"></i>
                         </button>
                     </div>
     
@@ -67,7 +69,7 @@
             echo($teachersHtml.'</div>');
         }
 
-        function displayTeacherSignature($id_teacher){
+        function displayTeacherSignature($id_teacher, $id_list){
             $this->getRecord("
             select
                 ma.nombre as materia,
@@ -79,7 +81,8 @@
 
             $signatures = '';
             if($this->registersNum !== 0){
-                $signatures='<div id="Assesories-By-Signature-List" class="bg-white border-radius-10 margin-y-5 padding-10" style="display: block;">';
+                $signatures='<div id="Assesories_List_'.$id_list.'" class="bg-white border-radius-10 margin-y-5 padding-10" style="display: block;">';
+
                 foreach ($this->registrersBlock as $registerRow) {
                     $signatures.='
                     <div
