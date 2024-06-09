@@ -1,59 +1,59 @@
+var ventFrame = '';
+
 function signatures(action, id) {
     switch (action) {
         case 'formNew':
             console.log('PETICIÓN PARA INSERTAR UNA NUEVA MATERIA');
-            $.ajax({
-                url: "http://localhost/asesorias/classes/signatures.php",
-                // url: "../../classes/signatures.php",
-                type: "post",
-                data: {action: "formNew"},
-                success: function(htmlResponse){
-                    console.log('Petición para form de registro de una nueva materia');
-                    workArea.innerHTML = htmlResponse;
+            $.dialog({
+                title: 'Registro de una nueva materia',
+                columnClass: 'col-7',
+                content: `url: http://localhost/asesorias/classes/signatures.php?action=${action}`,
+                // content: `url: ../../classes/signatures.php?action=${action}`,
+                onContentReady: function () {
+                    ventFrame = this;
                 },
-                error: function(err){ console.log(JSON.stringify(err)); },
             });
             break;
-        // case 'formEdit':
-        //     $.dialog({
-        //         title: 'Edición de la materia',
-        //         columnClass: 'col-7',
-        //         content: `url: http://localhost/asesorias/classes/signatures.php?action=${action}&clave_to_update=${id}`, 
-        //         onContentReady: function () {
-        //             ventFrame = this;
-        //         },
-        //     });
-        //     break;
         case 'insert_signature':
-            console.log('INSERTAR NEUVA MATERIA');
+            formData = new FormData(document.getElementById("form_signature"));
+            console.log("Enviando datos del formulario:", formData);
             $.ajax({
                 url: "http://localhost/asesorias/classes/signatures.php",
                 type: "post",
-                data: { action: porque_esto_funciona },
-                success: function(htmlResponse){
-                    console.log('Petición para insert de asesoría EXITISO');
-                    workArea.innerHTML = htmlResponse;
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (htmlResponse) {
+                    console.log('Petición para insert de materia EXITOSA');
+                    console.log('Respuesta del servidor:', htmlResponse);
+                    ventFrame.close();
+                    // workArea.innerHTML = htmlResponse; // Si necesitas actualizar la página
                 },
-                error: function(err){ 
-                    console.log('Petición para insert de asesoría salió mal');
-                    console.log(JSON.stringify(err));
+                error: function (xhr, status, error) {
+                    console.log('Petición para insert de materia salió mal');
+                    console.log('Estado:', status);
+                    console.log('Error:', error);
+                    console.log('Respuesta completa:', xhr.responseText);
+                    ventFrame.close();
                 },
             });
-            return false; 
+            return false;
         case 'delete':
             $.confirm({
                 'title': '',
                 'type': 'red',
                 'content': `¿Seguro que deseas borrar la materia ${id}? Se borrarán también las asesorías registradas de la materia`,
-                'buttons':{
-                    'confirm':{
+                'buttons': {
+                    'confirm': {
                         'text': 'Borrar',
-                        'action': function(){
+                        'action': function () {
                             $.ajax({
                                 'url': 'http://localhost/asesorias/classes/signatures.php',
                                 'type': 'post',
-                                'data': {'action': action, signature_Id: id},
-                                'success': function() {
+                                'data': { 'action': action, signature_Id: id },
+                                'success': function () {
                                     $.confirm({
                                         title: '¡Éxito!',
                                         content: 'Materia borrada exitosamente',
@@ -73,7 +73,7 @@ function signatures(action, id) {
                             });
                         }
                     },
-                    'delete':{
+                    'delete': {
                         'text': 'Cancelar',
                     }
                 }

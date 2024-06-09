@@ -1247,7 +1247,7 @@
             '<div class="jc-bs3-row">' +
             '<div class="jconfirm-box-container jconfirm-animated">' +
             '<div class="jconfirm-box" role="dialog" aria-labelledby="labelled" tabindex="-1">' +
-            '<div class="jconfirm-closeIcon">&times;</div>' +
+            '<div class="jconfirm-closeIcon">X</div>' +
             '<div class="jconfirm-title-c">' +
             '<span class="jconfirm-icon-c"></span>' +
             '<span class="jconfirm-title"></span>' +

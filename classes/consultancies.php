@@ -1,5 +1,6 @@
 <?php
 // session_start();
+if (!isset($_SESSION)) session_start();
 if (!class_exists("PDFS")) include "../classes/pdfs.php";
 if (!class_exists("Class_Database")) include "../classes/class_database.php";
 
@@ -22,16 +23,10 @@ class Consultancies extends Class_Database
                 $clave = strval($_REQUEST['clave']);
                 $students = $this->displayStudents();
                 return
-                    '<div class="width-100 flex center-flex-xy" style="height: 90vh;">
-                        <form 
+                    '<form 
+                            id="form_constultancie"
                             onsubmit="return consultancies(\'insert_consultancie\')" method="post"
-                            class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
-                            <button 
-                                onclick="return alert("Cerrar modal");"
-                                class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
-                
-                            <h4 class="width-fit font-weight-600 margin-auto">Registro de asesoría</h4>
-                            <hr style="margin: 10px;">
+                            class="flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
                 
                             <input class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" type="text" name="tema" placeholder="Tema de la asesoría">
                             <br>
@@ -76,8 +71,7 @@ class Consultancies extends Class_Database
                             <input type="hidden" name="clave" value="' . $clave . '">
 
                             <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Asesoría" style="width: 200px;">
-                        </form>
-                        </div>';
+                        </form>';
 
                 break;
             case 'insert_consultancie':
@@ -95,8 +89,9 @@ class Consultancies extends Class_Database
                     values ("' . $tema . '", "' . $competencia . '", "' . $description . '", "' . $user_id . '", "' . $user_id_toma . '", "' . $signature_key . '", "' . $signature_period . '");';
 
                 $this->query($insert_consultancie_query);
-                // TODO: Notificación de creada correctamente
-                // $this->action("displayData_signature");
+                echo('SÍ SE HIZO ');
+                $this->action('displayData_signature');
+                break;
             case 'displayData_signature':
                 // $admin =  $_SESSION['admin'];
                 $signature_key = $_REQUEST['clave'];

@@ -1,26 +1,11 @@
-COSAS QQUE FALTAN:
+COSAS QUE FALTAN:
 
-    VALIDACIONES EN LOS FORMULARIOS DE MAESTROS
+    PARA AHORITA
+    VALIDACIONES EN LOS FORMULARIOS PARA REGISTRAR ASESORÍAS O MATERIAS
+    Validación de los correos --> nmrCtrl (alumno) y nombre.apellido@gmail.com (maestro)
+    Encriptar contraseñas 
+    Recovery de la contraseña con PHP MAILER
 
-    Registr:
-        Validación JS de los correos --> nmrCtrl (alumno) y nombre.apellido@gmail.com (maestro)
-
-    Settings:
-        MAESTRO
-        * Actualizar foto de perfil 
-        * Seleccionar fotos de perfil por default de sisteams
-        * Cambiar contraseña --> Confirmar que la constraseña sea válida
-        * Encriptar contraseñas 
-    
-    Login y Register:
-    * Recovery de la contraseña con PHP MAILER
-
-PROBLEMAS DE BASE DE DATOS:
-    * Devolvemos el campo usuario (RFC/Nmr. Ctrl) a la tabña usuario??
-    * Si sólo un maestro da asesorías de esa materia,  
-    * Porqué mi columna confirmada me la  meustra como un tinyint en vez de booleano???
-
-PREGUNTAS PARA EL CLIENTE:
-    * Tienen alguna hoja de excel con los alumnos de cada clase? para ver si se pueden exportar los datos a la base de datos
-    * Las materias cambian su clave cada semestre?  
-
+    PARA DESPÚES 
+    Manejo de las fotos de perfil
+    Panel de configuración de perfil

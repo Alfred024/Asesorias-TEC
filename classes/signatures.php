@@ -1,6 +1,7 @@
 <?php
     // session_start();
     // include './consultancies.php'; # INCLUDE PARA 
+    if (!isset($_SESSION)) session_start();
     if (!class_exists("Class_Database")) include "../classes/class_database.php"; 
 
     // Sería bueno hacer que en una misma clase se manden llamar las materias, asesorías, etc...
@@ -12,17 +13,9 @@
                 //     $signature_info = $this->getRecord("select * from materia where clave = " . $_REQUEST['clave_to_update']);
                 case 'formNew':
                     return 
-                        '<div class="width-100 flex center-flex-xy" style="height: 90vh;">
-                            <form 
-                            onsubmit="return signatures(\'insert_signature\')" method="post" class="padding-20 box-shadow-dark flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
-                                <button 
-                                    onclick="return alert("Cerrar modal");"
-                                    href="../teacher/home.php" 
-                                    class="Btn-Primary-Blue absolute border-radius-full bg-primary-blue text-white border-none" style="width: 40px; height: 40px; top:0; right:0;">X</button>
-                            
-                                <h4 class="width-fit font-weight-600 margin-auto" >Registro de nueva materia</h4>
-                                <hr style="margin: 10px;">
-                    
+                        '<form 
+                            id="form_signature"
+                            onsubmit="return signatures(\'insert_signature\')" method="post" class="flex-column justify-center relative" action="" style="width: 320px;">
                                 <label class="flex-column width-100 margin-auto">
                                     Nombre de la materia
                                     <br>
@@ -48,25 +41,24 @@
                                 <input type="hidden" name="action" value="insert_signature">
                                 
                                 <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Materia" style="width: 200px;">
-                            </form>
-                        </div>';
+                            </form>';
                 break;
                 case 'insert_signature':
                     // Paso 1 : Crear la materia
-                    $user_id=$_SESSION['session_user_id'];
+                    $user_id = $_SESSION['session_user_id'];
                     $signature = $_REQUEST['signature'];
                     $group = $_REQUEST['group'];
                     $key = $_REQUEST['key'];
-
-                    $insert_signature_query = "insert into materia (nombre) values ('".$signature."');";
+                
+                    $insert_signature_query = "INSERT INTO materia (nombre) VALUES ('$signature');";
                     $this->query($insert_signature_query);
-
+                
                     $id_signature_inserted = $this->getId_signature($user_id, $signature);
-                    $insert_signature_group_query = "insert into grupo (grupo, clave, id_usuario, id_materia) values ('".$group."', '".$key."', '".$user_id."', '".$id_signature_inserted."');";
+                    $insert_signature_group_query = "INSERT INTO grupo (grupo, clave, id_usuario, id_materia) VALUES ('$group', '$key', '$user_id', '$id_signature_inserted');";
                     $this->query($insert_signature_group_query);
-                    // TODO: Notificación de creada correctamente
-                    $this->action("displayData");
-                    // Aquí también debe mostrar los datos de las consultancies 
+                
+                    // echo json_encode(['status' => 'success', 'message' => 'Materia registrada correctamente.']);
+                    $this->action('displayData');
                 break;
                 case 'delete':
                     // echo($_REQUEST['signature_Id']);
@@ -109,16 +101,17 @@
                     <div 
                         onclick="return consultancies(\'select_signatures_consultancies\',\''.$registerRow['clave'].'\')" 
                         class="Subject-Card anchor-default margin-right-10 bg-primary-blue border-radius-30 text-white overflow-hidden">
-                        <div class="flex justify-end" style="height: 10%;">
-                            <button 
-                                onclick="event.stopPropagation(); return signatures(\'delete\', \''.$registerRow['id_materia'].'\');"
-                                class="margin-right-10 text-white bg-bolor-unset border-none">
-                                <i class="fa-regular fa-circle-xmark fa-lg""></i>
-                            </button>
-                        </div>
-                        <div class="flex-column justify-between padding-10" style="height: 70%;">
+                        <div class="flex-column justify-between padding-10" style="height: 80%;">
                             <p>Materia: '.$registerRow["nombre"].' </p>
-                            <p class="font-size-15 text-light">GRUPO: '.$registerRow["grupo"].'</p>
+                            <div class="flex justify-between">
+                                <p class="font-size-15 text-light">GRUPO: '.$registerRow["grupo"].'</p>
+                                <button 
+                                    onclick="event.stopPropagation(); return signatures(\'delete\', \''.$registerRow['id_materia'].'\');"
+                                    class="margin-right-10 text-white bg-bolor-unset border-none">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </div>
+                
                         </div>
                         <div class="bg-secondary-blue" style="height: 20%;">
                             <p class="text-align-end" style="padding-right: 20px;">Clave: '.$registerRow["clave"].'</p>
