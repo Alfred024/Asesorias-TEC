@@ -12,6 +12,9 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+	<!-- JS -->
+	 <script src="./js/controllers/users.js"></script>
 </head>
 <body>
 	<img class="Logo-Tecnm absolute" src="./assets/LOGO-VERTICAL-TECNM.png" alt="Logo ITC">
@@ -46,8 +49,11 @@
 				<label class="flex-column width-80 margin-auto">
 					TECnM email
 					<br>
-					<input name="email" class="box-shadow-light border-radius-20 padding-5 border-none" type="email" placeholder="juan.montes@itcelaya.edu.mx">
+					<input 
+						id="emailId"
+						name="email" class="box-shadow-light border-radius-20 padding-5 border-none" type="email" placeholder="juan.montes@itcelaya.edu.mx">
 				</label><br>
+				<span id="message"></span>
 
 				<label class="flex-column width-80 margin-auto">
 					Contraseña (Mandar contraseña al correo)
@@ -70,7 +76,9 @@
 				</div><br>
 
 				<input type="hidden" name="action" value="register">
-				<input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" type="submit" value="Registrar" style="width: 200px;">
+				<input 
+					onclick="return users('validateEmail');"
+					class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" type="submit" value="Registrar" style="width: 200px;">
 
 				<?php
 					if(isset($_GET['m'])){
@@ -138,7 +146,5 @@
 			<div class="Shadow-Div bg-black width-100 height-100"></div>
 		</div>
 	</section>
-
-	<script src="./scripts/register.js"></script>
 </body>
 </html>

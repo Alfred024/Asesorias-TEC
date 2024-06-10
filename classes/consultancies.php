@@ -28,7 +28,9 @@ class Consultancies extends Class_Database
                             onsubmit="return consultancies(\'insert_consultancie\')" method="post"
                             class="flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
                 
-                            <input class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" type="text" name="tema" placeholder="Tema de la asesoría">
+                            <input 
+                                id="temaId"
+                                class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" type="text" name="tema" placeholder="Tema de la asesoría">
                             <br>
                 
                             <div class="flex gap-10">
@@ -56,7 +58,9 @@ class Consultancies extends Class_Database
                             </div>
                             <br>
                 
-                            <textarea style="height: 100px; resize: none;" class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" name="descripcion" placeholder="Descripción de la asesoría"></textarea>
+                            <textarea 
+                                id="descripcionId"
+                                style="height: 100px; resize: none;" class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" name="descripcion" placeholder="Descripción de la asesoría"></textarea>
                             <br>
                 
                             <label class="flex-column width-100 margin-auto">
@@ -71,6 +75,7 @@ class Consultancies extends Class_Database
                             <input type="hidden" name="clave" value="' . $clave . '">
 
                             <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Asesoría" style="width: 200px;">
+                            <span id="message"></span>
                         </form>';
 
                 break;

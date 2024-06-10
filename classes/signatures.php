@@ -19,7 +19,7 @@
                                 <label class="flex-column width-100 margin-auto">
                                     Nombre de la materia
                                     <br>
-                                    <input name="signature" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                    <input id="signatureId" name="signature" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
                                 </label><br>
                     
                                 <div class="flex justify-between">
@@ -27,13 +27,15 @@
                                         Clave de la materia
                                         <br>
                                         <input 
-                                            name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                            id="keyId" name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
                                     </label>
                         
                                     <label class="flex-column width-20">
                                         Grupo
                                         <br>
-                                        <input name="group" pattern="[A-Z]{1}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                        <input 
+                                            id="groupId"
+                                            name="group" pattern="[A-Z]{1}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
                                     </label>
                                 </div>
                                 <br>
@@ -41,6 +43,7 @@
                                 <input type="hidden" name="action" value="insert_signature">
                                 
                                 <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Materia" style="width: 200px;">
+                                <span id="message"></span>
                             </form>';
                 break;
                 case 'insert_signature':

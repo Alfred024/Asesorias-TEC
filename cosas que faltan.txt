@@ -3,8 +3,8 @@ COSAS QUE FALTAN:
     PARA AHORITA
     VALIDACIONES EN LOS FORMULARIOS PARA REGISTRAR ASESORÍAS O MATERIAS
     Validación de los correos --> nmrCtrl (alumno) y nombre.apellido@gmail.com (maestro)
-    Encriptar contraseñas 
-    
+    Refrescar vista cuando se inserte/borre una nueva materia
+
     Recovery de la contraseña con PHP MAILER
 
     PARA DESPÚES 

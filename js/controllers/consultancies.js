@@ -29,6 +29,13 @@ function consultancies(action, id) {
             });
             break;
         case 'insert_consultancie':
+            errorMessage = '<p class="text-align-center font-weight-600" style="color: #c80004; font-size:15px;">Favor de llenar cada uno de los campos.</p>';
+
+            if(descripcionId.value <= "" || temaId.value <= ""){
+                message.innerHTML = errorMessage;
+                return false;
+            }
+
             formData = new FormData(document.getElementById("form_constultancie"));
             console.log("Enviando datos del formulario:", formData);
             $.ajax({
