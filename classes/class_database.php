@@ -1,4 +1,10 @@
 <?php
+    include '../envs.php';
+    // echo getenv('DB_PASSWORD'); 
+    // echo getenv('DB_USER');
+    // echo getenv('DB_NAME');
+    // echo getenv('DB_HOST');
+
     class Class_Database{
         var $connection;
         var $server;
@@ -9,10 +15,10 @@
         var $registersNum; 
 
         function __construct(){
-            $this-> password='123';  
-            $this-> user='admin_asesorias';
-            $this-> database='asesorias';
-            $this-> server='127.0.0.1';
+            $this-> password=getenv('DB_PASSWORD');  
+            $this-> user=getenv('DB_USER');
+            $this-> database=getenv('DB_NAME');
+            $this-> server=getenv('DB_HOST');
         }
         
         function open(){
@@ -34,10 +40,11 @@
                 if(strpos('select', strtolower($query_param)) === true){
                     $this->registersNum=mysqli_num_rows($this->registrersBlock); // Creo que está sentencia no funciona
                 };
-                $this->close();
             } catch (Exception $e) {
-                echo('Error doing the query');
+                echo('Error doing the query: ');
+                var_dump($e);
             }
+            $this->close();
         }
 
         function getRecord($query_param){

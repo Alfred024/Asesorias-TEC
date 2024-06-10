@@ -109,7 +109,7 @@
 									'<span 
 										class="text-secondary-blue margin-top-10"
 										style="font-size: 15px; font-weight:600; text-align: center;">
-										El registro no puedo realizarse con éxito
+										El registro se realizó con éxito
 									</span>'
 								);
 							break;

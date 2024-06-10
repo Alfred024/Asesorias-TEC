@@ -37,10 +37,10 @@ class Access extends Class_Database
         // TODO: Método comprobar que los campos no estén vaciós
         if ($email != null && $password != null && $captcha != null) {
             if ($this->emailRegistered($email)) {
-                $querySelectUser = "select * from usuario where email='{$email}' and contrasena='{$password}'";
+                $querySelectUser = "select * from usuario where email='{$email}'";
                 $user = $this->getRecord($querySelectUser);
 
-                if ($this->registersNum == 1) {
+                if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
                     $_SESSION['session_user_id'] = $user->id_usuario;
                     $_SESSION['session_email'] = $user->email;
                     $_SESSION['session_password'] = $user->contrasena;
@@ -88,51 +88,11 @@ class Access extends Class_Database
             if ($this->emailRegistered($email)) {
                 header("location: ../register.php?m=2"); // El usuario ya está registrado
             } else {
-
-                $mail = new PHPMailer(true);
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-                $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'alfredo.jimeneztellez9@gmail.com';                     //SMTP username
-                $mail->Password   = 'pbek epkc njxn repo';                               //SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-                //Recipients
-                $mail->setFrom($email, 'Mailer');
-                $mail->addAddress('alfredo.jimeneztellez9@gmail.com', 'Alfredo User');     //Add a recipient
-
-                //Content
-                $mail->isHTML(true);                                  //Set email format to HTML
-                $mail->Subject = 'Here is the subject';
-                $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-                // $mail->IsSMTP();
-                // $mail->Host = "smtp.gmail.com";
-                // $mail->SMTPSecure = 'ssl';
-                // $mail->Port = 465;
-                // $mail->SMTPDebug  = 4;
-                // $mail->SMTPAuth = true;
-                // $mail->Username =   "alfredo.jimeneztellez9@gmail.com";
-                // $mail->Password = "pbek epkc njxn repo";
-
-                // $mail->From = "21030761@itcelaya.edu.mx"; // ???
-                // $mail->FromName = "ADMIN BASTA"; // ???
-                // $mail->Subject = "Registro de sistema basta completo";
-                // $mail->MsgHTML("<h1>BIENVENIDO " . $_REQUEST['names'] . " " . $_REQUEST['last_name'] . "</h1><h2> tu clave de acceso es : " . $password . "</h2>");
-                // $mail->AddAddress($email);
-
-                if (!$mail->send()) {
-                    echo  "Error sending the email: " . $mail->ErrorInfo;
-                    header("location: ../register.php?m=3"); // El registro no puedo realizarse con éxito
-                } else {
-                    $queryInsertUser = "insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena)
-                        values (1, '{$email}', '{$names}', '{$last_name}', '{$second_last_name}', '{$password}');";
-                    $this->query($queryInsertUser);
-                    header('location: ../register.php?m=4');
-                }
+                $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
+                $queryInsertUser = "insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena)
+                        values (1, '{$email}', '{$names}', '{$last_name}', '{$second_last_name}', '{$encryptedPassword}');";
+                $this->query($queryInsertUser);
+                header('location: ../register.php?m=4');
             }
         } else {
             header("location: ../register.php?m=1");  // Llenar todos los campos
