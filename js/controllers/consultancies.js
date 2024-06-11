@@ -37,7 +37,6 @@ function consultancies(action, id) {
             }
 
             formData = new FormData(document.getElementById("form_constultancie"));
-            console.log("Enviando datos del formulario:", formData);
             $.ajax({
                 url: "http://localhost/asesorias/classes/consultancies.php",
                 type: "post",
@@ -47,10 +46,8 @@ function consultancies(action, id) {
                 contentType: false,
                 processData: false,
                 success: function (htmlResponse) {
-                    console.log('Petición para insert de asesoría EXITOSA');
-                    console.log('Respuesta del servidor:', htmlResponse);
                     ventFrame.close();
-                    // workArea.innerHTML = htmlResponse; // Si necesitas actualizar la página
+                    Assesories_Table.innerHTML = htmlResponse; // Si necesitas actualizar la página
                 },
                 error: function (xhr, status, error) {
                     console.log('Petición para insert de asesoría salió mal');

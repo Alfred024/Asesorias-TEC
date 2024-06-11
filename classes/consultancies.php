@@ -94,8 +94,18 @@ class Consultancies extends Class_Database
                     values ("' . $tema . '", "' . $competencia . '", "' . $description . '", "' . $user_id . '", "' . $user_id_toma . '", "' . $signature_key . '", "' . $signature_period . '");';
 
                 $this->query($insert_consultancie_query);
-                echo('SÍ SE HIZO ');
-                $this->action('displayData_signature');
+
+                $query_param =
+                    'SELECT
+                        concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
+                        ase.competencia,
+                        ase.tema,
+                        ase.descripcion,
+                        ase.fecha
+                    FROM asesoria AS ase
+                    JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
+                    WHERE ase.clave = "' . $signature_key . '" ';
+                $this->displayData($query_param);
                 break;
             case 'displayData_signature':
                 // $admin =  $_SESSION['admin'];
@@ -141,7 +151,8 @@ class Consultancies extends Class_Database
 
                         <div class="margin-auto width-100" style="height: 70%;  overflow-y: scroll;">
                     </div>');
-                $this->displayData($query_param);
+                
+                    $this->displayData($query_param);
                 echo ('</div>
                     <a 
                         class="Btn-Primary-Blue absolute right-0 bg-primary-blue text-white border-radius-10 padding-10 border-none" style="bottom: 40px;"

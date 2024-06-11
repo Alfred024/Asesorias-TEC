@@ -19,11 +19,13 @@ function signatures(action, id) {
 
             if(keyId.value <= "" || groupId.value <= "" || signatureId.value <= ""){
                 message.innerHTML = errorMessage;
+                setTimeout(() => {
+                    message.innerHTML = "";
+                }, 3000);
                 return false;
             }
 
             formData = new FormData(document.getElementById("form_signature"));
-            console.log("Enviando datos del formulario:", formData);
             $.ajax({
                 url: "http://localhost/asesorias/classes/signatures.php",
                 type: "post",
@@ -33,10 +35,12 @@ function signatures(action, id) {
                 contentType: false,
                 processData: false,
                 success: function (htmlResponse) {
-                    console.log('Petición para insert de materia EXITOSA');
-                    console.log('Respuesta del servidor:', htmlResponse);
                     ventFrame.close();
-                    // workArea.innerHTML = htmlResponse; // Si necesitas actualizar la página
+                    SubjectsCardsContainerId.innerHTML = '';
+            
+                    setTimeout(() => {
+                        SubjectsCardsContainerId.innerHTML = htmlResponse;
+                    }, 1000);
                 },
                 error: function (xhr, status, error) {
                     console.log('Petición para insert de materia salió mal');
@@ -60,7 +64,8 @@ function signatures(action, id) {
                                 'url': 'http://localhost/asesorias/classes/signatures.php',
                                 'type': 'post',
                                 'data': { 'action': action, signature_Id: id },
-                                'success': function () {
+                                'success': function (htmlResponse) {
+                                    SubjectsCardsContainerId.innerHTML = htmlResponse;
                                     $.confirm({
                                         title: '¡Éxito!',
                                         content: 'Materia borrada exitosamente',

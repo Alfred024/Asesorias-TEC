@@ -87,14 +87,13 @@
             }
         }
 
-        // AGREGAR BOTÓN PARA BORRAR UNA MATERIA
         // AGREGAR BOTÓN PARA EDITAR
         function displayData($query_param){
-            $consultanciesContainerStart = '<div class="Subjects-Card-Container flex overflow-auto width-90">';
+            $consultanciesContainerStart = '<div id="SubjectsCardsContainerId" class="Subjects-Card-Container flex overflow-auto width-90">';
             $this->getRecord($query_param);
 
             if($this->registersNum == 0){
-                echo('<h5 class="color-primary-blue text-align-center font-size-15 padding-20 ">Aún no tienes materias registradas, pulsa el botón de + para agregar una nueva materia</h5>');
+                echo('<h5 class="color-primary-blue text-align-center font-size-15 padding-20 ">Aún no tienes materias registradas, pulsa el botón de (+) para agregar una nueva materia</h5>');
             }
             $subjectCards = '';
             foreach ($this->registrersBlock as $registerRow) {
