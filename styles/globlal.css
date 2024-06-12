@@ -203,3 +203,7 @@
 .select-items div:hover{
 	background-color: var(--secondary-blue);
 }
+.FileUpload-Label:hover{
+	color: white;
+	background-color: var(--primary-blue);
+}

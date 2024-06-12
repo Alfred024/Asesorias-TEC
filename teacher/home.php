@@ -36,6 +36,7 @@
     <script src="../js/controllers/consultancies.js?v=14"></script>
     <!-- Custom JS -->
     <!-- <script src="../js/utils/pop-up-messages.js"></script> -->
+     <script src="../js/utils/change-pages.js?v=2"></script>
 </head>
 <body>
     <div class="Control-Panel-Container flex">
@@ -51,11 +52,18 @@
                         Inicio
                     </li>
                 </a>
-               <a class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
+               <!-- <a class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-solid fa-gear margin-right-10"></i>
                         Configuración
+                    </li>
+               </a> -->
+               <a onclick="return show_UploadCSVPage();" id="RegisterStudentsId" class="AsideBar-Anchor anchor-default flex align-center">
+                    <span class="List-Item-Span margin-right-10"></span>
+                    <li class="margin-block-10">
+                        <i class="fa-solid fa-people-group margin-right-10"></i>
+                        Registro de alumnos
                     </li>
                </a>
                <a href="../login.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
@@ -69,7 +77,7 @@
         </aside>
     
         <div class="bg-light-gray flex-column justify-between width-100 height-full overflow-auto">
-            <main class="overflow-auto">
+            <main class="overflow-auto height-100">
                 <section class="bg-primary-blue flex justify-between" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                     <h4 class="Page-Title text-white align-self-center margin-left-5">Panel de control maestro</h4>
                     <img class="Logo-Tecnm border-radius-full" src="../assets/LOGO-BLANCO-VERTICAL-TECNM.png" alt="Profile picture">
@@ -80,7 +88,7 @@
                 </section>
     
                 <!-- SUBJECTS CARD SECTION -->
-                <div id="workArea">
+                <div id="workArea" style="height: 90%;">
                     <section class="Subject-Section padding-20 relative">
                         <h4 class="font-weight-400">Materias registradas</h4>
                         <br>
@@ -97,6 +105,7 @@
                         ?>
                     </section>
                 </div>
+
             </main>
 
 

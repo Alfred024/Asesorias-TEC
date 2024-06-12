@@ -82,17 +82,24 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
                         Inicio
                     </li>
                 </a>
-                <a class="AsideBar-Anchor anchor-default flex align-center" href="">
+                <!-- <a class="AsideBar-Anchor anchor-default flex align-center" href="">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-solid fa-gear margin-right-10"></i>
                         Configuración
                     </li>
-                </a>
+                </a> -->
+                <a class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
+                    <span class="List-Item-Span margin-right-10"></span>
+                    <li class="margin-block-10">
+                        <i class="fa-solid fa-gear margin-right-10"></i>
+                        Registro de alumnos
+                    </li>
+               </a>
                 <a href="../login.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
-                        <i class="fa-solid fa-right-from-bracket margin-right-10"></i>
+                        <i class="fa-solid fa-people-group margin-right-10"></i>
                         Cerrar sesión
                     </li>
                 </a>

@@ -1,10 +1,13 @@
 COSAS QUE FALTAN:
 
     PARA AHORITA
-    Refrescar vista cuando se inserte/borre una nueva materia
 
     Recovery de la contraseña con PHP MAILER
 
     PARA DESPÚES 
+    Panel para importar un archivo de excel para registrar los alumnos
+    Muestreo de estadísticas de los datos
+
+
     Manejo de las fotos de perfil
     Panel de configuración de perfil
