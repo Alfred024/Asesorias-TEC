@@ -1,7 +1,7 @@
 <?php 
     session_start();
     if(!isset($_SESSION['session_email'])){
-        header('location: ../login.php?m=9');
+        header('location: ../index.php?m=9');
     }
 
     // include "../classes/class_database.php";

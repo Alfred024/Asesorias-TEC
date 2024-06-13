@@ -59,13 +59,13 @@ class Access extends Class_Database
                         header("location: ../admin/home.php");
                     }
                 } else {
-                    header("location: ../login.php?m=3"); // Datos inválidos, pruebe a escribir los datos de nuevo
+                    header("location: ../index.php?m=3"); // Datos inválidos, pruebe a escribir los datos de nuevo
                 }
             } else {
-                header("location: ../login.php?m=2"); // El usuario no está registrado
+                header("location: ../index.php?m=2"); // El usuario no está registrado
             }
         } else {
-            header("location: ../login.php?m=1");  // Llenar todos los campos
+            header("location: ../index.php?m=1");  // Llenar todos los campos
         }
     }
 
@@ -88,11 +88,35 @@ class Access extends Class_Database
             if ($this->emailRegistered($email)) {
                 header("location: ../register.php?m=2"); // El usuario ya está registrado
             } else {
-                $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
-                $queryInsertUser = "insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena)
-                        values (1, '{$email}', '{$names}', '{$last_name}', '{$second_last_name}', '{$encryptedPassword}');";
-                $this->query($queryInsertUser);
-                header('location: ../register.php?m=4');
+                $mail = new PHPMailer();
+                $mail->IsSMTP();
+                $mail->Host="smtp.gmail.com"; 
+                $mail->SMTPSecure = 'ssl'; 
+                $mail->Port = 465;    
+                $mail->SMTPDebug  = 4;  
+                $mail->SMTPAuth = true;
+                $mail->Username =   "alfredo.jimeneztellez9@gmail.com"; 
+                $mail->Password = "pbek epkc njxn repo";  
+                  
+                $mail->From="21030761@itcelaya.edu.mx"; // ???
+                $mail->FromName="ADMIN BASTA"; // ???
+                $mail->Subject = "Registro de sistema basta completo";
+                $mail->MsgHTML("<h1>BIENVENIDO</h1>");
+                $mail->AddAddress($email); // ???
+    
+    
+                if (!$mail->send()){
+                    // echo  "Error sending the email: " . $mail->ErrorInfo;
+                    header("location: ../register.php?m=3"); 
+                } else { 
+                    $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
+                    $queryInsertUser = "insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena)
+                            values (1, '{$email}', '{$names}', '{$last_name}', '{$second_last_name}', '{$encryptedPassword}');";
+                    $this->query($queryInsertUser);
+                    header('location: ../register.php?m=4');
+                }
+
+                
             }
         } else {
             header("location: ../register.php?m=1");  // Llenar todos los campos

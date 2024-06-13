@@ -108,7 +108,7 @@
 									'<span 
 										class="text-secondary-blue margin-top-10"
 										style="font-size: 15px; font-weight:600; text-align: center;">
-										Usuario registrado con éxito, compruebe su correo para confirmar su cuenta
+										Algo salió mal en el registro, compruebe su correo electrónico
 									</span>'
 								);
 							break;
