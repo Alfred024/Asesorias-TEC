@@ -1,10 +1,21 @@
 COSAS QUE FALTAN:
 
     PARA AHORITA
-    Refrescar vista cuando se inserte/borre una nueva materia
+    Función del registro de los con hija de excel 
+    Identidad del departamento de industrial
 
-    Recovery de la contraseña con PHP MAILER
+    Agregar periodo y fecha a las materias/grupos, botón para editar el grupo
+        * LAS MATERIAS/GRUPOS CAMBIAN SU CLAVE DESPUÉS DE CADA SEMESTRE??, 
+        * SI LOS GRUPOS IENE UN PERIODO, LAS ASESORÍA YA NO TENDRÍAN QUE LLEVAR ESE CAMPO
+
+
+    Vista de materias archivadas para cuando acabe el semestre
+
+    Fuiciones de PHP Mailer
+        - Recovery de la contraseña con PHP MAILER
 
     PARA DESPÚES 
+    Cómo protegerse de inyecicones SQL???
+    Vista de configuración del sistema: Cambio de foto de perfil, cambio de contraseña, tema de la plataforma 
     Manejo de las fotos de perfil
     Panel de configuración de perfil

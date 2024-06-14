@@ -11,15 +11,22 @@
             switch ($action_case) {
                 // case 'formEdit':
                 //     $signature_info = $this->getRecord("select * from materia where clave = " . $_REQUEST['clave_to_update']);
+                
                 case 'formNew':
+                    $signatures = $this->displaySignatures();
+
                     return 
                         '<form 
                             id="form_signature"
                             onsubmit="return signatures(\'insert_signature\')" method="post" class="flex-column justify-center relative" action="" style="width: 320px;">
                                 <label class="flex-column width-100 margin-auto">
-                                    Nombre de la materia
+                                    Materia
                                     <br>
-                                    <input id="signatureId" name="signature" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                    <select
+                                        id="signatureId" name="signature"
+                                        class="box-shadow-light border-radius-20 padding-5 border-none" name="alumno">
+                                        ' . $signatures . '
+                                    </select>
                                 </label><br>
                     
                                 <div class="flex justify-between">
@@ -132,6 +139,17 @@
                 </button>';
 
             echo($consultanciesContainerStart.$subjectCards.$consultanciesContainerEnd);
+        }
+
+        function displaySignatures(){
+            $this->getRecord('select * from materia order by nombre;');
+
+            $signatures = '';
+            foreach ($this->registrersBlock as $registerRow) {
+                $signatures .= '
+                    <option value="' .$registerRow['nombre'] . '">' . $registerRow['nombre'] . '</option>';
+            }
+            return $signatures;
         }
         
         function getId_signature($id_user, $signature_name) : int{
