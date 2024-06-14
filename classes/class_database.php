@@ -25,6 +25,7 @@
             try {
                 $this-> connection = mysqli_connect($this->server,$this->user,$this->password,$this->database);
             } catch (Exception $e) {
+                echo $e;
                 echo('Error connectiong to database');
             }
         }
