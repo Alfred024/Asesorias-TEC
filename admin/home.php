@@ -71,8 +71,8 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
 <body>
     <div class="Control-Panel-Container flex">
         <aside id="Aside_Bar" class="Aside-Bar height-full" style="width: 250px;">
-            <h3 class="padding-20">Registro de asesorías ITC</h3>
-            <ul class="" style="margin-top: 30px;">
+            <h3 class="padding-20">Asesorías del Departamento de Ingeniería Industrial</h3>
+            <ul class="">
 
                 <!-- CORREGIR LOS ANCHORS POR LI´s -->
                 <a class="AsideBar-Anchor AsideBar-Anchor-Selected anchor-default flex align-center" href="" style="height: 60px;">

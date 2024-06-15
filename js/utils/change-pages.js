@@ -9,14 +9,17 @@ function show_UploadCSVPage() {
 
             <div class="bg-white box-shadow-light border-radius-10 padding-20">
                 <h3 class="margin-bottom-10">Subir Archivo</h3>
-                <form class="flex-column justify-center margin-top-10">
+                <!-- <form method="post" action='../../classes/class_office.php' class="flex-column justify-center margin-top-10"> -->
+
+                <form method="post" action='http://localhost/asesorias/classes/class_office.php' enctype="multipart/form-data" class="flex-column justify-center margin-top-10">
                     <div class="form-group">
                         <label for="customFile" class="FileUpload-Label custom-file-label" style="display: flex; border: solid black 1px; padding: 10px;">
                             <i class="fas fa-upload margin-right-10"></i> Seleccione un archivo
                         </label>
-                        <input class="display-none" type="file" id="customFile">
+                        <input class="display-none" type="file" name="students_excel_file" id="customFile">
                     </div>
-                    <button type="submit" class="Btn-Primary-Blue border-radius-10 bg-primary-blue text-white padding-10 margin-top-10 border-none margin-auto">Procesar archivo seleccionado</button>
+                    <button type="submit" name="submit_file" class="Btn-Primary-Blue border-radius-10 bg-primary-blue text-white padding-10 margin-top-10 border-none margin-auto">Procesar archivo seleccionado</button>
+                    <input type="hidden" name="action" value="registerStudent">
                 </form>
             </div>
 
