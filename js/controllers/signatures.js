@@ -2,6 +2,17 @@ var ventFrame = '';
 
 function signatures(action, id) {
     switch (action) {
+        case 'formEdit':
+            console.log(`Clave de la materia: ${id}`);
+            $.dialog({
+                title: 'Edición de materia',
+                columnClass: 'col-7',
+                content: `url: http://localhost/asesorias/classes/signatures.php?action=${action}&clave=${id}`,
+                onContentReady: function () {
+                    ventFrame = this;
+                },
+            });
+            break;
         case 'formNew':
             console.log('PETICIÓN PARA INSERTAR UNA NUEVA MATERIA');
             $.dialog({
@@ -51,6 +62,21 @@ function signatures(action, id) {
                 },
             });
             return false;
+        case "update_signature": 
+            formData = new FormData(document.getElementById("form_signature"));
+            $.ajax({url: "http://localhost/asesorias/classes/signatures.php",
+                   type: "post",
+                   dataType: "html",
+                   data: formData,
+                   cache: false,
+                   contentType: false,
+                   processData: false,
+                   success: function(result){
+                    ventFrame.close();
+                    console.log('Datos de la materia actualizados');
+                  },
+            });
+        return false;
         case 'delete':
             $.confirm({
                 'title': '',

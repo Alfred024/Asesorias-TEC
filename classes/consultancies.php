@@ -33,29 +33,18 @@ class Consultancies extends Class_Database
                                 class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" type="text" name="tema" placeholder="Tema de la asesoría">
                             <br>
                 
-                            <div class="flex gap-10">
-                                <label class="flex-column margin-auto">
-                                    Competencia
-                                    <br>
-                                    <select class="box-shadow-light border-radius-20 padding-5 border-none" name="competencia">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                    </select>
-                                </label>
-                
-                                <label class="flex-column margin-auto">
-                                    Periodo
-                                    <br>
-                                    <select class="box-shadow-light border-radius-20 padding-5 border-none" name="id_periodo">
-                                        <option value="1">Enero-Junio</option>
-                                        <option value="2">Agosto-Diciembre</option>
-                                    </select>
-                                </label>
-                            </div>
+                            <label class="flex-column">
+                                Competencia
+                                <br>
+                                <select class="box-shadow-light border-radius-20 padding-5 border-none" name="competencia">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </label>
                             <br>
                 
                             <textarea 
@@ -86,12 +75,11 @@ class Consultancies extends Class_Database
                 $user_id = $_SESSION['session_user_id'];
                 $user_id_toma = $_REQUEST['alumno'];
                 $signature_key = $_REQUEST['clave'];
-                $signature_period = $_REQUEST['id_periodo'];
 
                 $insert_consultancie_query = '
                     insert into asesoria
-                    (tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave, id_periodo)
-                    values ("' . $tema . '", "' . $competencia . '", "' . $description . '", "' . $user_id . '", "' . $user_id_toma . '", "' . $signature_key . '", "' . $signature_period . '");';
+                    (tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave)
+                    values ("' . $tema . '", "' . $competencia . '", "' . $description . '", "' . $user_id . '", "' . $user_id_toma . '", "' . $signature_key . '");';
 
                 $this->query($insert_consultancie_query);
 

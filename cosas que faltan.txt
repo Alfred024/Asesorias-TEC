@@ -1,13 +1,17 @@
 COSAS QUE FALTAN:
 
+    ERRORES:
+    Vista de creación de una nueva materia
+
     PARA AHORITA
-    Función del registro de los con hija de excel 
+    Botón para editar el grupo
+    Botón para que el admin archive las asesorías de todas las materias 
     Identidad del departamento de industrial
 
-    Agregar periodo y fecha a las materias/grupos, botón para editar el grupo
-        * LAS MATERIAS/GRUPOS CAMBIAN SU CLAVE DESPUÉS DE CADA SEMESTRE??, 
-        * SI LOS GRUPOS IENE UN PERIODO, LAS ASESORÍA YA NO TENDRÍAN QUE LLEVAR ESE CAMPO
+    Verificar que el correo de un alumno no exista antes de registrarlo
+    Crontab para generar respaldos de la base de datos
 
+    Función del registro de los con hija de excel 
 
     Vista de materias archivadas para cuando acabe el semestre
 
