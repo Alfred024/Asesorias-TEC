@@ -109,7 +109,6 @@ class Consultancies extends Class_Database
                     JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
                     WHERE ase.clave = "' . $signature_key . '" ';
 
-                // SI es un ADMIN, entonces el botón de agregar asesorías no se muestra
                 echo ('
                     <div class="flex-column height-90 padding-20 relative" style="padding-top: 10px;">
                         <div class="Assesories-Interacitve-Container flex justify-between margin-bottom-10">
@@ -129,12 +128,21 @@ class Consultancies extends Class_Database
                                 </div> -->
                             </div>
 
-                            <button
+                            '.($_SESSION['admin'] ? 
+                            '<button
+                                 
+                                class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
+                                Archivar materia
+                                <i class="fa-solid fa-database margin-left-5"></i>
+                            </button>' 
+                                : 
+                            '<button
                                 onclick="return consultancies(\'formNew\', \'' . $signature_key . '\')" 
                                 class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
                                 Registrar nueva asesoría
                                 <i class="fa-solid fa-address-card margin-left-5"></i>
-                            </button>
+                            </button>').'
+                            
                         </div>
 
                         <div class="margin-auto width-100" style="height: 70%;  overflow-y: scroll;">

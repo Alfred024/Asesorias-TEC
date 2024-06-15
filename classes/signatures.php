@@ -15,11 +15,11 @@
                     $signature_info = $this->getRecord("select * from grupo where clave = '".$_REQUEST['clave']."'");
                 case 'formNew':
                     $signatures = $this->displaySignatures();
-
+                    $controller_method = !isset($signature_info) ? 'insert_signature' : 'update_signature';
                     return 
                         '<form 
                             id="form_signature"
-                            onsubmit="return signatures(\'insert_signature\')" method="post" class="flex-column justify-center relative" action="" style="width: 320px;">
+                            onsubmit="return signatures(\''.$controller_method.'\')" method="post" class="flex-column justify-center relative" action="" style="width: 320px;">
                                 
                                 '. (!isset($signature_info) ? '
                                     <label class="flex-column width-100 margin-auto">
@@ -39,7 +39,10 @@
                                         <br>
                                         <input 
                                             value="'.(isset($signature_info) ? $signature_info->clave : '' ).'"
-                                            id="keyId" name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                            id="keyId" 
+                                            name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+
+                                        '.(isset($signature_info) ? '<input type="hidden" name="current_key" value="'.$signature_info->clave.'" >' : '').'
                                     </label>
                         
                                     <label class="flex-column width-20">
@@ -91,8 +94,9 @@
                     $this->query("
                     update grupo set 
                         clave ='".$_REQUEST['key']."', 
-                        grupo='".$_REQUEST['group']."', 
-                    where clave=".$_REQUEST['key']);
+                        grupo='".$_REQUEST['group']."'
+                    where clave='".$_REQUEST['current_key']."'
+                    ");
                     $this->action('displayData');
                 break;
                 case 'delete':

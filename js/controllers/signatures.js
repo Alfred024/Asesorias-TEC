@@ -14,7 +14,6 @@ function signatures(action, id) {
             });
             break;
         case 'formNew':
-            console.log('PETICIÓN PARA INSERTAR UNA NUEVA MATERIA');
             $.dialog({
                 title: 'Registro de una nueva materia',
                 columnClass: 'col-7',
@@ -36,45 +35,24 @@ function signatures(action, id) {
                 return false;
             }
 
-            formData = new FormData(document.getElementById("form_signature"));
-            $.ajax({
-                url: "http://localhost/asesorias/classes/signatures.php",
-                type: "post",
-                dataType: "html",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (htmlResponse) {
-                    ventFrame.close();
-                    SubjectsCardsContainerId.innerHTML = '';
-            
-                    setTimeout(() => {
-                        SubjectsCardsContainerId.innerHTML = htmlResponse;
-                    }, 1000);
-                },
-                error: function (xhr, status, error) {
-                    console.log('Petición para insert de materia salió mal');
-                    console.log('Estado:', status);
-                    console.log('Error:', error);
-                    console.log('Respuesta completa:', xhr.responseText);
-                    ventFrame.close();
-                },
-            });
-            return false;
         case "update_signature": 
             formData = new FormData(document.getElementById("form_signature"));
-            $.ajax({url: "http://localhost/asesorias/classes/signatures.php",
-                   type: "post",
-                   dataType: "html",
-                   data: formData,
-                   cache: false,
-                   contentType: false,
-                   processData: false,
-                   success: function(result){
-                    ventFrame.close();
-                    console.log('Datos de la materia actualizados');
-                  },
+            $.ajax({
+                    url: "http://localhost/asesorias/classes/signatures.php",
+                    type: "post",
+                    dataType: "html",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (htmlResponse) {
+                        ventFrame.close();
+                        SubjectsCardsContainerId.innerHTML = '';
+                
+                        setTimeout(() => {
+                            SubjectsCardsContainerId.innerHTML = htmlResponse;
+                        }, 1000);
+                    },
             });
         return false;
         case 'delete':

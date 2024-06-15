@@ -4,9 +4,13 @@ COSAS QUE FALTAN:
     Vista de creación de una nueva materia
 
     PARA AHORITA
-    Botón para editar el grupo
-    Botón para que el admin archive las asesorías de todas las materias 
-    Identidad del departamento de industrial
+
+    1.-Botón para que el admin archive las asesorías de todas las materias 
+        a) Archivar en la misma base de datos
+        b) Archivar en una base de datos secundaria
+        c) Exportar a un archivo .csv o .txt
+
+    3.-Identidad del departamento de industrial
 
     Verificar que el correo de un alumno no exista antes de registrarlo
     Crontab para generar respaldos de la base de datos
