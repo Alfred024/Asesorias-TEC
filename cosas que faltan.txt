@@ -1,25 +1,24 @@
 COSAS QUE FALTAN:
 
-    ERRORES:
-    Vista de creación de una nueva materia
-
     PARA AHORITA
 
     1.-Botón para que el admin archive las asesorías de todas las materias 
         a) Archivar en la misma base de datos
         b) Archivar en una base de datos secundaria
         c) Exportar a un archivo .csv o .txt
+    2.- Verificar que el correo de un alumno no exista antes de registrarlo
 
     3.-Identidad del departamento de industrial
+    4.-Función del registro de los alumnos con hoja de excel 
 
-    Verificar que el correo de un alumno no exista antes de registrarlo
     Crontab para generar respaldos de la base de datos
 
-    Función del registro de los con hija de excel 
 
     Vista de materias archivadas para cuando acabe el semestre
 
     Fuiciones de PHP Mailer
+        - Envío de confirmación de creación de usuario 
+        - Confirmación de asitencia a asesorías
         - Recovery de la contraseña con PHP MAILER
 
     PARA DESPÚES 

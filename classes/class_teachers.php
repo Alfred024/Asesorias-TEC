@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    if (!isset($_SESSION)) session_start();
     if (!class_exists("PDFS")) include "../classes/pdfs.php";
     if (!class_exists("Class_Database")) include "../classes/class_database.php";
 
@@ -81,7 +81,7 @@
 
             $signatures = '';
             if($this->registersNum !== 0){
-                $signatures='<div id="Assesories_List_'.$id_list.'" class="bg-white border-radius-10 margin-y-5 padding-10" style="display: block;">';
+                $signatures='<div id="Assesories_List_'.$id_list.'" class="anchor-default bg-white border-radius-10 margin-y-5 padding-10" style="display: block;">';
 
                 foreach ($this->registrersBlock as $registerRow) {
                     $signatures.='

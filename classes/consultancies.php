@@ -130,7 +130,7 @@ class Consultancies extends Class_Database
 
                             '.($_SESSION['admin'] ? 
                             '<button
-                                 
+                                onclick="return consultancies(\'storeContent\', \'' . $signature_key . '\', )"
                                 class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
                                 Archivar materia
                                 <i class="fa-solid fa-database margin-left-5"></i>

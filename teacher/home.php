@@ -35,7 +35,7 @@
     <script src="../js/controllers/signatures.js?v=10"></script>
     <script src="../js/controllers/consultancies.js?v=14"></script>
     <!-- Custom JS -->
-    <!-- <script src="../js/utils/pop-up-messages.js"></script> -->
+    <script src="../js/utils/pop-up-messages.js?v=3"></script>
 </head>
 <body>
     <div class="Control-Panel-Container flex">
