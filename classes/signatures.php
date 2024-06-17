@@ -16,66 +16,66 @@
                 case 'formNew':
                     $signatures = $this->displaySignatures();
                     $controller_method = !isset($signature_info) ? 'insert_signature' : 'update_signature';
-                    return 
-                        '<form 
-                            id="form_signature"
-                            onsubmit="return signatures(\''.$controller_method.'\')" method="post" class="flex-column justify-center relative" action="" style="width: 320px;">
+                    // return 
+                    //     '<form 
+                    //         id="form_signature"
+                    //         onsubmit="return signatures(\''.$controller_method.'\')" method="post" class="flex-column justify-center relative" action="" style="width: 320px;">
                                 
-                                '. (!isset($signature_info) ? '
-                                    <label class="flex-column width-100 margin-auto">
-                                        Materia
-                                        <br>
-                                        <select
-                                            id="signatureId" name="signature"
-                                            class="box-shadow-light border-radius-20 padding-5 border-none">
-                                            ' . $signatures . '
-                                        </select>
-                                    </label><br>
-                                ' : '' ).'
+                    //             '. (!isset($signature_info) ? '
+                    //                 <label class="flex-column width-100 margin-auto">
+                    //                     Materia selección
+                    //                     <br>
+                    //                     <select
+                    //                         id="signatureId" name="signature"
+                    //                         class="box-shadow-light border-radius-20 padding-5 border-none">
+                    //                         ' . $signatures . '
+                    //                     </select>
+                    //                 </label><br>
+                    //             ' : '' ).'
                     
-                                <div class="flex justify-between">
-                                    <label class="flex-column width-60">
-                                        Clave de la materia
-                                        <br>
-                                        <input 
-                                            value="'.(isset($signature_info) ? $signature_info->clave : '' ).'"
-                                            id="keyId" 
-                                            name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                    //             <div class="flex justify-between">
+                    //                 <label class="flex-column width-60">
+                    //                     Clave de la materia
+                    //                     <br>
+                    //                     <input 
+                    //                         value="'.(isset($signature_info) ? $signature_info->clave : '' ).'"
+                    //                         id="keyId" 
+                    //                         name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
 
-                                        '.(isset($signature_info) ? '<input type="hidden" name="current_key" value="'.$signature_info->clave.'" >' : '').'
-                                    </label>
+                    //                     '.(isset($signature_info) ? '<input type="hidden" name="current_key" value="'.$signature_info->clave.'" >' : '').'
+                    //                 </label>
                         
-                                    <label class="flex-column width-20">
-                                        Grupo
-                                        <br>
-                                        <input 
-                                            value="'.(isset($signature_info) ? $signature_info->grupo : '' ).'"
-                                            id="groupId"
-                                            name="group" pattern="[A-Z]{1}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
-                                    </label>
-                                </div>
-                                <br>
+                    //                 <label class="flex-column width-20">
+                    //                     Grupo
+                    //                     <br>
+                    //                     <input 
+                    //                         value="'.(isset($signature_info) ? $signature_info->grupo : '' ).'"
+                    //                         id="groupId"
+                    //                         name="group" pattern="[A-Z]{1}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                    //                 </label>
+                    //             </div>
+                    //             <br>
 
-                                '. (!isset($signature_info) ? '
-                                    <label class="flex-column width-100 margin-auto">
-                                        Periodo
-                                        <br>
-                                        <select class="box-shadow-light border-radius-20 padding-5 border-none" name="id_periodo">
-                                            <option value="1">Enero-Junio</option>
-                                            <option value="2">Agosto-Diciembre</option>
-                                        </select>
-                                    </label>
-                                ' : '' ).'
-                                <br>
+                    //             '. (!isset($signature_info) ? '
+                    //                 <label class="flex-column width-100 margin-auto">
+                    //                     Periodo
+                    //                     <br>
+                    //                     <select class="box-shadow-light border-radius-20 padding-5 border-none" name="id_periodo">
+                    //                         <option value="1">Enero-Junio</option>
+                    //                         <option value="2">Agosto-Diciembre</option>
+                    //                     </select>
+                    //                 </label>
+                    //             ' : '' ).'
+                    //             <br>
 
-                                <input type="hidden" name="action" 
-                                    value="'.(isset($signature_info) ? 'update_signature' : 'insert_signature' ).'">
+                    //             <input type="hidden" name="action" 
+                    //                 value="'.(isset($signature_info) ? 'update_signature' : 'insert_signature' ).'">
                                 
-                                <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" 
-                                value="'.(isset($signature_info) ? 'Actualizar materia' : 'Registrar materia' ).'"
-                                style="width: 200px;">
-                                <span id="message"></span>
-                            </form>';
+                    //             <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" 
+                    //             value="'.(isset($signature_info) ? 'Actualizar materia' : 'Registrar materia' ).'"
+                    //             style="width: 200px;">
+                    //             <span id="message"></span>
+                    //         </form>';
                 break;
                 case 'insert_signature':
                     $user_id = $_SESSION['session_user_id'];
@@ -178,14 +178,15 @@
         }
 
         function displaySignatures(){
-            $this->getRecord('select * from materia order by nombre;');
+            //var_dump($this->getRecord('select * from materia order by nombre;'));
 
             $signatures = '';
             foreach ($this->registrersBlock as $registerRow) {
                 $signatures .= '
                     <option value="' .$registerRow['nombre'] . '">' . $registerRow['nombre'] . '</option>';
             }
-            return $signatures;
+            echo $signatures;
+            // return $signatures;
         }
         
         function getId_signature($signature_name) : int{

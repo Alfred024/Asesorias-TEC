@@ -11,7 +11,7 @@ function signatures(action, id) {
         case 'formNew':
             if(action === 'formNew'){
                 dilaogContent = `url: http://localhost/asesorias/classes/signatures.php?action=${action}`;
-                titleDialog = 'Registro de una nueva materia';
+                titleDialog = 'Registro de una nueva materia sajdas';
             }
             custom_dialog(titleDialog, dilaogContent, ventFrame);
         break;

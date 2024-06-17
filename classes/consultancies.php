@@ -162,17 +162,17 @@ class Consultancies extends Class_Database
                 $user_id = $_SESSION['session_user_id'];
 
                 $query_param =
-                    'SELECT
-                        concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
+                    "SELECT
+                        concat(usu.nombres,' ', usu.apellido_paterno,' ', usu.apellido_materno,' ') as alumno,
                         ase.competencia,
                         ase.tema,
                         ase.descripcion,
                         ase.fecha
                     FROM asesoria AS ase
                     JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
-                    where ase.id_usuario_imparte = ' . $user_id . '
+                    where ase.id_usuario_imparte = $user_id
                     order by 5 desc
-                    limit 8;';
+                    limit 8;";
                 $this->displayData($query_param);
                 break;
             case 'searchStudent':
@@ -182,17 +182,17 @@ class Consultancies extends Class_Database
                 $signature_key = $_REQUEST['clave'];
 
                 $query_param =
-                    'SELECT
-                            concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
+                    "SELECT
+                            concat(usu.nombres,' ', usu.apellido_paterno,' ', usu.apellido_materno,' ') as alumno,
                             ase.competencia,
                             ase.tema,
                             ase.descripcion,
                             ase.fecha
                         FROM asesoria AS ase
                         JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
-                        WHERE ase.clave = "' . $signature_key . '" 
-                        AND CONCAT(usu.nombres, " ", usu.apellido_paterno, " ", usu.apellido_materno, " ") 
-                        LIKE CONCAT("%' . $studentSearched . '%");';
+                        WHERE ase.clave = $signature_key 
+                        AND CONCAT(usu.nombres, ' ', usu.apellido_paterno, ' ', usu.apellido_materno, ' ') 
+                        LIKE CONCAT("%' . $studentSearched . '%");";
                 $this->displayData($query_param);
                 break;
         }

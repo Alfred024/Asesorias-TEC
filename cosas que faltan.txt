@@ -3,13 +3,11 @@ COSAS QUE FALTAN:
     PARA AHORITA
 
     1.-Botón para que el admin archive las asesorías de todas las materias 
-        a) Archivar en la misma base de datos
-        b) Archivar en una base de datos secundaria
-        c) Exportar a un archivo .csv o .txt
-    2.- Verificar que el correo de un alumno no exista antes de registrarlo
+        Solución: Cuando se archiva, entonces se borran las asesorías y el grupo, pero antes se insertan en una nueva tabla (grupo_archivado, materia_archivada) donde se maentine la misma relación
 
-    3.-Identidad del departamento de industrial
-    4.-Función del registro de los alumnos con hoja de excel 
+    2.- Verificar que el correo de un alumno no exista antes de registrarlo
+    3.- Identidad del departamento de industrial
+    4.- Función del registro de los alumnos con hoja de excel / u de otra forma 
 
     Crontab para generar respaldos de la base de datos
 
@@ -22,6 +20,8 @@ COSAS QUE FALTAN:
         - Recovery de la contraseña con PHP MAILER
 
     PARA DESPÚES 
+    Interfáz para borrarestudiantes (Por medio de un filtro de los números de control)
+
     Cómo protegerse de inyecicones SQL???
     Vista de configuración del sistema: Cambio de foto de perfil, cambio de contraseña, tema de la plataforma 
     Manejo de las fotos de perfil
