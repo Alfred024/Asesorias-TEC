@@ -50,7 +50,7 @@ class Access extends Class_Database
 
                     // TODO: Arreglar B.D. y evaluar el tipo de usuario
                     // ES MAESTRO
-                    if ($user->id_rol == 1) {
+                    if ($user->id_rol == 1 || $user->id_rol == 3) {
                         $_SESSION['admin'] = FALSE;
                         header("location: ../teacher/home.php");
                     }
@@ -89,11 +89,36 @@ class Access extends Class_Database
             if ($this->emailRegistered($email)) {
                 header("location: ../register.php?m=2"); // El usuario ya está registrado
             } else {
-                $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
-                $queryInsertUser = "insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena)
-                        values (1, '{$email}', '{$names}', '{$last_name}', '{$second_last_name}', '{$encryptedPassword}');";
-                $this->query($queryInsertUser);
-                header('location: ../register.php?m=4');
+                // Se tiene que registrar un nuevo usaurio 
+                $mail = new PHPMailer(true);
+                $mail->IsSMTP();
+                $mail->Host="smtp.gmail.com"; 
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+                // $mail->SMTPSecure = 'ssl'; 
+                // $mail->Port = 465;    
+                $mail->SMTPDebug  = 1;  
+                $mail->SMTPAuth = true;   
+                $mail->Username =   "alfredo.jimeneztellez9@gmail.com"; 
+                $mail->Password = "pbek epkc njxn repo";  
+
+                $mail->From="alfredo.jimeneztellez9@gmail.com";
+                $mail->FromName="José Alfredo Jiménez Téllez";
+                $mail->addAddress( $email ); // A quien enviará el correo 
+                // $mail->isHTML(true);
+                $mail->Subject = "Registro completo";
+                $mail->MsgHTML("<h1>BIENVENIDO ". $names." ".$last_name."</h1><h2> Por favor confirma la creación de tu cuenta pulsando el botón.</h2>");
+
+                if($mail->send()){
+                    $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
+                    $queryInsertUser = "insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena)
+                            values (1, '{$email}', '{$names}', '{$last_name}', '{$second_last_name}', '{$encryptedPassword}');";
+                    $this->query($queryInsertUser);
+                    header('location: ../register.php?m=4');
+                }else{
+                    echo 'Error mandando el email: '.$mail->ErrorInfo;
+                    // header('location: ../register.php?m=6'); // Error mandando el correo
+                }
             }
         } else {
             header("location: ../register.php?m=1");  // Llenar todos los campos

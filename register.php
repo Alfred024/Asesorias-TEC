@@ -1,3 +1,4 @@
+<?php // phpinfo(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,6 +128,15 @@
 										class="text-secondary-blue margin-top-10"
 										style="font-size: 15px; font-weight:600; text-align: center;">
 										Las contraseñas no coinciden
+									</span>'
+								);
+							break;
+							case '6':
+								echo(
+									'<span 
+										class="text-secondary-blue margin-top-10"
+										style="font-size: 15px; font-weight:600; text-align: center;">
+										Error mandando el correo.
 									</span>'
 								);
 							break;

@@ -15,8 +15,8 @@
                     $signature_info = $this->getRecord("select * from grupo where clave = '".$_REQUEST['clave']."'");
                 case 'formNew':
                     $this->displaySignatures();
-                    //$signatures = $this->displaySignatures();
-                    //$controller_method = !isset($signature_info) ? 'insert_signature' : 'update_signature';
+                    // $signatures = $this->displaySignatures();
+                    // $controller_method = !isset($signature_info) ? 'insert_signature' : 'update_signature';
                     // return 
                     //     '<form 
                     //         id="form_signature"
@@ -179,13 +179,13 @@
         }
 
         function displaySignatures(){
-            $this->getRecord('select * from materia order by nombre;');
-            var_dump($this->registrersBlock);
+            $data = $this->getRecord('SELECT * FROM materia ORDER BY nombre;');
+            var_dump($data);
             // $signatures = '';
-            // foreach ($this->registrersBlock as $registerRow) {
-            //     echo $registerRow;
-            //     // $signatures .= '
-            //     //     <option value="' .$registerRow['nombre'] . '">' . $registerRow['nombre'] . '</option>';
+            // foreach ($data as $registerRow) {
+            //     // echo $registerRow;
+            //     $signatures .= '
+            //         <option value="' .$registerRow['nombre'] . '">' . $registerRow['nombre'] . '</option>';
             // }
             // return $signatures;
         }
