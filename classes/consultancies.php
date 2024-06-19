@@ -130,7 +130,7 @@ class Consultancies extends Class_Database
 
                             '.($_SESSION['admin'] ? 
                             '<button
-                                onclick="return consultancies(\'storeContent\', \'' . $signature_key . '\', )"
+                                onclick="return signatures(\'storeContent\', \'' . $signature_key . '\', )"
                                 class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
                                 Archivar materia
                                 <i class="fa-solid fa-database margin-left-5"></i>
@@ -194,6 +194,30 @@ class Consultancies extends Class_Database
                         AND CONCAT(usu.nombres, " ", usu.apellido_paterno, " ", usu.apellido_materno, " ") 
                         LIKE CONCAT("%' . $studentSearched . '%");';
                 $this->displayData($query_param);
+                break;
+            case 'storeContent':
+                $clave = $_REQUEST['clave'];
+                
+                $query_tranfer_group = 
+                'insert into grupo_archivado (grupo, clave, id_usuario, id_materia, id_periodo)
+                select grupo, clave, id_usuario, id_materia, id_periodo from grupo where clave = "'.$clave.'";';
+                $this->query($query_tranfer_group);
+
+                $query_tranfer_consultancies = 
+                'insert into asesoria_archivada (tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave)
+                select tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave from asesoria
+                where clave = "'.$clave.'";';
+                $this->query($query_tranfer_consultancies);
+
+                $query_delete_group = 'delete from grupo where clave = "'.$clave.'";';
+                $this->query($query_delete_group);
+                echo (
+                    '<div style="width: 200px; margin-left: 20px;" class="flex margin-y-5 box-shadow-light border-radius-10 padding-10 bg-white place-self-end">
+                    <i class="fa-solid fa-magnifying-glass margin-right-5 color-primary-blue"></i>
+                    <input onkeypress="return users(\'searchTeacher\')" id="searchTeacherInput" class="border-none" type="text" placeholder="Buscar maestro">
+                    </div>');
+                $_REQUEST['action'] = 'displayData';
+                include './class_teachers.php';
                 break;
         }
     }

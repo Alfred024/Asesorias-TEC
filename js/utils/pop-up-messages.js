@@ -2,7 +2,7 @@ function alert_message(title, content, type="orange") {
     $.alert({title: title, content: content, type: type});
 }
 
-function custom_dialog(titleDialog, dilaogContent, ventFrame) {
+function custom_dialog(titleDialog, dilaogContent) {
     $.dialog({
         title: titleDialog,
         columnClass: 'col-7',

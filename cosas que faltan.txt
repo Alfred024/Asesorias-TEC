@@ -3,16 +3,13 @@ COSAS QUE FALTAN:
     PARA AHORITA
 
     1.-Botón para que el admin archive las asesorías de todas las materias 
-        a) Archivar en la misma base de datos
-        b) Archivar en una base de datos secundaria
-        c) Exportar a un archivo .csv o .txt
+        1.1.- Interfáz que muestre las materias archivadas
     2.- Verificar que el correo de un alumno no exista antes de registrarlo
-
-    3.-Identidad del departamento de industrial
     4.-Función del registro de los alumnos con hoja de excel 
 
-    Crontab para generar respaldos de la base de datos
+    3.-Identidad del departamento de industrial
 
+    Crontab para generar respaldos de la base de datos
 
     Vista de materias archivadas para cuando acabe el semestre
 

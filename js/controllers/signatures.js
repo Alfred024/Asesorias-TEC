@@ -13,7 +13,7 @@ function signatures(action, id) {
                 dilaogContent = `url: http://localhost/asesorias/classes/signatures.php?action=${action}`;
                 titleDialog = 'Registro de una nueva materia';
             }
-            custom_dialog(titleDialog, dilaogContent, ventFrame);
+            custom_dialog(titleDialog, dilaogContent );
         break;
         case 'insert_signature':
             errorMessage = '<p class="text-align-center font-weight-600" style="color: #c80004; font-size:15px;">Favor de llenar cada uno de los campos.</p>';
@@ -81,7 +81,30 @@ function signatures(action, id) {
             );
             break;
         case 'storeContent':
-                alert_message('Archivar materia', '¿Segur@ que deseas archivar la materia? Al hacerlo las materias ')
+            store_function = function(){
+                $.ajax({
+                    url: "http://localhost/asesorias/classes/consultancies.php",
+                    type: "post",
+                    data: { action: action, clave: id },
+                    success: function (htmlResponse) {
+                        // Mandar una notificación de que se archivó la materia
+                        alert_message('Materia archivada con éxito', 'Para consultar información de las materias archivadas haga click en la opción "Materias archivadas" del menú lateral', 'green');
+
+                        console.log(`HTML response: ${htmlResponse}`);
+                        workArea.innerHTML = htmlResponse;
+                    },
+                    error: function(err){ console.log(JSON.stringify(err)); },
+                });
+            }
+            
+            custom_confirm(
+                '', 
+                'orange', 
+                `¿Segur@ que deseas archivar la materia? Al hacerlo las asesorías también pasarán al estado de archivadas`, 
+                'Archivar',
+                store_function,
+                'Cancelar'
+            );
             break;
         default:
             break;
