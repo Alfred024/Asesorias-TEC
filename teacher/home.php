@@ -32,10 +32,10 @@
     <link rel="stylesheet" href="../styles/jquery-confirm.css">
 
     <!-- Controllers JS -->
-    <script src="../js/controllers/signatures.js?v=9"></script>
+    <script src="../js/controllers/signatures.js?v=10"></script>
     <script src="../js/controllers/consultancies.js?v=14"></script>
     <!-- Custom JS -->
-    <!-- <script src="../js/utils/pop-up-messages.js"></script> -->
+    <script src="../js/utils/pop-up-messages.js?v=3"></script>
 </head>
 <body>
     <div class="Control-Panel-Container flex">
@@ -58,7 +58,7 @@
                         Configuración
                     </li>
                </a>
-               <a href="../login.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
+               <a href="../index.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-solid fa-right-from-bracket margin-right-10"></i>

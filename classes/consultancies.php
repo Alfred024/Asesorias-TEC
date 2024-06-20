@@ -33,29 +33,18 @@ class Consultancies extends Class_Database
                                 class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" type="text" name="tema" placeholder="Tema de la asesoría">
                             <br>
                 
-                            <div class="flex gap-10">
-                                <label class="flex-column margin-auto">
-                                    Competencia
-                                    <br>
-                                    <select class="box-shadow-light border-radius-20 padding-5 border-none" name="competencia">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                    </select>
-                                </label>
-                
-                                <label class="flex-column margin-auto">
-                                    Periodo
-                                    <br>
-                                    <select class="box-shadow-light border-radius-20 padding-5 border-none" name="id_periodo">
-                                        <option value="1">Enero-Junio</option>
-                                        <option value="2">Agosto-Diciembre</option>
-                                    </select>
-                                </label>
-                            </div>
+                            <label class="flex-column">
+                                Competencia
+                                <br>
+                                <select class="box-shadow-light border-radius-20 padding-5 border-none" name="competencia">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </label>
                             <br>
                 
                             <textarea 
@@ -86,12 +75,11 @@ class Consultancies extends Class_Database
                 $user_id = $_SESSION['session_user_id'];
                 $user_id_toma = $_REQUEST['alumno'];
                 $signature_key = $_REQUEST['clave'];
-                $signature_period = $_REQUEST['id_periodo'];
 
                 $insert_consultancie_query = '
                     insert into asesoria
-                    (tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave, id_periodo)
-                    values ("' . $tema . '", "' . $competencia . '", "' . $description . '", "' . $user_id . '", "' . $user_id_toma . '", "' . $signature_key . '", "' . $signature_period . '");';
+                    (tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave)
+                    values ("' . $tema . '", "' . $competencia . '", "' . $description . '", "' . $user_id . '", "' . $user_id_toma . '", "' . $signature_key . '");';
 
                 $this->query($insert_consultancie_query);
 
@@ -121,7 +109,6 @@ class Consultancies extends Class_Database
                     JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
                     WHERE ase.clave = "' . $signature_key . '" ';
 
-                // SI es un ADMIN, entonces el botón de agregar asesorías no se muestra
                 echo ('
                     <div class="flex-column height-90 padding-20 relative" style="padding-top: 10px;">
                         <div class="Assesories-Interacitve-Container flex justify-between margin-bottom-10">
@@ -141,12 +128,21 @@ class Consultancies extends Class_Database
                                 </div> -->
                             </div>
 
-                            <button
+                            '.($_SESSION['admin'] ? 
+                            '<button
+                                onclick="return signatures(\'storeContent\', \'' . $signature_key . '\', )"
+                                class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
+                                Archivar materia
+                                <i class="fa-solid fa-database margin-left-5"></i>
+                            </button>' 
+                                : 
+                            '<button
                                 onclick="return consultancies(\'formNew\', \'' . $signature_key . '\')" 
                                 class="Btn-Primary-Blue bg-primary-blue text-white padding-10 border-none">
                                 Registrar nueva asesoría
                                 <i class="fa-solid fa-address-card margin-left-5"></i>
-                            </button>
+                            </button>').'
+                            
                         </div>
 
                         <div class="margin-auto width-100" style="height: 70%;  overflow-y: scroll;">
@@ -198,6 +194,30 @@ class Consultancies extends Class_Database
                         AND CONCAT(usu.nombres, " ", usu.apellido_paterno, " ", usu.apellido_materno, " ") 
                         LIKE CONCAT("%' . $studentSearched . '%");';
                 $this->displayData($query_param);
+                break;
+            case 'storeContent':
+                $clave = $_REQUEST['clave'];
+                
+                $query_tranfer_group = 
+                'insert into grupo_archivado (grupo, clave, id_usuario, id_materia, id_periodo)
+                select grupo, clave, id_usuario, id_materia, id_periodo from grupo where clave = "'.$clave.'";';
+                $this->query($query_tranfer_group);
+
+                $query_tranfer_consultancies = 
+                'insert into asesoria_archivada (tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave)
+                select tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave from asesoria
+                where clave = "'.$clave.'";';
+                $this->query($query_tranfer_consultancies);
+
+                $query_delete_group = 'delete from grupo where clave = "'.$clave.'";';
+                $this->query($query_delete_group);
+                echo (
+                    '<div style="width: 200px; margin-left: 20px;" class="flex margin-y-5 box-shadow-light border-radius-10 padding-10 bg-white place-self-end">
+                    <i class="fa-solid fa-magnifying-glass margin-right-5 color-primary-blue"></i>
+                    <input onkeypress="return users(\'searchTeacher\')" id="searchTeacherInput" class="border-none" type="text" placeholder="Buscar maestro">
+                    </div>');
+                $_REQUEST['action'] = 'displayData';
+                include './class_teachers.php';
                 break;
         }
     }

@@ -30,6 +30,8 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
     <!-- Controllers JS -->
     <script src="../js/controllers/consultancies.js?v=12"></script>
     <script src="../js/controllers/users.js?v=3"></script>
+    <script src="../js/controllers/signatures.js?v=3"></script>
+    <script src="../js/utils/pop-up-messages.js?v=3"></script>
 
     <script>
         var mediaQuery = window.matchMedia('(min-width: 750px)');
@@ -89,7 +91,14 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
                         Configuración
                     </li>
                 </a>
-                <a href="../login.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
+                <a class="AsideBar-Anchor anchor-default flex align-center" href="">
+                    <span class="List-Item-Span margin-right-10"></span>
+                    <li class="margin-block-10">
+                    <i class="fa-regular fa-floppy-disk margin-right-10"></i>
+                        Materias archivadas
+                    </li>
+                </a>
+                <a href="../index.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-solid fa-right-from-bracket margin-right-10"></i>
@@ -119,7 +128,7 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
                     </div>
 
                     <?php
-                    include '../classes/class_teachers.php';
+                        include '../classes/class_teachers.php';
                     ?>
                 </div>
             </main>

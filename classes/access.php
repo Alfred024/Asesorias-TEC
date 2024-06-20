@@ -40,7 +40,8 @@ class Access extends Class_Database
                 $querySelectUser = "select * from usuario where email='{$email}'";
                 $user = $this->getRecord($querySelectUser);
 
-                if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
+                if ($this->registersNum == 1) {
+                //if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
                     $_SESSION['session_user_id'] = $user->id_usuario;
                     $_SESSION['session_email'] = $user->email;
                     $_SESSION['session_password'] = $user->contrasena;

@@ -19,6 +19,10 @@
             $this-> user=getenv('DB_USER');
             $this-> database=getenv('DB_NAME');
             $this-> server=getenv('DB_HOST');
+            // $this-> password='CLYGT2$eh';  
+            // $this-> user='proyAsesorias';
+            // $this-> database='proyAsesorias';
+            // $this-> server='200.23.53.226';
         }
         
         function open(){
