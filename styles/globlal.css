@@ -77,16 +77,8 @@
 .Subject-Card{
 	width: 200px;
 	height: 125px;
-	/* display: inline-block; */
 }
-/* .Subjects-Card-Container{
-	white-space: nowrap;
-} */
-/* .Subject-Card p {
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-} */
+
 .Add-Subject-Button{
 	color: var(--primary-blue);
 	border: 1px var(--primary-blue) solid;
@@ -122,26 +114,11 @@
     white-space: nowrap;
 }
 .Assesories-Table thead{
-	/* border-top-left-radius: 10px;
-	border-top-right-radius: 10px; */
 	background-color: white;
 	position: sticky;
     inset-block-start: 0;
 }
-/* .table-row-div{
-	margin: auto;
-	height: 1px;
-	width: 90%;
-	background-color: var(--secondary-blue);
-} */
-/* .Modal-Container{
-	position: absolute !important;
-	background-color: rgba(32,35,41,.8);
-	top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-} */
+
 
 /* FORM MEDIA QUERIES STYLES */
 @media (max-width: 950px) {
@@ -180,32 +157,30 @@
 	.Assesories-Interacitve-Container{
 		flex-direction: column;
 	}
-	/* .Filters-Items-Container{
-		justify-content: end;
-	} */
-	/* .Form-Date-Filter, .Teacher-Name-Filter{
-		width: 50%;
-	} */
 	.Teacher-Name-Filter{
 		align-self: end;
 	}
 }
 
-.gap-10{
-	gap: 10px;
+.border-radius-5{
+	border-radius: 5px;
 }
-.margin-left-10{
-	margin-left: 10px;
-}
-.height-90{
-	height: 90%;
-}
-.height-fit{
-	height: fit-content;
-}
-.Modal-Container{
-	background-color: rgba(32,35,41,.8);
+
+.grid-container {
+    display: grid;
+	justify-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 .select-items div:hover{
 	background-color: var(--secondary-blue);
+}
+.profile-pic-img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid var(--primary-blue);
+}
+.input-white-border {
+	border: 1px solid #ccc;
 }

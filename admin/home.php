@@ -32,6 +32,7 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
     <script src="../js/controllers/users.js?v=3"></script>
     <script src="../js/controllers/signatures.js?v=3"></script>
     <script src="../js/utils/pop-up-messages.js?v=3"></script>
+    <script src="../js/utils/change-pages.js"></script>
 
     <script>
         var mediaQuery = window.matchMedia('(min-width: 750px)');
@@ -84,18 +85,22 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
                         Inicio
                     </li>
                 </a>
-                <a class="AsideBar-Anchor anchor-default flex align-center" href="">
-                    <span class="List-Item-Span margin-right-10"></span>
-                    <li class="margin-block-10">
-                        <i class="fa-solid fa-gear margin-right-10"></i>
-                        Configuración
-                    </li>
-                </a>
-                <a class="AsideBar-Anchor anchor-default flex align-center" href="">
+                <a id="SignaturesStoredId" class="AsideBar-Anchor anchor-default flex align-center" 
+                    onclick="return show_SignaturesStored();">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                     <i class="fa-regular fa-floppy-disk margin-right-10"></i>
                         Materias archivadas
+                    </li>
+                </a>
+                <a 
+                    onclick="return show_Settings();"
+                    id="SettingsId"
+                    class="AsideBar-Anchor anchor-default flex align-center">
+                    <span class="List-Item-Span margin-right-10"></span>
+                    <li class="margin-block-10">
+                        <i class="fa-solid fa-gear margin-right-10"></i>
+                        Configuración
                     </li>
                 </a>
                 <a href="../index.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
