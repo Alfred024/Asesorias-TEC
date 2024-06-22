@@ -78,6 +78,14 @@
 	width: 200px;
 	height: 125px;
 }
+.Subject-Card-Stored{
+	width: 200px;
+	height: 140px;
+}
+.Subject-Card-Stored button:hover{
+	transition: 0.3s;
+	background-color: #ccc;
+}
 
 .Add-Subject-Button{
 	color: var(--primary-blue);
@@ -181,6 +189,10 @@
 	object-fit: cover;
 	border: 2px solid var(--primary-blue);
 }
-.input-white-border {
+
+.input-1{
+	width: 100%;
+	padding: 8px;
+	border-radius: 10px;
 	border: 1px solid #ccc;
 }

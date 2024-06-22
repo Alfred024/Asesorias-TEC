@@ -32,4 +32,13 @@ function custom_confirm(title, type, content, confirm_Btn_title, confirm_Btn_fun
     });
 }
 
+function post_req(url, json_data, succes_function) {
+    $.ajax({
+        'url': url,
+        'type': 'post',
+        'data': json_data,
+        'success': succes_function,
+        'error': function(err){ console.log(JSON.stringify(err)); }
+    });
+}
 

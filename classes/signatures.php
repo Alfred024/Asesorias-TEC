@@ -105,11 +105,6 @@
                     $this->query($delete_query);
                     $this->action('displayData');
                 break;
-                case 'storeContent':
-                    // Query para que se inserten los grupos y las asesorías en las tablas de archivo
-                    
-                    // Quey para borrar el grupo con la clave y el año
-                    break;
                 case 'displayData':
                     $user_id=$_SESSION['session_user_id'];
                     $query_param = 'select
@@ -210,6 +205,12 @@
     if(isset($_REQUEST['action'])){
         echo $signaturesObject->action($_REQUEST['action']);
     }else{
+        // $current_page = $_SERVER['SCRIPT_NAME'];
+
+        // switch ($current_page) {
+        //     case '/asesorias/admin/':
+        // }
         echo $signaturesObject->action('displayData');
     }
+
 ?>

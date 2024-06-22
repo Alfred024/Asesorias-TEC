@@ -12,7 +12,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control panel</title>
+    <link rel="icon" href="../assets/logo-II.png" type="image/png">
+    <title>Asesorías Industrial</title>
     <link rel="stylesheet" href="../styles/globlal.css">
     <link rel="stylesheet" href="https://alfred024.github.io/CSS-mio/styles.css">
     <!-- Font Awesome -->
@@ -36,6 +37,7 @@
     <script src="../js/controllers/consultancies.js?v=14"></script>
     <!-- Custom JS -->
     <script src="../js/utils/pop-up-messages.js?v=3"></script>
+    <script src="../js/utils/change-pages.js"></script>
 </head>
 <body>
     <div class="Control-Panel-Container flex">
@@ -51,14 +53,17 @@
                         Inicio
                     </li>
                 </a>
-               <a class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
+               <a 
+                    onclick="return show_Settings();"
+                    id="SettingsId"
+                    class="AsideBar-Anchor anchor-default flex align-center">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-solid fa-gear margin-right-10"></i>
                         Configuración
                     </li>
                </a>
-               <a href="../index.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
+               <a href="../index.php" class="AsideBar-Anchor anchor-default flex align-center">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-solid fa-right-from-bracket margin-right-10"></i>

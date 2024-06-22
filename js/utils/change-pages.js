@@ -47,49 +47,36 @@ function show_UploadCSVPage() {
 
 function show_SignaturesStored() {
     workArea.innerHTML = `
+        <h4 class="font-weight-400 padding-20">Materias archivadas</h4>
         <div class="grid-container gap-20">
-            <p>OLA</p>
-            <p>OLA</p>
-            <p>OLA</p>
-            <p>OLA</p>
-            <p>OLA</p>
+            <?=
+                include '../../classes/signatures.php';
+            ?>
         </div>
     `;
 
     quitAsideBar_selected();
-    SignaturesStoredId.classList.add(selected_AnchorClass);
 }
 
-function show_Settings() {
-    workArea.innerHTML = `
-        <div class="bg-white margin-auto padding-20 bg-white border-radius-10 box-shadow-light" style="max-width: 600px;">
-            <h2 class="color-primary-blue text-align-center margin-bottom-10">Configuración del Perfil</h2>
-
-            <!-- Editar Foto de Perfil -->
-            <div class="margin-bottom-10">
-                <div class="flex-column justify-center align-center gap-10">
-                    <img class="profile-pic-img" src="default-profile.png" alt="Foto de Perfil" id="profile-pic">
-                    <input class="display-none" type="file" id="upload-profile-pic" accept="image/*">
-                    <button class="bg-primary-blue text-white border-none padding-10 border-radius-10 cursor-pointer" onclick="uploadProfilePic()">Subir Nueva Foto</button>
-                </div>
-            </div>
-
-            <!-- Cambiar Contraseña -->
-            <div class="margin-bottom-10">
-                <h3 class="margin-bottom-10 color-primary-blue">Cambiar Contraseña</h3>
-                <div class="flex-column justify-center">
-
-                    <input class="input-white-border border-radius-5 width-100 padding-10 margin-bottom-10" type="password" placeholder="Contraseña Actual">
-                    <input class="input-white-border border-radius-5 width-100 padding-10 margin-bottom-10" type="password" placeholder="Nueva Contraseña">
-                    <input class="input-white-border border-radius-5 width-100 padding-10 margin-bottom-10" type="password" placeholder="Confirmar Nueva Contraseña">
-
-                    <button class="bg-primary-blue margin-auto margin-top-10 width-80 text-white border-none padding-10 border-radius-10 cursor-pointer">Confirmar</button>
-                </div>
-            </div>
-
-        </div>
-    `;
-
+function load_page(page_name) {
+    post_req(
+        `../classes/class_${page_name}.php`, 
+        {action: 'display_page'},
+        function (htmlResponse) {
+            console.log(`${page_name} class response: ${htmlResponse}`);
+            workArea.innerHTML = htmlResponse;
+        }
+    );
+    
     quitAsideBar_selected();
-    SettingsId.classList.add(selected_AnchorClass);
+    switch (page_name) {
+        case 'settings':
+            SettingsId.classList.add(selected_AnchorClass);
+            break;
+        case 'signatures':
+            SignaturesStoredId.classList.add(selected_AnchorClass);
+            break;
+        default:
+            break;
+    }
 }

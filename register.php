@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Formulario registro</title>
+	<link rel="icon" href="./assets/logo-II.png" type="image/png">
+	<title>Asesorías Industrial</title>
 
 	<link rel="stylesheet" type="text/css" href="./styles/globlal.css">
 	<link rel="stylesheet" type="text/css" href="https://alfred024.github.io/CSS-mio/styles.css">
@@ -24,61 +25,55 @@
 
 			<form method="post" action="./classes/access.php" class="Form box-shadow-dark flex-column justify-center bg-light-gray border-radius-30">
 				<h4 class="width-fit font-weight-600 margin-auto" >Registro </h4>
-				<hr style="margin: 10px;">
+				<hr class="margin-y-5">
 
 				<label class="flex-column width-80 margin-auto">
 					Nombre
-					<br>
-					<input name="names" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
-				</label><br>
+					<input name="names" class="input-1" type="text" placeholder="">
+				</label>
 
-				<div class="flex width-80 margin-auto">
-					<label class="flex-column margin-auto margin-right-10">
+				<div class="flex justify-between width-80 margin-auto">
+					<label class="flex-column margin-right-5">
 						Apellido Paterno
-						<br>
-						<input name="last_name" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
+						<input name="last_name" class="input-1" type="text" placeholder="">
 					</label>
 	
-					<label class="flex-column margin-auto">
+					<label class="flex-column">
 						Apellido Materno
-						<br>
-						<input name="second_last_name" class="box-shadow-light border-radius-20 padding-5 border-none" type="text" placeholder="">
+						<input name="second_last_name" class="input-1" type="text" placeholder="">
 					</label>
 				</div><br>
 
 				<label class="flex-column width-80 margin-auto">
 					TECnM email
-					<br>
 					<input 
 						id="emailId"
-						name="email" class="box-shadow-light border-radius-20 padding-5 border-none" type="email" placeholder="juan.montes@itcelaya.edu.mx">
-				</label><br>
-				<span id="message"></span>
+						name="email" class="input-1" type="email" placeholder="juan.montes@itcelaya.edu.mx">
+						<span id="message"></span>
+				</label>
 
 				<label class="flex-column width-80 margin-auto">
 					Contraseña (Mandar contraseña al correo)
-					<br>
-					<input name="password" class="box-shadow-light border-radius-20 padding-5 border-none" type="password" placeholder="">
-				</label><br>
+					<input name="password" class="input-1" type="password" placeholder="">
+				</label>
 
 				<label class="flex-column width-80 margin-auto">
 					Confirmar contraseña
-					<br>
-					<input name="password2" class="box-shadow-light border-radius-20 padding-5 border-none" type="password" placeholder="">
-				</label><br>
+					<input name="password2" class="input-1" type="password" placeholder="">
+				</label>
 
-				<div class="Captcha-Container padding-5 flex justify-between align-center width-60 border-radius-10 margin-auto">
+				<div class="Captcha-Container padding-5 flex justify-between align-center width-60 border-radius-10 margin-auto margin-top-5">
 					<div class="flex">
 						<input name="captcha" class="margin-right-10" type="checkbox">
 						<p>No soy un robot</p>
 					</div>
 					<img src="./assets/recaptcha.png" alt="Recaptcha logo" style="width: 35px;">
-				</div><br>
+				</div>
 
 				<input type="hidden" name="action" value="register">
 				<input 
 					onclick="return users('validateEmail');"
-					class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" type="submit" value="Registrar" style="width: 200px;">
+					class="Btn-Primary-Blue margin-top-5 bg-primary-blue text-white border-radius-10 padding-10 border-none margin-auto" type="submit" value="Registrar" style="width: 200px;">
 
 				<?php
 					if(isset($_GET['m'])){
@@ -134,9 +129,9 @@
 					}
 				?> 
 
-				<div class="flex center-flex-xy margin-top-10">
+				<div class="flex center-flex-xy margin-top-5">
 					<span class="font-size-15 margin-right-5">¿Ya tienes una cuenta?</span>
-					<a href="./login.php" class="Anchor-Form anchor-default font-size-15 text-secondary-blue">Acceder</a>
+					<a href="./index.php" class="Anchor-Form anchor-default font-size-15 text-secondary-blue">Acceder</a>
 				</div>
 			</form>
 			

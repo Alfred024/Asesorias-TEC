@@ -11,7 +11,8 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control panel</title>
+    <title>Asesorías Industrial</title>
+    <link rel="icon" href="../assets/logo-II.png" type="image/png">
     <link rel="stylesheet" href="../styles/globlal.css">
     <link rel="stylesheet" href="https://alfred024.github.io/CSS-mio/styles.css">
     <!-- Font Awesome -->
@@ -31,8 +32,9 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
     <script src="../js/controllers/consultancies.js?v=12"></script>
     <script src="../js/controllers/users.js?v=3"></script>
     <script src="../js/controllers/signatures.js?v=3"></script>
-    <script src="../js/utils/pop-up-messages.js?v=3"></script>
-    <script src="../js/utils/change-pages.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/utils/custom-jquery.js"></script>
+    <script src="../js/utils/change-pages.js?v=3"></script>
 
     <script>
         var mediaQuery = window.matchMedia('(min-width: 750px)');
@@ -94,7 +96,7 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
                     </li>
                 </a>
                 <a 
-                    onclick="return show_Settings();"
+                    onclick="return load_page('settings');"
                     id="SettingsId"
                     class="AsideBar-Anchor anchor-default flex align-center">
                     <span class="List-Item-Span margin-right-10"></span>
@@ -103,7 +105,7 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
                         Configuración
                     </li>
                 </a>
-                <a href="../index.php" class="AsideBar-Anchor anchor-default flex align-center" href="../settings.php">
+                <a href="../index.php" class="AsideBar-Anchor anchor-default flex align-center">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                         <i class="fa-solid fa-right-from-bracket margin-right-10"></i>

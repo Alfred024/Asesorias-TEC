@@ -9,7 +9,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Formulario registro</title>
+	<link rel="icon" href="./assets/logo-II.png" type="image/png">
+	<title>Asesorías Industrial</title>
 	<link rel="stylesheet" type="text/css" href="./styles/globlal.css">
 	<link rel="stylesheet" type="text/css" href="https://alfred024.github.io/CSS-mio/styles.css">
 	
@@ -31,13 +32,15 @@
 				<label class="flex-column width-80 margin-auto">
 					Correo
 					<br>
-					<input name="email" class="box-shadow-light border-radius-20 padding-10 border-none" type="email" placeholder="juan.montes@itcelaya.edu.mx">
+					<input name="email" 
+						class="input-1" 
+						type="email" placeholder="juan.montes@itcelaya.edu.mx">
 				</label><br>
 
 				<label class="flex-column width-80 margin-auto">
 					Contraseña
 					<br>
-					<input name="password" class="box-shadow-light border-radius-20 padding-10 border-none" type="password" placeholder="">
+					<input name="password" class="input-1" type="password" placeholder="">
 				</label><br>
 
 				<div class="Captcha-Container padding-5 flex justify-between align-center width-60 border-radius-10 margin-auto">
@@ -49,7 +52,7 @@
 				</div><br>
 
 				<input type="hidden" name="action" value="login">
-				<input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" type="submit" value="Entrar" style="width: 200px;">
+				<input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-10 padding-10 border-none margin-auto" type="submit" value="Entrar" style="width: 200px;">
 
 				<?php
 					if(isset($_GET['m'])){

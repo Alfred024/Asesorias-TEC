@@ -23,29 +23,26 @@ function users(action, id) {
             const email = emailId.value;
             indexChar = 0;
 
-            console.log(`Email: ${email}`);
             while ( indexChar < email.length && email[indexChar] !== "." ) {
                 if(!dictionary.includes(email[indexChar])){
-                    console.log('Dictionary no incluye: '+email[indexChar]);
                     message.innerHTML = errorMessage;
+                    clearMessage(message);
                     return false;
                 }indexChar++;
-                console.log('Validación antes del .');
-                console.log(email[indexChar]);
             }
             indexChar++;
             while ( indexChar < email.length && email[indexChar] !== "@" ) {
                 if(!dictionary.includes(email[indexChar])){
                     message.innerHTML = errorMessage;
+                    clearMessage(message);
                     return false;
                 }indexChar++;
-                console.log('Validación antes del @');
-                console.log(email[indexChar]);
             }
             emailDomain = email.slice(indexChar, email.lenght);
             console.log(emailDomain);
             if(emailDomain !== tecDomain ){
-                message.innerHTML = errorMessage;   
+                message.innerHTML = errorMessage;  
+                clearMessage(message); 
                 return false;
             }
 
@@ -54,4 +51,10 @@ function users(action, id) {
             alert('NO se encontró la opción');
             break;
     }
+}
+
+function clearMessage(message) {
+    setTimeout(() => {
+        message.innerHTML = "";
+    }, 3000);
 }
