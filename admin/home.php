@@ -31,10 +31,10 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
     <!-- Controllers JS -->
     <script src="../js/controllers/consultancies.js?v=12"></script>
     <script src="../js/controllers/users.js?v=3"></script>
-    <script src="../js/controllers/signatures.js?v=3"></script>
+    <script src="../js/controllers/signatures.js?v=4"></script>
     <!-- Custom JS -->
     <script src="../js/utils/custom-jquery.js"></script>
-    <script src="../js/utils/change-pages.js?v=3"></script>
+    <script src="../js/utils/change-pages.js?v=4"></script>
 
     <script>
         var mediaQuery = window.matchMedia('(min-width: 750px)');
@@ -88,7 +88,7 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
                     </li>
                 </a>
                 <a id="SignaturesStoredId" class="AsideBar-Anchor anchor-default flex align-center" 
-                    onclick="return show_SignaturesStored();">
+                    onclick="return load_page('signatures');">
                     <span class="List-Item-Span margin-right-10"></span>
                     <li class="margin-block-10">
                     <i class="fa-regular fa-floppy-disk margin-right-10"></i>

@@ -34,10 +34,10 @@
 
     <!-- Controllers JS -->
     <script src="../js/controllers/signatures.js?v=10"></script>
-    <script src="../js/controllers/consultancies.js?v=14"></script>
+    <script src="../js/controllers/consultancies.js?v=12"></script>
     <!-- Custom JS -->
-    <script src="../js/utils/pop-up-messages.js?v=3"></script>
-    <script src="../js/utils/change-pages.js"></script>
+    <script src="../js/utils/custom-jquery.js"></script>
+    <script src="../js/utils/change-pages.js?v=4"></script>
 </head>
 <body>
     <div class="Control-Panel-Container flex">
@@ -53,8 +53,18 @@
                         Inicio
                     </li>
                 </a>
+                <a 
+                    onclick="return load_page('excel');"
+                    id="ExcelId"
+                    class="AsideBar-Anchor anchor-default flex align-center">
+                    <span class="List-Item-Span margin-right-10"></span>
+                    <li class="margin-block-10">
+                        <i class="fa-regular fa-file-excel margin-right-10"></i>
+                        Registrar alumnos
+                    </li>
+               </a>
                <a 
-                    onclick="return show_Settings();"
+                    onclick="return load_page('settings');"
                     id="SettingsId"
                     class="AsideBar-Anchor anchor-default flex align-center">
                     <span class="List-Item-Span margin-right-10"></span>
@@ -91,14 +101,14 @@
                         <br>
 
                         <?php 
-                            include '../classes/signatures.php';
+                            include '../classes/class_signatures.php';
                         ?>
                     </section>
         
                     <section class="Assesories-Table-Section padding-20">
                         <h4 class="font-weight-400 margin-bottom-10">Asesorías recientes</h4>
                         <?php 
-                            include '../classes/consultancies.php';
+                            include '../classes/class_consultancies.php';
                         ?>
                     </section>
                 </div>

@@ -7,18 +7,15 @@ function consultancies(action, id) {
             $.dialog({
                 title: 'Registro de una nueva asesoría',
                 columnClass: 'col-7',
-                content: `url: http://localhost/asesorias/classes/consultancies.php?action=${action}&clave=${id}`,
-                // content: `url: ../../classes/signatures.php?action=${action}`,
+                content: `url: ../classes/class_consultancies.php?action=${action}&clave=${id}`,
                 onContentReady: function () {
                     ventFrame = this;
                 },
             });
-            break;
+        break;
         case 'select_signatures_consultancies':
-            console.log('MUESTRA LAS ASESOS´RIAS DE LA MATERIA 5: '+id);
             $.ajax({
-                url: `http://localhost/asesorias/classes/consultancies.php?clave=${id}`,
-                // url: `../../classes/consultancies.php?clave=${id}`,
+                url: `../classes/class_consultancies.php?clave=${id}`,
                 type: "post",
                 data: {action: "displayData_signature"},
                 success: function(htmlResponse){
@@ -27,7 +24,7 @@ function consultancies(action, id) {
                 },
                 error: function(err){ console.log(JSON.stringify(err)); },
             });
-            break;
+        break;
         case 'insert_consultancie':
             errorMessage = '<p class="text-align-center font-weight-600" style="color: #c80004; font-size:15px;">Favor de llenar cada uno de los campos.</p>';
 
@@ -38,7 +35,7 @@ function consultancies(action, id) {
 
             formData = new FormData(document.getElementById("form_constultancie"));
             $.ajax({
-                url: "http://localhost/asesorias/classes/consultancies.php",
+                url: "../classes/class_consultancies.php",
                 type: "post",
                 dataType: "html",
                 data: formData,
@@ -47,7 +44,7 @@ function consultancies(action, id) {
                 processData: false,
                 success: function (htmlResponse) {
                     ventFrame.close();
-                    Assesories_Table.innerHTML = htmlResponse; // Si necesitas actualizar la página
+                    Assesories_Container.innerHTML = htmlResponse; // Si necesitas actualizar la página
                 },
                 error: function (xhr, status, error) {
                     console.log('Petición para insert de asesoría salió mal');
@@ -61,8 +58,7 @@ function consultancies(action, id) {
         case 'searchStudent': // searchStudentSignature
             student = consultanciesInput.value;
             $.ajax({
-                url: `http://localhost/asesorias/classes/consultancies.php?clave=${id}&studentSearched=${student}`,
-                //url: `../../classes/consultancies.php?clave=${id}`,
+                url: `../classes/class_consultancies.php?clave=${id}&studentSearched=${student}`,
                 type: "post",
                 data: {action: "searchStudent"},
                 success: function(htmlResponse){

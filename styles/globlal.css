@@ -175,9 +175,9 @@
 }
 
 .grid-container {
-    display: grid;
-	justify-items: center;
+	display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	justify-items: center;
 }
 .select-items div:hover{
 	background-color: var(--secondary-blue);

@@ -6,11 +6,11 @@ var titleDialog;
 function signatures(action, id) {
     switch (action) {
         case 'formEdit':
-            dilaogContent = `url: http://localhost/asesorias/classes/signatures.php?action=${action}&clave=${id}`;
+            dilaogContent = `url: ../classes/class_signatures.php?action=${action}&clave=${id}`;
             titleDialog = 'Edición de materia';
         case 'formNew':
             if(action === 'formNew'){
-                dilaogContent = `url: http://localhost/asesorias/classes/signatures.php?action=${action}`;
+                dilaogContent = `url: ../classes/class_signatures.php?action=${action}`;
                 titleDialog = 'Registro de una nueva materia';
             }
             custom_dialog(titleDialog, dilaogContent );
@@ -27,7 +27,7 @@ function signatures(action, id) {
         case "update_signature": 
             formData = new FormData(document.getElementById("form_signature"));
             $.ajax({
-                    url: "http://localhost/asesorias/classes/signatures.php",
+                    url: "../classes/class_signatures.php",
                     type: "post",
                     dataType: "html",
                     data: formData,
@@ -48,7 +48,7 @@ function signatures(action, id) {
 
             confirm_function = function(){
                 $.ajax({
-                    'url': 'http://localhost/asesorias/classes/signatures.php',
+                    'url': '../classes/class_signatures.php',
                     'type': 'post',
                     'data': { 'action': action, signature_Id: id },
                     'success': function (htmlResponse) {
@@ -83,7 +83,7 @@ function signatures(action, id) {
         case 'storeContent':
             store_function = function(){
                 $.ajax({
-                    url: "http://localhost/asesorias/classes/consultancies.php",
+                    url: "../classes/consultancies.php",
                     type: "post",
                     data: { action: action, clave: id },
                     success: function (htmlResponse) {

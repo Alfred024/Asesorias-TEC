@@ -23,7 +23,7 @@
 
 		<div class="Form-Container flex center-flex-xy width-100 height-full">
 
-			<form method="post" action="./classes/access.php" class="Form box-shadow-dark flex-column justify-center bg-light-gray border-radius-30">
+			<form method="post" action="./classes/class_access.php" class="Form box-shadow-dark flex-column justify-center bg-light-gray border-radius-30">
 				<h4 class="width-fit font-weight-600 margin-auto" >Registro </h4>
 				<hr class="margin-y-5">
 

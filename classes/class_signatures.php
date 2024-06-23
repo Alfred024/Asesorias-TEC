@@ -128,15 +128,17 @@
                         gr.grupo,
                         gr.clave, 
                         gr.año,
+                        pe.periodo,
                         us.id_usuario
                     from grupo_archivado gr 
                     left join materia ma on ma.id_materia = gr.id_materia
+                    left join periodo pe on pe.id_periodo = gr.id_periodo
                     left join usuario us on gr.id_usuario = us.id_usuario; -- Dato necesario si queremos concoer quién la impartió';
+                    $this->display_page($query_param);
                 break;
             }
         }
 
-        // AGREGAR BOTÓN PARA EDITAR
         function displayData($query_param){
             $consultanciesContainerStart = '<div id="SubjectsCardsContainerId" class="Subjects-Card-Container flex overflow-auto width-90">';
             $this->getRecord($query_param);
@@ -199,6 +201,40 @@
                     <option value="' .$registerRow['nombre'] . '">' . $registerRow['nombre'] . '</option>';
             }
             return $signatures;
+        }
+
+        function display_page($query_param) {
+            $this->getRecord($query_param);
+
+            $res = '
+                <h4 class="font-weight-400 padding-10">Materias archivadas</h4>
+                <div class="grid-container margin gap-20">';
+            $signatures_stored = '';
+
+            foreach ($this->registrersBlock as $registerRow) { 
+                $signatures_stored .= '
+                    <div class="Subject-Card-Stored bg-primary-blue border-radius-30 text-white overflow-hidden flex-column justify-between" style="font-size: 14px;">
+                        <div class="flex-column justify-around padding-10" style="height: 80%;">
+                            <p>Materia: '.$registerRow["nombre"].'</p>
+                            <div class="flex justify-between">
+                                <p class="text-light">GRUPO: '.$registerRow["grupo"].'</p>
+                                <p>Clave: '.$registerRow["clave"].'</p>
+                            </div>
+                            <div class="flex justify-between">
+                                <p>Año: '.$registerRow["año"].'</p>
+                                <p>Periodo: '.$registerRow["periodo"].'</p>
+                            </div>
+                        </div>
+                        <button class="bg-white border-none cursor-pointer" style="height: 20%;">
+                            Descargar reporte
+                            <i class="fa-solid fa-download margin-left-5"></i>
+                        </button>
+                        <input type="hidden" name="signature_key" value="'.$registerRow["clave"].'">
+                    </div>
+                ';
+            }
+            $res .= $signatures_stored.'</div>';
+            echo($res);
         }
         
         function getId_signature($signature_name) : int{
