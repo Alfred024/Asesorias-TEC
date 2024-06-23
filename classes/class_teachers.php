@@ -1,6 +1,6 @@
 <?php
     if (!isset($_SESSION)) session_start();
-    if (!class_exists("PDFS")) include "../classes/pdfs.php";
+    if (!class_exists("PDFS")) include "../classes/class_pdfs.php";
     if (!class_exists("Class_Database")) include "../classes/class_database.php";
 
     class Teachers extends Class_Database{
