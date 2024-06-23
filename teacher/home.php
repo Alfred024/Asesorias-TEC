@@ -84,7 +84,7 @@
         </aside>
     
         <div class="bg-light-gray flex-column justify-between width-100 height-full overflow-auto">
-            <main class="overflow-auto">
+            <main class="overflow-auto height-100">
                 <section class="bg-primary-blue flex justify-between" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                     <h4 class="Page-Title text-white align-self-center margin-left-5">Panel de control maestro</h4>
                     <img class="Logo-Tecnm border-radius-full" src="../assets/LOGO-BLANCO-VERTICAL-TECNM.png" alt="Profile picture">
@@ -95,7 +95,7 @@
                 </section>
     
                 <!-- SUBJECTS CARD SECTION -->
-                <div id="workArea">
+                <div class="height-90" id="workArea">
                     <section class="Subject-Section padding-20 relative">
                         <h4 class="font-weight-400">Materias registradas</h4>
                         <br>

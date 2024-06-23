@@ -213,7 +213,7 @@
 
             foreach ($this->registrersBlock as $registerRow) { 
                 $signatures_stored .= '
-                    <div class="Subject-Card-Stored bg-primary-blue border-radius-30 text-white overflow-hidden flex-column justify-between" style="font-size: 14px;">
+                    <div class="Subject-Card-Stored bg-primary-purple border-radius-30 text-white overflow-hidden flex-column justify-between" style="font-size: 14px;">
                         <div class="flex-column justify-around padding-10" style="height: 80%;">
                             <p>Materia: '.$registerRow["nombre"].'</p>
                             <div class="flex justify-between">

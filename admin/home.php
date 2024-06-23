@@ -116,7 +116,7 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
         </aside>
 
         <div class="bg-light-gray flex-column justify-between width-100 height-full overflow-auto">
-            <main class="overflow-auto">
+            <main class="overflow-auto height-100">
 
                 <section class="bg-primary-blue flex justify-between" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                     <h4 class="Page-Title text-white align-self-center margin-left-5">Panel de control jefe de departamento</h4>
@@ -128,7 +128,7 @@ if (!isset($_SESSION['session_email']) || $_SESSION['admin'] !== TRUE) {
                 </section>
 
                 <!-- <div id="workArea" class="flex-column center-flex-xy padding-20"> -->
-                <div id="workArea">
+                <div class="height-90" id="workArea">
                     <div style="width: 200px; margin-left: 20px;" class="flex margin-y-5 box-shadow-light border-radius-10 padding-10 bg-white place-self-end">
                         <i class="fa-solid fa-magnifying-glass margin-right-5 color-primary-blue"></i>
                         <input onkeypress="return users('searchTeacher')" id="searchTeacherInput" class="border-none" type="text" placeholder="Buscar maestro">

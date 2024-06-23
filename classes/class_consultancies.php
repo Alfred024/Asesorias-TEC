@@ -110,7 +110,7 @@ class Consultancies extends Class_Database
                     WHERE ase.clave = "' . $signature_key . '" ';
 
                 echo ('
-                    <div class="flex-column height-90 padding-20 relative" style="padding-top: 10px;">
+                    <div class="flex-column padding-20 relative" style="padding-top: 10px;">
                         <div class="Assesories-Interacitve-Container flex justify-between margin-bottom-10">
                             <div class="Filters-Items-Container flex align-center margin-bottom-10">
                                 <div class="Teacher-Name-Filter height-fit align-center overflow-hidden flex box-shadow-light border-radius-10 padding-5 bg-white">
@@ -152,7 +152,7 @@ class Consultancies extends Class_Database
                 echo ('</div>
                     <a 
                         class="Btn-Primary-Blue absolute right-0 bg-primary-blue text-white border-radius-10 padding-10 border-none" style="bottom: 40px;"
-                        target="_blank"  href="http://localhost/asesorias/classes/pdfs.php?id=' . $signature_key . '" >
+                        target="_blank"  href="http://localhost/asesorias/classes/class_pdfs.php?id=' . $signature_key . '" >
                             Generar reporte de asesorías
                             <i class="fa-solid fa-download margin-left-5"></i>
                         </a>
