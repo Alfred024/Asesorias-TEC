@@ -86,6 +86,24 @@
 									</span>'
 								);
 							break;
+							case '6':
+								echo(
+									'<span 
+										class="text-secondary-blue margin-top-10"
+										style="font-size: 15px; font-weight:600; text-align: center;">
+										Confirma la creación de tu cuenta ingresando a tu correo 
+									</span>'
+								);
+							break;
+							case '7':
+								echo(
+									'<span 
+										class="text-secondary-blue margin-top-10"
+										style="font-size: 15px; font-weight:600; text-align: center;">
+										Confirmación de la cuenta realizada con éxito
+									</span>'
+								);
+							break;
 							case '9':
 								echo(
 									'<span 

@@ -24,6 +24,9 @@ class Access extends Class_Database
             case 'register':
                 $this->register();
                 break;
+            case 'validateAccount':
+                $this->validateAccount();
+                break;
             case 'passwordRecover':
                 # code...
                 break;
@@ -35,30 +38,35 @@ class Access extends Class_Database
         $password = $_POST['password'];
         $captcha = $_POST['captcha'];
 
-        // TODO: Método comprobar que los campos no estén vaciós
         if ($email != null && $password != null && $captcha != null) {
             if ($this->emailRegistered($email)) {
+                // TODO: VALIDAR QUE EL USUARIO NO TENGA UN TOKEN DE CONFIRMACIÓN
+                
                 $querySelectUser = "select * from usuario where email='{$email}'";
                 $user = $this->getRecord($querySelectUser);
 
+                //if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
                 if ($this->registersNum == 1) {
-                    //if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
-                    $_SESSION['session_user_id'] = $user->id_usuario;
-                    $_SESSION['session_email'] = $user->email;
-                    $_SESSION['session_password'] = $user->contrasena;
-                    $_SESSION['session_username'] = $user->nombres;
-                    //echo($user->id_rol);
-
-                    // TODO: Arreglar B.D. y evaluar el tipo de usuario
-                    // ES MAESTRO
-                    if ($user->id_rol == 1) {
-                        $_SESSION['admin'] = FALSE;
-                        header("location: ../teacher/home.php");
-                    }
-                    // ES ADMIN
-                    else {
-                        $_SESSION['admin'] = TRUE;
-                        header("location: ../admin/home.php");
+                    if(isset($user->token_activacion)){
+                        header("location: ../index.php?m=6"); // Checa tu email para verificar tu cuenta antes de ingresar
+                    }else{
+                        $_SESSION['session_user_id'] = $user->id_usuario;
+                        $_SESSION['session_email'] = $user->email;
+                        $_SESSION['session_password'] = $user->contrasena;
+                        $_SESSION['session_username'] = $user->nombres;
+                        //echo($user->id_rol);
+    
+                        // TODO: Arreglar B.D. y evaluar el tipo de usuario
+                        // ES MAESTRO
+                        if ($user->id_rol == 1) {
+                            $_SESSION['admin'] = FALSE;
+                            header("location: ../teacher/home.php");
+                        }
+                        // ES ADMIN
+                        else {
+                            $_SESSION['admin'] = TRUE;
+                            header("location: ../admin/home.php");
+                        }
                     }
                 } else {
                     header("location: ../index.php?m=3"); // Datos inválidos, pruebe a escribir los datos de nuevo
@@ -90,6 +98,11 @@ class Access extends Class_Database
                 header("location: ../register.php?m=2"); // El usuario ya está registrado
             } else {
                 ob_start();
+
+                // Se crea el hash de activación
+                $activation_token = bin2hex(random_bytes(16));
+                $activation_token_hash = hash("sha256", $activation_token);
+
                 $mail = new PHPMailer();
                 $mail->IsSMTP();
                 $mail->Host = "smtp.gmail.com";
@@ -111,7 +124,7 @@ class Access extends Class_Database
 
                         <p style="text-align:center;">Para confirmar la creación del usuario, por favor oprima el botón.</p><br>
 
-                        <button style="width: 200px; padding: 10px; border-radius: 10px; margin:auto; background-color: #1B396A; color: white; border:none; cursor:pointer;">Confirmar</button>
+                        <a href="https://tigger.celaya.tecnm.mx/AsesoriasInd/classes/class_access.php?action=validateAccount&token='.$activation_token.'" style="width: 200px; padding: 10px; border-radius: 10px; margin:auto; background-color: #1B396A; color: white; border:none; cursor:pointer;">Confirmar</a>
                     </article>');
                 $mail->AddAddress($email); // ???
 
@@ -124,23 +137,33 @@ class Access extends Class_Database
                     $id_user = 1;
                     $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
                     $queryInsertUser = '
-                    insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena)
-                    values ("'.$id_user.'", "'.$email.'", "'.$names.'", "'.$last_name.'", "'.$second_last_name.'", "'.$encryptedPassword.'");';
+                    insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena, token_activacion)
+                    values ("'.$id_user.'", "'.$email.'", "'.$names.'", "'.$last_name.'", "'.$second_last_name.'", "'.$encryptedPassword.'", "'.$activation_token_hash.'");';
                     $this->query($queryInsertUser);
                     header('location: ../register.php?m=4');
-
-
-                    // $insert_consultancie_query = '
-                    // insert into asesoria
-                    // (tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave)
-                    // values ("' . $tema . '", "' . $competencia . '", "' . $description . '", "' . $user_id . '", "' . $user_id_toma . '", "' . $signature_key . '");';
-
-                    // $this->query($insert_consultancie_query);
                 }
                 ob_end_flush();
             }
         } else {
             header("location: ../register.php?m=1");  // Llenar todos los campos
+        }
+    }
+
+    function validateAccount(){
+        $token = $_GET['token'];
+        $token_hash = hash("sha256", $token);
+
+        $searchUser = '
+            select * from usuario where token_activacion = "'.$token_hash.'"
+        ';
+        $user = $this->getRecord($searchUser);
+
+        if($this->registersNum == 1){
+            $update_user = 'update usuario set token_activacion = NULL where id_usuario = "'.$user->id_usuario.'"';
+            $this->query($update_user);
+            header("location: ../index.php?m=7"); // Confirmación de cuenta realizada correctamente
+        }else{
+            echo('ALGO SALIÓ MAL CONFIMRNADO EL TOKEN');
         }
     }
 
