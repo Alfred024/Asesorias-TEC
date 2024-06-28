@@ -112,7 +112,7 @@
 									'<span 
 										class="text-secondary-blue margin-top-10"
 										style="font-size: 15px; font-weight:600; text-align: center;">
-										El registro se realizó con éxito
+										El registro se realizó con éxito, checa tu correo para confirmar tu cuenta
 									</span>'
 								);
 							break;

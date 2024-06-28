@@ -23,28 +23,28 @@ function users(action, id) {
             const email = emailId.value;
             indexChar = 0;
 
-            while ( indexChar < email.length && email[indexChar] !== "." ) {
-                if(!dictionary.includes(email[indexChar])){
-                    message.innerHTML = errorMessage;
-                    clearMessage(message);
-                    return false;
-                }indexChar++;
-            }
-            indexChar++;
-            while ( indexChar < email.length && email[indexChar] !== "@" ) {
-                if(!dictionary.includes(email[indexChar])){
-                    message.innerHTML = errorMessage;
-                    clearMessage(message);
-                    return false;
-                }indexChar++;
-            }
-            emailDomain = email.slice(indexChar, email.lenght);
-            console.log(emailDomain);
-            if(emailDomain !== tecDomain ){
-                message.innerHTML = errorMessage;  
-                clearMessage(message); 
-                return false;
-            }
+            // while ( indexChar < email.length && email[indexChar] !== "." ) {
+            //     if(!dictionary.includes(email[indexChar])){
+            //         message.innerHTML = errorMessage;
+            //         clearMessage(message);
+            //         return false;
+            //     }indexChar++;
+            // }
+            // indexChar++;
+            // while ( indexChar < email.length && email[indexChar] !== "@" ) {
+            //     if(!dictionary.includes(email[indexChar])){
+            //         message.innerHTML = errorMessage;
+            //         clearMessage(message);
+            //         return false;
+            //     }indexChar++;
+            // }
+            // emailDomain = email.slice(indexChar, email.lenght);
+            // console.log(emailDomain);
+            // if(emailDomain !== tecDomain ){
+            //     message.innerHTML = errorMessage;  
+            //     clearMessage(message); 
+            //     return false;
+            // }
 
         return true;
         default:

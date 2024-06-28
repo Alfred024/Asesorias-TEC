@@ -1,5 +1,7 @@
 <?php
 
+if (!class_exists("Class_Database")) include "../classes/class_database.php";
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -8,7 +10,7 @@ require '../resources/mailer/src/SMTP.php';
 require '../resources/mailer/src/PHPMailer.php';
 require '../resources/mailer/src/Exception.php';
 
-include './class_database.php';
+// include './class_database.php';
 session_start();
 
 class Access extends Class_Database
@@ -28,8 +30,7 @@ class Access extends Class_Database
         }
     }
 
-    function login()
-    {
+    function login(){
         $email = $_POST['email'];
         $password = $_POST['password'];
         $captcha = $_POST['captcha'];
@@ -41,7 +42,7 @@ class Access extends Class_Database
                 $user = $this->getRecord($querySelectUser);
 
                 if ($this->registersNum == 1) {
-                //if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
+                    //if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
                     $_SESSION['session_user_id'] = $user->id_usuario;
                     $_SESSION['session_email'] = $user->email;
                     $_SESSION['session_password'] = $user->contrasena;
@@ -70,8 +71,7 @@ class Access extends Class_Database
         }
     }
 
-    function register()
-    {
+    function register(){
         $names = $_POST['names'];
         $last_name = $_POST['last_name'];
         $second_last_name = $_POST['second_last_name'];
@@ -89,35 +89,55 @@ class Access extends Class_Database
             if ($this->emailRegistered($email)) {
                 header("location: ../register.php?m=2"); // El usuario ya está registrado
             } else {
+                ob_start();
                 $mail = new PHPMailer();
                 $mail->IsSMTP();
-                $mail->Host="smtp.gmail.com"; 
-                $mail->SMTPSecure = 'ssl'; 
-                $mail->Port = 465;    
-                $mail->SMTPDebug  = 4;  
+                $mail->Host = "smtp.gmail.com";
+                $mail->SMTPSecure = 'ssl';
+                $mail->Port = 465;
+                $mail->SMTPDebug  = 4;
                 $mail->SMTPAuth = true;
-                $mail->Username =   "alfredo.jimeneztellez9@gmail.com"; 
-                $mail->Password = "pbek epkc njxn repo";  
-                  
-                $mail->From="21030761@itcelaya.edu.mx"; // ???
-                $mail->FromName="ADMIN BASTA"; // ???
-                $mail->Subject = "Registro de sistema basta completo";
-                $mail->MsgHTML("<h1>BIENVENIDO</h1>");
+                $mail->Username =   "alfredo.jimeneztellez9@gmail.com";
+                $mail->Password = "pbek epkc njxn repo";
+
+                $mail->From = "21030761@itcelaya.edu.mx"; // ???
+                $mail->FromName = "Asesorias Dpto. Industrial"; // ???
+                $mail->Subject = "Confirmacion de creacion de cuenta";
+                $mail->MsgHTML('
+                    <article
+                        style="background-color: #f0efef; margin: 10px; display: flex; flex-direction:column; justify-content: center; padding: 20px; border-block: solid 4px #1B396A; ">
+
+                        <h4 style="text-align:center;">Bienvenido al Sistema de Asesorías del Departamento de Ingeniería Industrial</h1><br>
+
+                        <p style="text-align:center;">Para confirmar la creación del usuario, por favor oprima el botón.</p><br>
+
+                        <button style="width: 200px; padding: 10px; border-radius: 10px; margin:auto; background-color: #1B396A; color: white; border:none; cursor:pointer;">Confirmar</button>
+                    </article>');
                 $mail->AddAddress($email); // ???
-    
-    
-                if (!$mail->send()){
+
+
+                if (!$mail->send()) {
                     // echo  "Error sending the email: " . $mail->ErrorInfo;
-                    header("location: ../register.php?m=3"); 
-                } else { 
+                    header("location: ../register.php?m=3");
+                } else {
+                    // Espera a que el usuario confirme el correo para que haga el insert
+                    $id_user = 1;
                     $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
-                    $queryInsertUser = "insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena)
-                            values (1, '{$email}', '{$names}', '{$last_name}', '{$second_last_name}', '{$encryptedPassword}');";
+                    $queryInsertUser = '
+                    insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena)
+                    values ("'.$id_user.'", "'.$email.'", "'.$names.'", "'.$last_name.'", "'.$second_last_name.'", "'.$encryptedPassword.'");';
                     $this->query($queryInsertUser);
                     header('location: ../register.php?m=4');
-                }
 
-                
+
+                    // $insert_consultancie_query = '
+                    // insert into asesoria
+                    // (tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave)
+                    // values ("' . $tema . '", "' . $competencia . '", "' . $description . '", "' . $user_id . '", "' . $user_id_toma . '", "' . $signature_key . '");';
+
+                    // $this->query($insert_consultancie_query);
+                }
+                ob_end_flush();
             }
         } else {
             header("location: ../register.php?m=1");  // Llenar todos los campos

@@ -33,7 +33,7 @@
         function display_page($query){
             $user = $this->getRecord($query); // Obtenemos datos del usuario
             echo('
-                <div class="bg-white margin-auto padding-20 bg-white border-radius-10 box-shadow-light" style="max-width: 600px;">
+                <div class="bg-white height-100 margin-auto padding-20 bg-white border-radius-10 box-shadow-light" style="max-width: 600px;">
                     <h2 class="color-primary-blue text-align-center margin-bottom-10">Configuración del Perfil</h2>
 
                     <!-- Editar Foto de Perfil -->
