@@ -107,7 +107,8 @@
                 break;
                 case 'displayData':
                     $user_id=$_SESSION['session_user_id'];
-                    $query_param = 'select
+                    $query_param = 
+                    'select
                         ma.id_materia,
                         ma.nombre,
                         gr.grupo,

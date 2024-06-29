@@ -1,5 +1,6 @@
 <?php
 
+if (!isset($_SESSION)) session_start();
 if (!class_exists("Class_Database")) include "../classes/class_database.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -11,9 +12,8 @@ require '../resources/mailer/src/PHPMailer.php';
 require '../resources/mailer/src/Exception.php';
 
 // include './class_database.php';
-session_start();
 
-class Access extends Class_Database
+class Class_Access extends Class_Database
 {
     function action($action_case)
     {
@@ -29,6 +29,12 @@ class Access extends Class_Database
                 break;
             case 'passwordRecover':
                 # code...
+                break;
+            case 'sendEmail':
+                $email_html = $_REQUEST['email_html'];
+                $email_destination = $_REQUEST['email'];
+                $email_subject = $_REQUEST['email_subject'];
+                $this->sendEmail($email_html, $email_destination, $email_subject);
                 break;
         }
     }
@@ -103,33 +109,20 @@ class Access extends Class_Database
                 $activation_token = bin2hex(random_bytes(16));
                 $activation_token_hash = hash("sha256", $activation_token);
 
-                $mail = new PHPMailer();
-                $mail->IsSMTP();
-                $mail->Host = "smtp.gmail.com";
-                $mail->SMTPSecure = 'ssl';
-                $mail->Port = 465;
-                $mail->SMTPDebug  = 4;
-                $mail->SMTPAuth = true;
-                $mail->Username =   "alfredo.jimeneztellez9@gmail.com";
-                $mail->Password = "pbek epkc njxn repo";
-
-                $mail->From = "21030761@itcelaya.edu.mx"; // ???
-                $mail->FromName = "Asesorias Dpto. Industrial"; // ???
-                $mail->Subject = "Confirmacion de creacion de cuenta";
-                $mail->MsgHTML('
-                    <article
+                $emailHTML = 
+                    '<article
                         style="background-color: #f0efef; margin: 10px; display: flex; flex-direction:column; justify-content: center; padding: 20px; border-block: solid 4px #1B396A; ">
 
-                        <h4 style="text-align:center;">Bienvenido al Sistema de Asesorías del Departamento de Ingeniería Industrial</h1><br>
+                        <h4 style="text-align:center;">Bienvenido al Sistema de Asesorías del Departamento de Ingeniería Industrial</h4><br>
 
                         <p style="text-align:center;">Para confirmar la creación del usuario, por favor oprima el botón.</p><br>
 
                         <a href="https://tigger.celaya.tecnm.mx/AsesoriasInd/classes/class_access.php?action=validateAccount&token='.$activation_token.'" style="width: 200px; padding: 10px; border-radius: 10px; margin:auto; background-color: #1B396A; color: white; border:none; cursor:pointer;">Confirmar</a>
-                    </article>');
-                $mail->AddAddress($email); // ???
+                    </article>';
+                
+                
 
-
-                if (!$mail->send()) {
+                if (!$this->sendEmail($emailHTML, $email, "Confirmacion de creacion de cuenta")) {
                     // echo  "Error sending the email: " . $mail->ErrorInfo;
                     header("location: ../register.php?m=3");
                 } else {
@@ -167,12 +160,10 @@ class Access extends Class_Database
         }
     }
 
-    function passwordRecover()
-    {
+    function passwordRecover(){
     }
 
-    function emailRegistered($email): bool
-    {
+    function emailRegistered($email): bool{
         $querySelectUser = "select * from usuario where email='{$email}'";
         $this->getRecord($querySelectUser);
         if ($this->registersNum == 1) {
@@ -180,9 +171,37 @@ class Access extends Class_Database
         }
         return FALSE;
     }
+
+    // function sendEmail($email_html, $email_destination, $email_subject) : bool {
+    //     $mail = new PHPMailer();
+    //     $mail->IsSMTP();
+    //     $mail->Host = "smtp.gmail.com";
+    //     $mail->SMTPSecure = 'ssl';
+    //     $mail->Port = 465;
+    //     $mail->SMTPDebug  = 4;
+    //     $mail->SMTPAuth = true;
+    //     $mail->Username =   "alfredo.jimeneztellez9@gmail.com";
+    //     $mail->Password = "pbek epkc njxn repo";
+
+    //     $mail->From = "21030761@itcelaya.edu.mx"; // ???
+    //     $mail->FromName = "Asesorias Dpto. Industrial"; // ???
+    //     $mail->Subject = $email_subject;
+    //     $mail->MsgHTML($email_html);
+    //     $mail->AddAddress($email_destination); 
+
+    //     return $mail->send();
+    // }
+
+    function sendEmail($email_html, $email_destination, $email_subject){
+        echo('EMAIL SENDED TO '.$email_destination.'');
+        echo('EMAIL HTML: '.$email_html.'');
+        echo('EMAIL SUBJECT: '.$email_subject.'');
+    }
 }
 
-$access = new Access();
+$access = new Class_Access();
 if (isset($_REQUEST['action'])) {
     echo $access->action($_REQUEST['action']);
 }
+
+?>

@@ -13,6 +13,7 @@
         var $database;
         var $registrersBlock;
         var $registersNum; 
+        var $registerId;
 
         function __construct(){
             $this-> password=getenv('DB_PASSWORD');  
@@ -44,7 +45,7 @@
                 $this->registrersBlock=mysqli_query($this->connection,$query_param);
                 if(strpos('select', strtolower($query_param)) === true){
                     $this->registersNum=mysqli_num_rows($this->registrersBlock); // Creo que está sentencia no funciona
-                };
+                }
             } catch (Exception $e) {
                 echo('Error doing the query: ');
                 var_dump($e);
@@ -60,20 +61,18 @@
             return mysqli_fetch_object($this->registrersBlock);
         }
 
-        // function getFields(&$campos){
-        //     //$info = "";
-        //     $campos=array();
-        //     //for($campoN=0; $campoN<mysqli_num_fields($this->registersNum); $campoN++){
-        //     for($campoN=0; $campoN<2; $campoN++){
-        //         $campo=mysqli_fetch_field_direct($this->registrersBlock ,$campoN);
-        //         $tabla=$campo->table;
-        //         array_push($campos,$campo->name);
-        //         //$info.=$campo->name;
-        //     }
-        //     // echo('INFO');
-        //     // echo($info);
-        //     return $campos;
-        // }
+        function getIdOfQuery($query_param) {
+            $this->open();
+            try {
+                $this->registrersBlock=mysqli_query($this->connection,$query_param);
+                $this->registerId = mysqli_insert_id($this->connection);
+            } catch (Exception $e) {
+                echo('Error doing the query: ');
+                var_dump($e);
+            }
+            $this->close();
+        }
+
         function getFields(&$campos){
             $num_campos = mysqli_num_fields($this->registrersBlock);
             for($campoN=0; $campoN<$num_campos; $campoN++){

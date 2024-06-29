@@ -3,6 +3,7 @@
 if (!isset($_SESSION)) session_start();
 if (!class_exists("PDFS")) include "../classes/class_pdfs.php";
 if (!class_exists("Class_Database")) include "../classes/class_database.php";
+if (!class_exists("Class_Access")) include "../classes/class_access.php";
 
 class Consultancies extends Class_Database
 {
@@ -69,11 +70,13 @@ class Consultancies extends Class_Database
 
                 break;
             case 'insert_consultancie':
+                $user_id_toma = $_REQUEST['alumno'];
+                // $student_email = $this->getUserEmailById($user_id_toma);
+                
                 $tema = $_REQUEST['tema'];
                 $description = $_REQUEST['descripcion'];
                 $competencia = $_REQUEST['competencia'];
                 $user_id = $_SESSION['session_user_id'];
-                $user_id_toma = $_REQUEST['alumno'];
                 $signature_key = $_REQUEST['clave'];
 
                 $insert_consultancie_query = '
@@ -81,19 +84,8 @@ class Consultancies extends Class_Database
                     (tema, competencia, descripcion, id_usuario_imparte, id_usuario_toma, clave)
                     values ("' . $tema . '", "' . $competencia . '", "' . $description . '", "' . $user_id . '", "' . $user_id_toma . '", "' . $signature_key . '");';
 
-                $this->query($insert_consultancie_query);
-
-                $query_param =
-                    'SELECT
-                        concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
-                        ase.competencia,
-                        ase.tema,
-                        ase.descripcion,
-                        ase.fecha
-                    FROM asesoria AS ase
-                    JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
-                    WHERE ase.clave = "' . $signature_key . '" ';
-                $this->displayData($query_param);
+                $this->getIdOfQuery($insert_consultancie_query);
+                return $this->registerId;
                 break;
             case 'displayData_signature':
                 // $admin =  $_SESSION['admin'];
@@ -107,7 +99,8 @@ class Consultancies extends Class_Database
                         ase.fecha
                     FROM asesoria AS ase
                     JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
-                    WHERE ase.clave = "' . $signature_key . '" ';
+                    WHERE ase.clave = "' . $signature_key . '"; ';
+                    // and ase.confirmada = TRUE
 
                 echo ('
                     <div class="flex-column padding-20 relative" style="padding-top: 10px;">
@@ -160,19 +153,18 @@ class Consultancies extends Class_Database
                 break;
             case 'displayData_recent':
                 $user_id = $_SESSION['session_user_id'];
-
+                
                 $query_param =
-                    'SELECT
+                    'select
                         concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
                         ase.competencia,
                         ase.tema,
                         ase.descripcion,
                         ase.fecha
-                    FROM asesoria AS ase
-                    JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
-                    where ase.id_usuario_imparte = ' . $user_id . '
-                    order by 5 desc
-                    limit 8;';
+                    from asesoria ase
+                    join usuario usu ON ase.id_usuario_toma = usu.id_usuario
+                    where ase.id_usuario_imparte = '.$user_id.'
+                    order by 5 desc limit 8;';
                 $this->displayData($query_param);
                 break;
             case 'searchStudent':
@@ -219,11 +211,18 @@ class Consultancies extends Class_Database
                 $_REQUEST['action'] = 'displayData';
                 include './class_teachers.php';
                 break;
+            case 'getUserEmail':
+                $user_id = $_REQUEST['id_student'];
+                $this->getUserEmailById($user_id);
+                break;
+            case 'confirmConsultancie':
+                $id_consultancie = $_REQUEST['id_consultancie_created'];
+                $this->confirmConsultancie($id_consultancie);
+                break;
         }
     }
 
-    function displayData($query_param)
-    {
+    function displayData($query_param){
         // $user_id=$_SESSION['session_user_id'];
         $this->getRecord($query_param);
 
@@ -286,6 +285,7 @@ class Consultancies extends Class_Database
         $this->getRecord('
             select
                 us.id_usuario,
+                us.email,
                 concat(us.nombres, " ",us.apellido_paterno, " ",us.apellido_materno) as alumno
             from usuario us
             where us.id_rol = 3;');
@@ -298,10 +298,15 @@ class Consultancies extends Class_Database
         return $students;
     }
 
-    function getUserIdByCtrlNum($user_ctrl_num): int
-    {
+    function getUserEmailById($user_id){
+        $query_param = 'select email from usuario where id_usuario = '.$user_id.'';
+        $res = $this->getRecord($query_param);
+        echo $res->email;
+    }
 
-        return 0;
+    function confirmConsultancie($id_consultancie){
+        $update_concultancie = 'update asesoria set confirmada = TRUE where id_asesoria = "'.$id_consultancie.'"';
+        $this->query($update_concultancie);
     }
 }
 
