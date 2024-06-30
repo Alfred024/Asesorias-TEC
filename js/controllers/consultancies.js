@@ -1,6 +1,6 @@
 var ventFrame = '';
 
-function consultancies(action, id) {
+async function consultancies(action, id) {
 
     switch (action) {
         case 'formNew':
@@ -31,7 +31,7 @@ function consultancies(action, id) {
             const id_student = formData.get('alumno');
             let id_consultancie_created;
             
-            $.ajax({
+            await $.ajax({
                 url: "../classes/class_consultancies.php",
                 type: "post",
                 dataType: "html",
@@ -39,7 +39,7 @@ function consultancies(action, id) {
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (response) {
+                success: async function (response) {
                     ventFrame.close();
                     id_consultancie_created = response;
                     alert_message('Asesoría registrada', 'Espere a que el alumno la confirme para verla reflejada en su pantalla.', 'blue');
@@ -49,7 +49,8 @@ function consultancies(action, id) {
                     ventFrame.close();
                 },
             });
-            
+
+            console.log(`CONSULTANCE CREATED: ${id_consultancie_created}`);
             
             post_req(
                 "../classes/class_consultancies.php",
@@ -67,7 +68,7 @@ function consultancies(action, id) {
 
                                 <h4 style="text-align:center;">Para confirmar que asisitió a la asesoría registrada por su maestro, por favor oprima el botón.</h4><br>
 
-                                <a href="https://tigger.celaya.tecnm.mx/AsesoriasInd/classes/class_consultancie.php?action=confirmConsultancie&id_consultancie_created='.$id_consultancie_created.'" style="width: 200px; padding: 10px; border-radius: 10px; margin:auto; background-color: #1B396A; color: white; border:none; cursor:pointer;">Confirmar</a>
+                                <a href="https://tigger.celaya.tecnm.mx/AsesoriasInd/classes/class_consultancies.php?action=confirmConsultancie&id_consultancie_created=${id_consultancie_created}" style="width: 200px; padding: 10px; border-radius: 10px; margin:auto; background-color: #1B396A; color: white; border:none; cursor:pointer;">Confirmar</a>
 
                             </article>`,
                             email_subject: 'Confirmación de asistencia a asesoría.'

@@ -45,42 +45,38 @@ class Class_Access extends Class_Database
         $captcha = $_POST['captcha'];
 
         if ($email != null && $password != null && $captcha != null) {
-            $this->emailRegistered2($email);
-            // if ($this->emailRegistered($email)) {
-            //     // TODO: VALIDAR QUE EL USUARIO NO TENGA UN TOKEN DE CONFIRMACIÓN
-                
-            //     $querySelectUser = "select * from usuario where email='{$email}'";
-            //     $user = $this->getRecord($querySelectUser);
+            if ($this->emailRegistered($email)) {
+                $querySelectUser = "select * from usuario where email='{$email}'";
+                $user = $this->getRecord($querySelectUser);
 
-            //     //if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
-            //     if ($this->registersNum == 1) {
-            //         if(isset($user->token_activacion)){
-            //             header("location: ../index.php?m=6"); // Checa tu email para verificar tu cuenta antes de ingresar
-            //         }else{
-            //             $_SESSION['session_user_id'] = $user->id_usuario;
-            //             $_SESSION['session_email'] = $user->email;
-            //             $_SESSION['session_password'] = $user->contrasena;
-            //             $_SESSION['session_username'] = $user->nombres;
-            //             //echo($user->id_rol);
+                if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
+                // if ($this->registersNum == 1) {
+                    if(isset($user->token_activacion)){
+                        header("location: ../index.php?m=6"); // Checa tu email para verificar tu cuenta antes de ingresar
+                    }else{
+                        $_SESSION['session_user_id'] = $user->id_usuario;
+                        $_SESSION['session_email'] = $user->email;
+                        $_SESSION['session_password'] = $user->contrasena;
+                        $_SESSION['session_username'] = $user->nombres;
     
-            //             // TODO: Arreglar B.D. y evaluar el tipo de usuario
-            //             // ES MAESTRO
-            //             if ($user->id_rol == 1) {
-            //                 $_SESSION['admin'] = FALSE;
-            //                 header("location: ../teacher/home.php");
-            //             }
-            //             // ES ADMIN
-            //             else {
-            //                 $_SESSION['admin'] = TRUE;
-            //                 header("location: ../admin/home.php");
-            //             }
-            //         }
-            //     } else {
-            //         header("location: ../index.php?m=3"); // Datos inválidos, pruebe a escribir los datos de nuevo
-            //     }
-            // } else {
-            //     header("location: ../index.php?m=2"); // El usuario no está registrado
-            // }
+                        // TODO: Arreglar B.D. y evaluar el tipo de usuario
+                        // ES MAESTRO
+                        if ($user->id_rol == 1) {
+                            $_SESSION['admin'] = FALSE;
+                            header("location: ../teacher/home.php");
+                        }
+                        // ES ADMIN
+                        else {
+                            $_SESSION['admin'] = TRUE;
+                            header("location: ../admin/home.php");
+                        }
+                    }
+                } else {
+                    header("location: ../index.php?m=3"); // Datos inválidos, pruebe a escribir los datos de nuevo
+                }
+            } else {
+                header("location: ../index.php?m=2"); // El usuario no está registrado
+            }
         } else {
             header("location: ../index.php?m=1");  // Llenar todos los campos
         }
@@ -172,13 +168,6 @@ class Class_Access extends Class_Database
         }
         return FALSE;
     }
-
-    function emailRegistered2($email){
-        $querySelectUser = "select * from usuario where email='{$email}'";
-        $user = $this->getRecord($querySelectUser);
-        var_dump($user);
-    }
-
 
     function sendEmail($email_html, $email_destination, $email_subject) : bool {
         $mail = new PHPMailer();

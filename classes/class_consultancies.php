@@ -26,7 +26,7 @@ class Consultancies extends Class_Database
                 return
                     '<form 
                             id="form_constultancie"
-                            onsubmit="return consultancies(\'insert_consultancie\')" method="post"
+                            onsubmit="event.preventDefault(); return consultancies(\'insert_consultancie\')" method="post"
                             class="flex-column justify-center bg-light-gray border-radius-30 relative" action="" style="width: 320px;">
                 
                             <input 
