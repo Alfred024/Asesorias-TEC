@@ -27,7 +27,7 @@
                                         <br>
                                         <select
                                             id="signatureId" name="signature"
-                                            class="box-shadow-light border-radius-20 padding-5 border-none">
+                                            class="input-1">
                                             ' . $signatures . '
                                         </select>
                                     </label><br>
@@ -40,7 +40,7 @@
                                         <input 
                                             value="'.(isset($signature_info) ? $signature_info->clave : '' ).'"
                                             id="keyId" 
-                                            name="key" pattern="[A-Z]{2}\d{2}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                            name="key" pattern="[A-Z]{2}\d{2}" class="input-1" type="text" placeholder="">
 
                                         '.(isset($signature_info) ? '<input type="hidden" name="current_key" value="'.$signature_info->clave.'" >' : '').'
                                     </label>
@@ -51,7 +51,7 @@
                                         <input 
                                             value="'.(isset($signature_info) ? $signature_info->grupo : '' ).'"
                                             id="groupId"
-                                            name="group" pattern="[A-Z]{1}" class="box-shadow-light border-radius-20 padding-10 border-none" type="text" placeholder="">
+                                            name="group" pattern="[A-Z]{1}" class="input-1" type="text" placeholder="">
                                     </label>
                                 </div>
                                 <br>
@@ -60,7 +60,7 @@
                                     <label class="flex-column width-100 margin-auto">
                                         Periodo
                                         <br>
-                                        <select class="box-shadow-light border-radius-20 padding-5 border-none" name="id_periodo">
+                                        <select class="input-1" name="id_periodo">
                                             <option value="1">Enero-Junio</option>
                                             <option value="2">Agosto-Diciembre</option>
                                         </select>
@@ -71,7 +71,7 @@
                                 <input type="hidden" name="action" 
                                     value="'.(isset($signature_info) ? 'update_signature' : 'insert_signature' ).'">
                                 
-                                <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" 
+                                <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-10 padding-10 border-none margin-auto" 
                                 value="'.(isset($signature_info) ? 'Actualizar materia' : 'Registrar materia' ).'"
                                 style="width: 200px;">
                                 <span id="message"></span>

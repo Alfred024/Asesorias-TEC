@@ -31,13 +31,13 @@ class Consultancies extends Class_Database
                 
                             <input 
                                 id="temaId"
-                                class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" type="text" name="tema" placeholder="Tema de la asesoría">
+                                class="input-1" type="text" name="tema" placeholder="Tema de la asesoría">
                             <br>
                 
                             <label class="flex-column">
                                 Competencia
                                 <br>
-                                <select class="box-shadow-light border-radius-20 padding-5 border-none" name="competencia">
+                                <select class="input-1" name="competencia">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -50,13 +50,13 @@ class Consultancies extends Class_Database
                 
                             <textarea 
                                 id="descripcionId"
-                                style="height: 100px; resize: none;" class="width-100 margin-auto box-shadow-light border-radius-20 padding-5 border-none" name="descripcion" placeholder="Descripción de la asesoría"></textarea>
+                                style="height: 100px; resize: none;" class="input-1" name="descripcion" placeholder="Descripción de la asesoría"></textarea>
                             <br>
                 
                             <label class="flex-column width-100 margin-auto">
                                 Alumno toma la asesoría
                                 <br>
-                                <select class="box-shadow-light border-radius-20 padding-5 border-none" name="alumno">
+                                <select class="input-1" name="alumno">
                                     ' . $students . '
                                 </select>
                             </label><br>
@@ -64,7 +64,7 @@ class Consultancies extends Class_Database
                             <input type="hidden" name="action" value="insert_consultancie">
                             <input type="hidden" name="clave" value="' . $clave . '">
 
-                            <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-20 padding-10 border-none margin-auto" value="Registrar Asesoría" style="width: 200px;">
+                            <input type="submit" class="Btn-Primary-Blue bg-primary-blue text-white border-radius-10 padding-10 border-none margin-auto" value="Registrar Asesoría" style="width: 200px;">
                             <span id="message"></span>
                         </form>';
 
@@ -155,16 +155,16 @@ class Consultancies extends Class_Database
                 $user_id = $_SESSION['session_user_id'];
                 
                 $query_param =
-                    'select
+                    'SELECT 
                         concat(usu.nombres," ", usu.apellido_paterno," ", usu.apellido_materno," ") as alumno,
                         ase.competencia,
                         ase.tema,
                         ase.descripcion,
                         ase.fecha
-                    from asesoria ase
-                    join usuario usu ON ase.id_usuario_toma = usu.id_usuario
-                    where ase.id_usuario_imparte = '.$user_id.'
-                    order by 5 desc limit 8;';
+                    FROM asesoria ase
+                    JOIN usuario usu ON ase.id_usuario_toma = usu.id_usuario
+                    WHERE ase.id_usuario_imparte = "' . $user_id . '"
+                    ORDER BY 5 desc limit 8;';
                 $this->displayData($query_param);
                 break;
             case 'searchStudent':
@@ -218,7 +218,7 @@ class Consultancies extends Class_Database
             case 'confirmConsultancie':
                 $id_consultancie = $_REQUEST['id_consultancie_created'];
                 $this->confirmConsultancie($id_consultancie);
-                header('location: ../index.php');
+                header('location: ../confirmation.php');
                 break;
         }
     }
@@ -325,11 +325,7 @@ if (isset($_REQUEST['action'])) {
         case '/asesorias/teacher/home.php':
             echo $consultanciesObject->action('displayData_recent');
             break;
-        case '/asesorias/teacher/consultancies.php':
-            echo $consultanciesObject->action('displayData_signature');
-            break;
         default:
-            # code...
             break;
     }
 }
