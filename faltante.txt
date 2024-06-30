@@ -1,0 +1,15 @@
+
+2.- Pestaña de Settigns funcional
+    Actualización de contraseña
+    Subida de foto de perfil
+3.- Mostrar el reporte de las asesorías archivadas
+
+ERRORES: 
+    * Agregar un medio de seguridad para que no se pueda actualizar el estado de confirmada de la asesoría
+    * No se muestran las asesorías agregadas recientemente
+
+
+5.- Merge de la funcionalidad de registrar alumnos
+6.- Select de las asesorías recientes en la página de Inicio
+7.- Loading skeletons en registrar materia
+8.- Buscador por nombre de maestro
