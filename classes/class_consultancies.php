@@ -218,6 +218,7 @@ class Consultancies extends Class_Database
             case 'confirmConsultancie':
                 $id_consultancie = $_REQUEST['id_consultancie_created'];
                 $this->confirmConsultancie($id_consultancie);
+                header('location: ../index.php');
                 break;
         }
     }

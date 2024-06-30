@@ -71,7 +71,7 @@ async function consultancies(action, id) {
                                 <a href="https://tigger.celaya.tecnm.mx/AsesoriasInd/classes/class_consultancies.php?action=confirmConsultancie&id_consultancie_created=${id_consultancie_created}" style="width: 200px; padding: 10px; border-radius: 10px; margin:auto; background-color: #1B396A; color: white; border:none; cursor:pointer;">Confirmar</a>
 
                             </article>`,
-                            email_subject: 'Confirmación de asistencia a asesoría.'
+                            email_subject: 'Confirmacion de asistencia a asesoria.'
                         },
                         function (response) {
                             console.log(response);
