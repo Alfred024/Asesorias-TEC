@@ -145,7 +145,7 @@ class Consultancies extends Class_Database
                 echo ('</div>
                     <a 
                         class="Btn-Primary-Blue absolute right-0 bg-primary-blue text-white border-radius-10 padding-10 border-none" style="bottom: 40px;"
-                        target="_blank"  href="../classes/class_pdfs.php?id=' . $signature_key . '" >
+                        target="_blank"  href="../classes/class_pdfs.php?id=' . $signature_key . '&table=asesoria" >
                             Generar reporte de asesorías
                             <i class="fa-solid fa-download margin-left-5"></i>
                         </a>

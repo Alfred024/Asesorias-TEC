@@ -19,11 +19,13 @@
             
         }
 
-        function generateConsultanciesPDF($clave) {
+        function generateConsultanciesPDF($clave, $consultancieType) {
             $fpdf = new FPDF('L');
             $fpdf->AddPage('L'); //L = Landscape
             $this->setHeader($fpdf);
             $fpdf->SetFont('Arial','B',10);
+
+            $table = $consultancieType;
 
             $select_query = 
             'SELECT
@@ -32,7 +34,7 @@
                 ase.tema,
                 ase.descripcion,
                 ase.fecha
-            FROM asesoria AS ase
+            FROM '.$table.' AS ase
             JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
             WHERE ase.clave = "'.$clave.'" ';
 
@@ -101,6 +103,6 @@
 
     $pdf = new PDFS();
     if(isset($_REQUEST['id'])){
-        $pdf->generateConsultanciesPDF($_REQUEST['id']);
+        $pdf->generateConsultanciesPDF($_REQUEST['id'], $_REQUEST['table']);
     }
 ?>
