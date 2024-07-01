@@ -1,7 +1,9 @@
 <?php 
-  session_start();
-  session_destroy();
-
+	session_start();
+	session_destroy();
+	if (!isset($_SESSION['token'])) {
+		header('location: ../index.php'); // No tienes autorización de entrar a esta página
+	}
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +41,7 @@
 				</label>
 
 				<div class="width-80 margin-auto margin-block-10">
-					<a class="anchor-default text-secondary-blue margin-bottom-10 font-size-15 " href="./">Volver al inicio de sesión</a>
+					<a class="anchor-default text-secondary-blue margin-bottom-10 font-size-15 " href="./login.php" target="_blank">Volver al inicio de sesión</a>
 				</div>
 
 				<input type="hidden" name="action" value="passwordRecover">

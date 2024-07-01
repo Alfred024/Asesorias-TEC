@@ -28,7 +28,7 @@ class Class_Access extends Class_Database
                 $this->validateAccount();
                 break;
             case 'passwordRecover':
-                # code...
+                $this->passwordRecover();
                 break;
             case 'sendEmail':
                 $email_html = $_REQUEST['email_html'];
@@ -48,7 +48,7 @@ class Class_Access extends Class_Database
             if ($this->emailRegistered($email)) {
                 $querySelectUser = "select * from usuario where email='{$email}'";
                 $user = $this->getRecord($querySelectUser);
-
+    
                 if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
                 // if ($this->registersNum == 1) {
                     if(isset($user->token_activacion)){
@@ -157,7 +157,71 @@ class Class_Access extends Class_Database
         }
     }
 
+    function validatePasswordRecoveryToken(){
+        $token = $_GET['token'];
+        $token_hash = hash("sha256", $token);
+
+        $searchUser = '
+            select * from usuario where token_activacion = "'.$token_hash.'"
+        ';
+        $user = $this->getRecord($searchUser);
+        
+        if($this->registersNum == 1){
+            $_SESSION['token'] = $token;
+            $_SESSION['session_user_id'] = $user->id_usuario;
+            $update_user = 'update usuario set token_activacion = NULL where id_usuario = "'.$user->id_usuario.'"';
+            $this->query($update_user);
+            header("location: ../new-password.php"); 
+        }else{
+            echo('ALGO SALIÓ MAL CONFIMRNADO EL TOKEN');
+        }
+    }
+
     function passwordRecover(){
+        $email = $_POST['email'];
+        if($email != null){
+            if($this->emailRegistered($email)){
+                ob_start();
+
+                $activation_token = bin2hex(random_bytes(16));
+                $activation_token_hash = hash("sha256", $activation_token);
+
+                $emailHTML = 
+                    '<article
+                        style="background-color: #f0efef; margin: 10px; display: flex; flex-direction:column; justify-content: center; padding: 20px; border-block: solid 4px #1B396A; ">
+
+                        <h4 style="text-align:center;">¡Hola!</h4><br>
+
+                        <p style="text-align:center;">Recibimos tu solicitud para restablecer tu contraseña, te dirigiremos a una página donde podrás crear una nueva contraseña y recuperar el acceso a tu cuenta.</p><br>
+
+                        <a href="https://tigger.celaya.tecnm.mx/AsesoriasInd/new_password.php?token='.$activation_token.'" style="width: 200px; padding: 10px; border-radius: 10px; margin:auto; background-color: #1B396A; color: white; border:none; cursor:pointer;">Confirmar</a>
+                    </article>';
+                
+                
+
+                if (!$this->sendEmail($emailHTML, $email, "Recuperacion de contrasena")) {
+                    header("location: ../password-recovery.php?m=3"); // Error enviando el email
+                } else {
+                    $querySelectUser = "select * from usuario where email='{$email}'";
+                    $user = $this->getRecord($querySelectUser);
+                    $update_user = 'update usuario set token_activacion = "'.$activation_token_hash.'" where id_usuario = "'.$user->id_usuario.'"';
+                    $this->query($update_user);
+                    header("location: ../password-recovery.php?m=4"); // Revisar la bandeja de llegada
+                }
+                ob_end_flush();
+            }else{
+                header("location: ../password-recovery.php?m=2"); // El usuario no está registrado
+            }
+        }else{
+            header("location: ../password-recovery.php?m=1");  // Llenar todos los campos
+        }
+    }
+
+    function updatePassword(){
+        // QUE HAYA UN TOKEN EN LA SESIÓN
+        // qUE LOS DOS CAMPOS TENGAN ALGO, 
+        // que las contraseñas coincidan 
+        // DEBEMOS LIMPIAR EL TOKEN DE LA SESIÓN
     }
 
     function emailRegistered($email): bool{

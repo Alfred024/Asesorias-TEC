@@ -1,15 +1,18 @@
+1.- Recuperación de contraseña
+    #1 Botón para enviar al input que pida el email para correo
+    #2 Enviar correo con botón a enlace de pagina de recuperación de contraseña
+
 
 2.- Pestaña de Settigns funcional
-    Actualización de contraseña
+    Actualización de contraseña: 
+        #1 Mostart contraseña actual 
+        #2 Validar que los dos inputs tengan contenido y que sean iguales
+        # Mandar correo para
     Subida de foto de perfil
-3.- Mostrar el reporte de las asesorías archivadas
+3.- Re
 
 ERRORES: 
     * Agregar un medio de seguridad para que no se pueda actualizar el estado de confirmada de la asesoría
-    * Asesorías de otras materias mostrándose en una que no le corresponde
 
-
-5.- Merge de la funcionalidad de registrar alumnos
-6.- Select de las asesorías recientes en la página de Inicio
 7.- Loading skeletons en registrar materia
 8.- Buscador por nombre de maestro

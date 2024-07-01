@@ -25,9 +25,10 @@
 
 		<div class="Form-Container flex flex-column center-flex-xy width-100 height-full">
 			
-			<form method="post" action="./classes/class_access.php" class="Form box-shadow-dark flex-column justify-center bg-light-gray border-radius-30">
-				<h4 class="width-fit font-weight-600 margin-auto" >Inicio de sesión</h4>
-				<hr style="margin: 10px;">
+			<form method="post" action="./classes/class_access.php" class="Form box-shadow-light flex-column justify-center bg-light-gray border-radius-30">
+				<div class="width-80 margin-auto">
+					<h1 class="font-weight-600 margin-bottom-10" >Inicio de sesión</h1>
+				</div>
 
 				<label class="flex-column width-80 margin-auto">
 					Correo
@@ -41,7 +42,11 @@
 					Contraseña
 					<br>
 					<input name="password" class="input-1" type="password" placeholder="">
-				</label><br>
+				</label>
+
+				<div class="width-80 margin-auto margin-block-10">
+					<a class="anchor-default text-secondary-blue margin-bottom-10 font-size-15 " href="./password-recovery.php">Olvidé mi contraseña</a>
+				</div>
 
 				<div class="Captcha-Container padding-5 flex justify-between align-center width-60 border-radius-10 margin-auto">
 					<div class="flex">
