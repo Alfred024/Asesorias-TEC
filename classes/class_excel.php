@@ -29,12 +29,12 @@
 
                         <form method="post" action="../classes/class_excel.php" enctype="multipart/form-data" class="flex-column justify-center margin-top-10">
                             <div class="form-group">
-                                <label for="customFile" class="FileUpload-Label custom-file-label" style="display: flex; border: solid black 1px; padding: 10px;">
+                                <!-- <label for="customFile" class="FileUpload-Label custom-file-label" style="display: flex; border: solid black 1px; padding: 10px;">
                                     <i class="fas fa-upload margin-right-10"></i> Seleccione un archivo
-                                </label>
-                                <input class="display-none" type="file" name="students_excel_file" id="customFile">
+                                </label> -->
+                                <input accept=".csv,xls,.xlsx" type="file" name="students_excel_file" id="customFile">
                             </div>
-                            <button type="submit" name="submit_file" class="Btn-Primary-Blue border-radius-10 bg-primary-blue text-white padding-10 margin-top-10 border-none margin-auto">Procesar archivo seleccionado</button>
+                            <button type="submit" name="submit_button" class="Btn-Primary-Blue border-radius-10 bg-primary-blue text-white padding-10 margin-top-10 border-none margin-auto">Procesar archivo seleccionado</button>
                             <input type="hidden" name="action" value="registerStudents">
                         </form>
                     </div>
@@ -43,11 +43,23 @@
                         <p class="text-align-center">Para cargar la lista de sus alumnos, por favor, seleccione una hoja de excel y haga clic en "Subir". Asegúrese de que el archivo cumple con los requisitos especificados por el administrador.</p>
                     </div>
                 </div>
+
+                <!-- <script> 
+                    document.querySelector(".custom-file-label").addEventListener("click", function() {
+                        document.querySelector("#customFile").click();
+                    });
+
+                    document.querySelector("#customFile").addEventListener("change", function() {
+                        const fileName = this.files[0] ? this.files[0].name : "Seleccione un archivoSDA";
+                        document.querySelector(".custom-file-label").textContent = fileName;
+                        document.querySelector(".custom-file-label").insertAdjacentHTML("afterbegin", "<i class="fas fa-upload"></i> ");
+                    });
+                </script> -->
             ');
         }
 
         function registerStudents(){
-            if (isset($_POST['submit_file'])) {
+            if (isset($_POST['students_excel_file'])) {
                 $fileName = $_FILES['students_excel_file']['name'];
                 // echo 'Nombre del archivo: '.$fileName;
                 $file_ext = pathinfo($fileName, PATHINFO_EXTENSION);
