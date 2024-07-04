@@ -1,7 +1,6 @@
-1.- Recuperación de contraseña
-    #1 Botón para enviar al input que pida el email para correo
-    #2 Enviar correo con botón a enlace de pagina de recuperación de contraseña
-
+7.- Loading skeletons en registrar materia
+8.- Buscador por nombre de maestro
+1.- Recuperación de contraseña: Validación de contraseñas iguales 
 
 2.- Pestaña de Settigns funcional
     Actualización de contraseña: 
@@ -12,7 +11,6 @@
 3.- Re
 
 ERRORES: 
+    * Inicialización de SESSION para buscar el token
     * Agregar un medio de seguridad para que no se pueda actualizar el estado de confirmada de la asesoría
 
-7.- Loading skeletons en registrar materia
-8.- Buscador por nombre de maestro

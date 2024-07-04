@@ -1,8 +1,9 @@
 <?php 
 	session_start();
 	session_destroy();
-	if (!isset($_SESSION['token'])) {
-		header('location: ../index.php'); // No tienes autorización de entrar a esta página
+	// if (!isset($_SESSION['token']) || ($_SESSION['token'] != $_GET['token'])) {
+	if (!isset($_GET['token'])) {
+		header('location: ./index.php'); // No tienes autorización de entrar a esta página
 	}
 ?>
 
@@ -12,7 +13,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="./assets/logo-II.png" type="image/png">
-	<title>Recuperación de Contraseña</title>
+	<title>Creación de nueva contraseña</title>
 	<link rel="stylesheet" type="text/css" href="./styles/globlal.css">
 	<link rel="stylesheet" type="text/css" href="https://alfred024.github.io/CSS-mio/styles.css">
 	
@@ -33,19 +34,24 @@
 				</div>
 
 				<label class="flex-column width-80 margin-auto">
-					Correo
+					Nueva contraseña
 					<br>
-					<input name="email" 
+					<input name="newPassword" 
 						class="input-1" 
-						type="email" placeholder="juan.montes@itcelaya.edu.mx" required>
+						type="password" required>
+				</label><br>
+
+				<label class="flex-column width-80 margin-auto">
+					Confirmación de nueva contraseña
+					<br>
+					<input name="newPassword2" 
+						class="input-1" 
+						type="password" required>
 				</label>
 
-				<div class="width-80 margin-auto margin-block-10">
-					<a class="anchor-default text-secondary-blue margin-bottom-10 font-size-15 " href="./login.php" target="_blank">Volver al inicio de sesión</a>
-				</div>
 
-				<input type="hidden" name="action" value="passwordRecover">
-				<input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-10 padding-10 border-none margin-auto" type="submit" value="Enviar" style="width: 200px;">
+				<input type="hidden" name="action" value="updateNewPassword">
+				<input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-10 padding-10 border-none margin-auto" type="submit" value="Actualizar" style="width: 200px;">
 
 				<?php
 					if(isset($_GET['m'])){
@@ -84,18 +90,22 @@
 									'<span 
 										class="text-secondary-blue margin-top-10"
 										style="font-size: 15px; font-weight:600; text-align: center;">
-										Correo de recuperación enviado. Revisa tu bandeja de entrada.
+										La contraseña se actualizó exitosamente.
+									</span>'
+								);
+							break;
+							case '5':
+								echo(
+									'<span 
+										class="text-secondary-blue margin-top-10"
+										style="font-size: 15px; font-weight:600; text-align: center;">
+										Las contraseñas no coinciden
 									</span>'
 								);
 							break;
 						}
 					}
 				?> 
-				
-				<div class="flex center-flex-xy margin-top-10">
-					<span class="font-size-15 margin-right-5">¿Aún no tienes cuenta?</span>
-					<a href="./register.php" class="Anchor-Form anchor-default font-size-15 text-secondary-blue">Crea una aquí</a>
-				</div>
 			</form>
 		</div>
 

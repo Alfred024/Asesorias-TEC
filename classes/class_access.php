@@ -30,6 +30,9 @@ class Class_Access extends Class_Database
             case 'passwordRecover':
                 $this->passwordRecover();
                 break;
+            case 'updateNewPassword':
+                $this->updateNewPassword();
+                break;
             case 'sendEmail':
                 $email_html = $_REQUEST['email_html'];
                 $email_destination = $_REQUEST['email'];
@@ -125,7 +128,7 @@ class Class_Access extends Class_Database
                 } else {
                     // Espera a que el usuario confirme el correo para que haga el insert
                     $id_user = 1;
-                    $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
+                    $encryptedPassword = $this->encryptPassword($password);
                     $queryInsertUser = '
                     insert into usuario (id_rol, email, nombres, apellido_paterno, apellido_materno, contrasena, token_activacion)
                     values ("'.$id_user.'", "'.$email.'", "'.$names.'", "'.$last_name.'", "'.$second_last_name.'", "'.$encryptedPassword.'", "'.$activation_token_hash.'");';
@@ -157,8 +160,8 @@ class Class_Access extends Class_Database
         }
     }
 
-    function validatePasswordRecoveryToken(){
-        $token = $_GET['token'];
+    function updateNewPassword(){
+        $token = $_SESSION['token'];
         $token_hash = hash("sha256", $token);
 
         $searchUser = '
@@ -167,11 +170,20 @@ class Class_Access extends Class_Database
         $user = $this->getRecord($searchUser);
         
         if($this->registersNum == 1){
-            $_SESSION['token'] = $token;
             $_SESSION['session_user_id'] = $user->id_usuario;
             $update_user = 'update usuario set token_activacion = NULL where id_usuario = "'.$user->id_usuario.'"';
             $this->query($update_user);
-            header("location: ../new-password.php"); 
+
+            $password = $_REQUEST['newPassword'];
+            $password2 = $_REQUEST['newPassword2'];
+
+            if ($password !=  $password2) {
+                header("location: ../new-password.php?m=5"); // Las contraseñas no coinciden
+            }
+            $encryptedPassword = $this->encryptPassword($password);
+            $update_user = 'update usuario set contrasena = "'.$encryptedPassword.'" where id_usuario = "'.$user->id_usuario.'"';
+            $this->query($update_user);
+            header("location: ../new-password.php?m=4");
         }else{
             echo('ALGO SALIÓ MAL CONFIMRNADO EL TOKEN');
         }
@@ -194,7 +206,7 @@ class Class_Access extends Class_Database
 
                         <p style="text-align:center;">Recibimos tu solicitud para restablecer tu contraseña, te dirigiremos a una página donde podrás crear una nueva contraseña y recuperar el acceso a tu cuenta.</p><br>
 
-                        <a href="https://tigger.celaya.tecnm.mx/AsesoriasInd/new_password.php?token='.$activation_token.'" style="width: 200px; padding: 10px; border-radius: 10px; margin:auto; background-color: #1B396A; color: white; border:none; cursor:pointer;">Confirmar</a>
+                        <a href="https://tigger.celaya.tecnm.mx/AsesoriasInd/new-password.php?token='.$activation_token.'" style="width: 200px; padding: 10px; border-radius: 10px; margin:auto; background-color: #1B396A; color: white; border:none; cursor:pointer;">Confirmar</a>
                     </article>';
                 
                 
@@ -202,6 +214,7 @@ class Class_Access extends Class_Database
                 if (!$this->sendEmail($emailHTML, $email, "Recuperacion de contrasena")) {
                     header("location: ../password-recovery.php?m=3"); // Error enviando el email
                 } else {
+                    $_SESSION['token'] = $activation_token;
                     $querySelectUser = "select * from usuario where email='{$email}'";
                     $user = $this->getRecord($querySelectUser);
                     $update_user = 'update usuario set token_activacion = "'.$activation_token_hash.'" where id_usuario = "'.$user->id_usuario.'"';
@@ -217,11 +230,8 @@ class Class_Access extends Class_Database
         }
     }
 
-    function updatePassword(){
-        // QUE HAYA UN TOKEN EN LA SESIÓN
-        // qUE LOS DOS CAMPOS TENGAN ALGO, 
-        // que las contraseñas coincidan 
-        // DEBEMOS LIMPIAR EL TOKEN DE LA SESIÓN
+    function encryptPassword($text_plain_password) : string{
+        return password_hash($text_plain_password, PASSWORD_DEFAULT);
     }
 
     function emailRegistered($email): bool{
