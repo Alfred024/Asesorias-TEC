@@ -20,13 +20,14 @@
                         $teacherSearched = $_REQUEST['teacherSearched'];
                     }
 
-                    $query_param = 'select
-                        concat(us.nombres, " ",us.apellido_paterno, " ",us.apellido_materno) as maestro,
-                        us.id_usuario as id_maestro
-                    from usuario us where id_rol = 1 and
-                    CONCAT(us.nombres, " ", us.apellido_paterno, " ", us.apellido_materno, " ") LIKE CONCAT("%'.$teacherSearched.'%");';
-
-                    $this->displayData($query_param);
+                    $searchTeacher_query =
+                    'SELECT
+                        concat(us.nombres, " ",us.apellido_paterno, " ",us.apellido_materno) AS maestro,
+                        us.id_usuario AS id_maestro
+                    FROM usuario us WHERE id_rol = 1 AND
+                    CONCAT (us.nombres, " ", us.apellido_paterno, " ", us.apellido_materno, " ") 
+                    LIKE CONCAT("%'.$teacherSearched.'%");';
+                    $this->displayData($searchTeacher_query);
                 break;
             }
         }
@@ -36,10 +37,11 @@
 
             if($this->registersNum == 0){
                 echo('<p>AÚN NO HAY MAESTROS REGISTRADOS</p>');
+                return;
             }
 
             $signatures = '';
-            $teachersHtml = '<div id="Teachers_Containers" style="padding: 20px;">';
+            $teachersHtml = '<div id="Teachers_Container" style="padding: 20px;">';
 
             $id_list = 1;
             foreach ($this->registrersBlock as $registerRow) {

@@ -1,16 +1,8 @@
 7.- Loading skeletons en registrar materia
 8.- Buscador por nombre de maestro
-9.- Mostrar nombres de materias en reporte
 
 CUANDO SE RECUPERE EL SERVER
 1.- Recuperación de contraseña: Validación de contraseñas iguales 
-
-2.- Pestaña de Settigns funcional
-    Actualización de contraseña: 
-        #1 Mostart contraseña actual 
-        #2 Validar que los dos inputs tengan contenido y que sean iguales
-        # Mandar correo para
-    Subida de foto de perfil
 
 ERRORES: 
     * Inicialización de SESSION para buscar el token

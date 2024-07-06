@@ -7,13 +7,11 @@ function users(action, id) {
         case 'searchTeacher': 
             teacher = searchTeacherInput.value;
             $.ajax({
-                url: `http://localhost/asesorias/classes/class_teachers.php?teacherSearched=${teacher}`,
-                // url: `../../classes/consultancies.php?clave=${id}`,
+                url: `../classes/class_teachers.php?teacherSearched=${teacher}`,
                 type: "post",
                 data: {action: "searchTeacher"},
                 success: function(htmlResponse){
-                    console.log(`HTML response users: ${htmlResponse}`);
-                    Teachers_Containers.innerHTML = htmlResponse;
+                    Teachers_Container.innerHTML = htmlResponse;
                 },
                 error: function(err){ console.log(JSON.stringify(err)); },
             });

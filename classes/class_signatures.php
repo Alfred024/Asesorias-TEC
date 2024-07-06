@@ -222,7 +222,8 @@
 
             foreach ($this->registrersBlock as $registerRow) { 
                 $signatures_stored .= '
-                    <a target="_blank" href="../classes/class_pdfs.php?id='.$registerRow["clave"].'&table=asesoria_archivada" class="Subject-Card-Stored bg-primary-purple border-radius-30 text-white overflow-hidden flex-column justify-between" style="font-size: 14px;">
+                    
+                    <div class="Subject-Card-Stored bg-primary-purple border-radius-30 text-white overflow-hidden flex-column justify-between" style="font-size: 14px;">
                         <div class="flex-column justify-around padding-10" style="height: 80%;">
                             <p>Materia: '.$registerRow["nombre"].'</p>
                             <div class="flex justify-between">
@@ -234,12 +235,14 @@
                                 <p>Periodo: '.$registerRow["periodo"].'</p>
                             </div>
                         </div>
-                        <button class="bg-white border-none cursor-pointer" style="height: 20%;">
+                        <button 
+                            onclick="return signatures(\'generateReport\' ,\''.$registerRow["clave"].'\')"
+                            class="bg-white border-none cursor-pointer" style="height: 20%;">
                             Descargar reporte
                             <i class="fa-solid fa-download margin-left-5"></i>
                         </button>
                         <input type="hidden" name="signature_key" value="'.$registerRow["clave"].'">
-                    </a>
+                    </div>
                 ';
             }
             $res .= $signatures_stored.'</div>';

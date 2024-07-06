@@ -5,9 +5,12 @@
     class PDFS extends Class_Database{
         var $fpdf;
         
-        function setHeader($fpdf, $clave) {
-            $this->getSignatureName($clave);
-            $signature_name = $this->getSignatureName($clave);
+        function setHeader($fpdf, $clave, $p_table) {
+            if($p_table === 'asesoria_archivada'){
+                $signature_name = $this->getSignatureName($clave, true);
+            }else{
+                $signature_name = $this->getSignatureName($clave, false);
+            }
             
             $fpdf->SetFont('Arial','B',16);
             $fpdf->Image('../assets/LOGO-VERTICAL-TECNM.png', 10, 6, 27);
@@ -22,13 +25,13 @@
             
         }
 
-        function generateConsultanciesPDF($clave, $consultancieType) {
+        function generateConsultanciesPDF($clave, $p_table) {
             $fpdf = new FPDF('L');
             $fpdf->AddPage('L'); //L = Landscape
-            $this->setHeader($fpdf, $clave);
+            $this->setHeader($fpdf, $clave, $p_table);
             $fpdf->SetFont('Arial','B',10);
 
-            $table = $consultancieType;
+            $table = $p_table;
 
             $select_query = 
             'SELECT
@@ -103,15 +106,25 @@
             // return $text;  // Return original text if no truncation is needed
         }
 
-        function getSignatureName($signature_key) : string {
-            $query_select = '
+        function getSignatureName($signature_key, $archivada) : string {
+            if($archivada){
+                $query_select = '
+                select nombre 
+                from materia ma
+                left join grupo_archivado gr on ma.id_materia = gr.id_materia
+                where gr.clave = "'.$signature_key.'"; 
+                ';
+            }else{
+                $query_select = '
                 select nombre 
                 from materia ma
                 left join grupo gr on ma.id_materia = gr.id_materia
                 where gr.clave = "'.$signature_key.'"; 
-            ';
+                ';
+            }
             $signature = $this->getRecord($query_select);
             return $signature->nombre;
+            return $signature_key;
         }
     }
 

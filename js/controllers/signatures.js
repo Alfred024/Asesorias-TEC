@@ -80,10 +80,13 @@ function signatures(action, id) {
                 'Cancelar'
             );
             break;
+        case 'generateReport':
+            window.open( `../classes/class_pdfs.php?id=${id}&table=asesoria_archivada`, "_blank");
+            break;
         case 'storeContent':
             store_function = function(){
                 $.ajax({
-                    url: "../classes/consultancies.php",
+                    url: "../classes/class_consultancies.php",
                     type: "post",
                     data: { action: action, clave: id },
                     success: function (htmlResponse) {

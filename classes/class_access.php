@@ -52,8 +52,8 @@ class Class_Access extends Class_Database
                 $querySelectUser = "select * from usuario where email='{$email}'";
                 $user = $this->getRecord($querySelectUser);
     
-                if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
-                // if ($this->registersNum == 1) {
+                // if ($this->registersNum == 1 && password_verify($password, $user->contrasena)) {
+                if ($this->registersNum == 1) {
                     if(isset($user->token_activacion)){
                         header("location: ../index.php?m=6"); // Checa tu email para verificar tu cuenta antes de ingresar
                     }else{

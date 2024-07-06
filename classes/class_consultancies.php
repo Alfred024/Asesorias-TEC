@@ -194,11 +194,11 @@ class Consultancies extends Class_Database
 
                 $query_delete_group = 'delete from grupo where clave = "'.$clave.'";';
                 $this->query($query_delete_group);
-                echo (
-                    '<div style="width: 200px; margin-left: 20px;" class="flex margin-y-5 box-shadow-light border-radius-10 padding-10 bg-white place-self-end">
-                    <i class="fa-solid fa-magnifying-glass margin-right-5 color-primary-blue"></i>
-                    <input onkeypress="return users(\'searchTeacher\')" id="searchTeacherInput" class="border-none" type="text" placeholder="Buscar maestro">
-                    </div>');
+                // echo (
+                //     '<div style="width: 200px; margin-left: 20px;" class="flex margin-y-5 box-shadow-light border-radius-10 padding-10 bg-white place-self-end">
+                //     <i class="fa-solid fa-magnifying-glass margin-right-5 color-primary-blue"></i>
+                //     <input onkeypress="return users(\'searchTeacher\')" id="searchTeacherInput" class="border-none" type="text" placeholder="Buscar maestro">
+                //     </div>');
                 $_REQUEST['action'] = 'displayData';
                 include './class_teachers.php';
                 break;
