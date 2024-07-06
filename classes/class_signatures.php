@@ -78,17 +78,19 @@
                             </form>';
                 break;
                 case 'insert_signature':
-                    $user_id = $_SESSION['session_user_id'];
-                    $signature = $_REQUEST['signature'];
-                    $group = $_REQUEST['group'];
-                    $key = $_REQUEST['key'];
-                    $signature_period = $_REQUEST['id_periodo'];
+                    // $user_id = $_SESSION['session_user_id'];
+                    // $signature = $_REQUEST['signature'];
+                    // $group = $_REQUEST['group'];
+                    // $key = $_REQUEST['key'];
+                    // $signature_period = $_REQUEST['id_periodo'];
                 
-                    $id_signature_inserted = $this->getId_signature($signature);
-                    $insert_signature_group_query = "INSERT INTO grupo (grupo, clave, id_usuario, id_materia, id_periodo) VALUES ('$group', '$key', '$user_id', '$id_signature_inserted', '$signature_period');";
-                    $this->query($insert_signature_group_query);
-                
-                    $this->action('displayData');
+                    // $id_signature_inserted = $this->getId_signature($signature);
+                    // $insert_signature_group_query = "INSERT INTO grupo (grupo, clave, id_usuario, id_materia, id_periodo) VALUES ('$group', '$key', '$user_id', '$id_signature_inserted', '$signature_period');";
+                    // $this->query($insert_signature_group_query);
+                    
+                    // Se muestra el loading skeleton
+
+                    //$this->action('displayData');
                 break;
                 case 'update_signature':
                     $this->query("
@@ -145,7 +147,10 @@
             $this->getRecord($query_param);
 
             if($this->registersNum == 0){
-                echo('<h5 class="color-primary-blue text-align-center font-size-15 padding-20 ">Aún no tienes materias registradas, pulsa el botón de (+) para agregar una nueva materia</h5>');
+                echo( '
+                <div id="SubjectsCardsContainerId" class="">
+                    <h5 class="color-primary-blue text-align-center font-size-15 padding-20 ">Aún no tienes materias registradas, pulsa el botón de (+) para agregar una nueva materia</h5>
+                </div>');
             }
             $subjectCards = '';
             foreach ($this->registrersBlock as $registerRow) {
@@ -185,7 +190,10 @@
             //Botón para agregar una materia
             $consultanciesContainerEnd = '</div>
                 <button 
-                    onclick="return signatures(\'formNew\');" 
+                    onclick="
+                        return show_loading_skeletons();
+                        return signatures(\'formNew\');
+                    " 
                     class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">
                     <i class="fa-solid fa-plus"></i>
                 </button>';

@@ -177,13 +177,15 @@ class Class_Access extends Class_Database
             $password = $_REQUEST['newPassword'];
             $password2 = $_REQUEST['newPassword2'];
 
-            if ($password !=  $password2) {
+            if ($password != $password2) {
                 header("location: ../new-password.php?m=5"); // Las contraseñas no coinciden
+            }else{
+                $encryptedPassword = $this->encryptPassword($password);
+                $update_user = 'update usuario set contrasena = "'.$encryptedPassword.'" where id_usuario = "'.$user->id_usuario.'"';
+                $this->query($update_user);
+                header("location: ../new-password.php?m=4");
             }
-            $encryptedPassword = $this->encryptPassword($password);
-            $update_user = 'update usuario set contrasena = "'.$encryptedPassword.'" where id_usuario = "'.$user->id_usuario.'"';
-            $this->query($update_user);
-            header("location: ../new-password.php?m=4");
+            
         }else{
             echo('ALGO SALIÓ MAL CONFIMRNADO EL TOKEN');
         }

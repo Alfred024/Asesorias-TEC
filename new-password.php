@@ -2,9 +2,9 @@
 	session_start();
 	session_destroy();
 	// if (!isset($_SESSION['token']) || ($_SESSION['token'] != $_GET['token'])) {
-	if (!isset($_GET['token'])) {
-		header('location: ./index.php'); // No tienes autorización de entrar a esta página
-	}
+	// if (!isset($_GET['token'])) {
+	// 	header('location: ./index.php'); // No tienes autorización de entrar a esta página
+	// }
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@
 			
 			<form method="post" action="./classes/class_access.php" class="Form box-shadow-light flex-column justify-center bg-light-gray border-radius-30">
 				<div class="width-80 margin-auto">
-					<h1 class="font-weight-600 margin-bottom-10" >Recuperación de Contraseña</h1>
+					<h1 class="font-weight-600 margin-bottom-10" >Creación de nueva contraseña</h1>
 				</div>
 
 				<label class="flex-column width-80 margin-auto">
@@ -51,7 +51,7 @@
 
 
 				<input type="hidden" name="action" value="updateNewPassword">
-				<input class="Btn-Primary-Blue bg-primary-blue text-white border-radius-10 padding-10 border-none margin-auto" type="submit" value="Actualizar" style="width: 200px;">
+				<input class="Btn-Primary-Blue margin-top-10 bg-primary-blue text-white border-radius-10 padding-10 border-none margin-auto" type="submit" value="Actualizar" style="width: 200px;">
 
 				<?php
 					if(isset($_GET['m'])){

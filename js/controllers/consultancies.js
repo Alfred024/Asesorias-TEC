@@ -87,8 +87,7 @@ async function consultancies(action, id) {
                 type: "post",
                 data: {action: "searchStudent"},
                 success: function(htmlResponse){
-                    console.log(`HTML response: ${htmlResponse}`);
-                    Assesories_Table.innerHTML = htmlResponse;
+                    Assesories_Container.innerHTML = htmlResponse;
                 },
                 error: function(err){ console.log(JSON.stringify(err)); },
             });

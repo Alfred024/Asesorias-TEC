@@ -38,6 +38,7 @@
     <!-- Custom JS -->
     <script src="../js/utils/custom-jquery.js"></script>
     <script src="../js/utils/change-pages.js?v=4"></script>
+    <script src="../js/utils/loading-skeletons.js"></script>
 </head>
 <body>
     <div class="Control-Panel-Container flex">

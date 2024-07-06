@@ -7,14 +7,6 @@ if (!class_exists("Class_Access")) include "../classes/class_access.php";
 
 class Consultancies extends Class_Database
 {
-
-    // private $pdf;
-
-    // public function __construct()
-    // {
-    //     $this->pdf = new PDFS;
-    // }
-
     function action($action_case)
     {
         switch ($action_case) {
@@ -99,8 +91,7 @@ class Consultancies extends Class_Database
                         ase.fecha
                     FROM asesoria AS ase
                     JOIN usuario AS usu ON ase.id_usuario_toma = usu.id_usuario
-                    WHERE ase.clave = "' . $signature_key . '"; ';
-                    // and ase.confirmada = TRUE
+                    WHERE ase.clave = "' . $signature_key . '" and ase.confirmada = TRUE; ';
 
                 echo ('
                     <div class="flex-column padding-20 relative" style="padding-top: 10px;">
