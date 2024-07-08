@@ -5,6 +5,7 @@ CUANDO SE RECUPERE EL SERVER
 1.- Recuperación de contraseña: Validación de contraseñas iguales 
 
 ERRORES: 
+    * Impedir que se registre un correo que no existe
     * Inicialización de SESSION para buscar el token
     * Agregar un medio de seguridad para que no se pueda actualizar el estado de confirmada de la asesoría
 

@@ -191,7 +191,7 @@
             $consultanciesContainerEnd = '</div>
                 <button 
                     onclick="
-                        return show_loading_skeletons();
+                        // return show_loading_skeletons();
                         return signatures(\'formNew\');
                     " 
                     class="Add-Subject-Button absolute border-radius-full" style="width: 50px; height: 50px;">

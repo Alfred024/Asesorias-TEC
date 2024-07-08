@@ -1,9 +1,8 @@
 <?php 
 	session_start();
-	session_destroy();
-	// if (!isset($_SESSION['token']) || ($_SESSION['token'] != $_GET['token'])) {
-	// if (!isset($_GET['token'])) {
-	// 	header('location: ./index.php'); // No tienes autorización de entrar a esta página
+	echo $_SESSION['token'];
+	// if (!isset($_SESSION['token'])) {
+	// 	header('location: ./index.php'); 
 	// }
 ?>
 
